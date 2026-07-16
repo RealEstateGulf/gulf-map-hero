@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miftah Türkiye — Tüm Site İçerikleri (Türkçe)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 40px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Cover */
+    .cover {
+      text-align: center;
+      padding: 60px 0 50px;
+      border-bottom: 3px solid #c9a227;
+      margin-bottom: 48px;
+    }
+    .cover .logo-line {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #c9a227;
+      margin-bottom: 14px;
+    }
+    .cover h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0d0d0d;
+      margin-bottom: 8px;
+    }
+    .cover .sub {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .cover .date {
+      font-size: 11px;
+      color: #999;
+      letter-spacing: 0.08em;
+    }
+
+    /* Page section */
+    .page-section {
+      margin-bottom: 52px;
+      page-break-inside: avoid;
+    }
+
+    .page-section-header {
+      background: #c9a227;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px 6px 0 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-section-header .page-num {
+      background: rgba(0,0,0,0.18);
+      border-radius: 4px;
+      padding: 1px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #e0d4b0;
+      border-top: none;
+    }
+
+    .content-table tr {
+      border-bottom: 1px solid #eee;
+    }
+    .content-table tr:last-child {
+      border-bottom: none;
+    }
+    .content-table tr:nth-child(even) td {
+      background: #fdf9f0;
+    }
+
+    .content-table td {
+      padding: 10px 14px;
+      vertical-align: top;
+    }
+
+    .label-col {
+      width: 200px;
+      font-weight: 600;
+      color: #5a4a1a;
+      font-size: 11.5px;
+      line-height: 1.5;
+      padding-right: 10px;
+    }
+
+    .label-col .field-key {
+      display: block;
+      font-family: monospace;
+      font-size: 10px;
+      color: #999;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .value-col {
+      color: #1a1a1a;
+      font-size: 13px;
+    }
+
+    /* Hardcoded sections */
+    .hardcoded-section {
+      margin-bottom: 52px;
+    }
+
+    .hardcoded-section-header {
+      background: #3d3d3d;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px 6px 0 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hardcoded-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+    .hardcoded-table tr { border-bottom: 1px solid #eee; }
+    .hardcoded-table tr:last-child { border-bottom: none; }
+    .hardcoded-table tr:nth-child(even) td { background: #f9f9f9; }
+    .hardcoded-table td { padding: 10px 14px; vertical-align: top; }
+    .hardcoded-table .hl { width: 200px; font-weight: 600; color: #333; font-size: 11.5px; }
+    .hardcoded-table .hv { font-size: 13px; color: #1a1a1a; }
+
+    .note {
+      background: #fff8e6;
+      border: 1px solid #e8d48a;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #5a4a1a;
+      margin-bottom: 32px;
+    }
+
+    .toc {
+      background: #f9f6ed;
+      border: 1px solid #e0d4b0;
+      border-radius: 8px;
+      padding: 22px 26px;
+      margin-bottom: 40px;
+    }
+    .toc h2 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #c9a227;
+      margin-bottom: 14px;
+    }
+    .toc ol { padding-left: 20px; }
+    .toc li { font-size: 13px; color: #333; margin-bottom: 5px; }
+
+    h2.section-divider {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #aaa;
+      border-top: 1px solid #eee;
+      padding-top: 28px;
+      margin-top: 8px;
+      margin-bottom: 24px;
+    }
+
+    @media print {
+      body { padding: 20px; font-size: 12px; }
+      .cover { padding: 30px 0; }
+      .page-section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="logo-line">Miftah Türkiye — مفتاح تركيا</div>
+  <h1>Tüm Site İçerikleri</h1>
+  <div class="sub">Türkçe İçerik Dökümanı — Gayrimenkul & Yatırım Danışmanlığı</div>
+  <div class="date">Hazırlanma tarihi: Temmuz 2026</div>
+</div>
+
+<!-- NOTE -->
+<div class="note">
+  <strong>Not:</strong> Bu döküman sitenin tüm sayfalarındaki yazılı içeriklerin Türkçe karşılıklarını içermektedir. "Admin panelinden yönetilen içerikler" başlığı altındakiler admin panelinden (Sayfa İçerikleri bölümünden) güncellenebilir. "Kodda sabit yazılan içerikler" bölümündekiler ise geliştirici tarafından değiştirilmesi gereken metinlerdir.
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li>Navigasyon (Menü) Metinleri</li>
+    <li>Ana Sayfa</li>
+    <li>Hakkımızda Sayfası</li>
+    <li>Hizmetler Sayfası</li>
+    <li>Türkiye Sayfası</li>
+    <li>Vatandaşlık Sayfası</li>
+    <li>VIP Sayfası</li>
+    <li>İletişim Sayfası</li>
+    <li>Gayrimenkuller Sayfası</li>
+    <li>Blog / Makaleler Sayfası</li>
+    <li>Alt Bilgi (Footer)</li>
+    <li>Genel Butonlar & Ortak Metinler</li>
+    <li>WhatsApp Popup</li>
+    <li>Müşteri Yorumu Bölümü</li>
+    <li>Neden Biz Bölümü</li>
+    <li>Yatırım İstatistikleri Bölümü</li>
+    <li>SSS (Sık Sorulan Sorular)</li>
+    <li>ROI Hesap Makinesi</li>
+  </ol>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<h2 class="section-divider">A — Admin Panelinden Yönetilen İçerikler</h2>
+
+<!-- 1. NAV -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">1</span>
+    Navigasyon (Menü) Metinleri
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Gayrimenkuller Menüsü<span class="field-key">nav.properties</span></td>
+      <td class="value-col">Yatırım Fırsatları</td>
+    </tr>
+    <tr>
+      <td class="label-col">Vatandaşlık Menüsü<span class="field-key">nav.citizenship</span></td>
+      <td class="value-col">Türk Vatandaşlığı</td>
+    </tr>
+    <tr>
+      <td class="label-col">VIP Menüsü<span class="field-key">nav.vip</span></td>
+      <td class="value-col">VIP Yatırımcı Ağı</td>
+    </tr>
+    <tr>
+      <td class="label-col">Makaleler Menüsü<span class="field-key">nav.insights</span></td>
+      <td class="value-col">Analizler & Makaleler</td>
+    </tr>
+    <tr>
+      <td class="label-col">Türkiye Menüsü<span class="field-key">nav.turkey</span></td>
+      <td class="value-col">Türkiye Hakkında</td>
+    </tr>
+    <tr>
+      <td class="label-col">İletişim Menüsü<span class="field-key">nav.contact</span></td>
+      <td class="value-col">Bize Ulaşın</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 2. ANA SAYFA -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">2</span>
+    Ana Sayfa (Home)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Hero Rozeti<span class="field-key">hero.badge</span></td>
+      <td class="value-col">Türkiye'deki Gayrimenkul Yatırımı İçin Birinci Kapınız</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hero Başlık 1. Satır<span class="field-key">hero.title1</span></td>
+      <td class="value-col">Yatırım Yapın</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hero Başlık 2. Satır (Altın)<span class="field-key">hero.title2</span></td>
+      <td class="value-col">Türkiye'nin Seçkin Gayrimenkullerine</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hero Alt Başlık<span class="field-key">hero.sub</span></td>
+      <td class="value-col">Türkiye'nin başlıca şehirlerinde — İstanbul, Antalya ve Bursa'da — gayrimenkul ve yatırım fırsatları; Türk vatandaşlığı alma imkânıyla birlikte</td>
+    </tr>
+    <tr>
+      <td class="label-col">Öne Çıkan İlanlar Başlık<span class="field-key">featured.title</span></td>
+      <td class="value-col">Özenle Seçilmiş Gayrimenkuller</td>
+    </tr>
+    <tr>
+      <td class="label-col">Öne Çıkan İlanlar Alt Başlık<span class="field-key">featured.sub</span></td>
+      <td class="value-col">Türkiye'nin en yüksek büyüme gösteren yatırım bölgelerinde daireler, villalar ve ticari projelerden oluşan çeşitlendirilmiş portföy</td>
+    </tr>
+    <tr>
+      <td class="label-col">Neden Türkiye Başlığı<span class="field-key">why.title</span></td>
+      <td class="value-col">Neden Türkiye'ye Yatırım Yapmalısınız?</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmetler Bölümü Başlığı<span class="field-key">services.title</span></td>
+      <td class="value-col">Yatırım Hizmetlerimiz</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt CTA Başlık<span class="field-key">cta.title</span></td>
+      <td class="value-col">Türkiye Yatırım Yolculuğunuza Bugün Başlayın</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt CTA Alt Yazı<span class="field-key">cta.sub</span></td>
+      <td class="value-col">Saha uzmanlarımızla ücretsiz danışmanlık — mülk seçiminden tapu ve vatandaşlık sürecine kadar yanınızdayız</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 3. HAKKIMIZDA -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">3</span>
+    Hakkımızda Sayfası (About)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">Hakkımızda</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">Türkiye Gayrimenkul Yatırımında Güvenilir Ortağınız</td>
+    </tr>
+    <tr>
+      <td class="label-col">Misyon Başlığı<span class="field-key">mission.title</span></td>
+      <td class="value-col">Misyonumuz</td>
+    </tr>
+    <tr>
+      <td class="label-col">Misyon Metni<span class="field-key">mission.text</span></td>
+      <td class="value-col">Miftah Türkiye net bir vizyondan doğdu: Körfez ve Arap yatırımcısı, Türk piyasasını içeriden tanıyan, kültürel ve finansal ihtiyaçlarını anlayan dürüst bir ortağı hak ediyor. 2018'deki kuruluşumuzdan bu yana 130'dan fazla yatırımcıya mülk edinme ya da Türk vatandaşlığı alma yolculuklarında rehberlik ettik.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hikaye Başlığı<span class="field-key">story.title</span></td>
+      <td class="value-col">Hikayemiz</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hikaye Metni<span class="field-key">story.text</span></td>
+      <td class="value-col">Yolculuğumuz 2018'de İstanbul'da küçük bir gayrimenkul ve hukuk uzmanları ekibiyle başladı. Bugün İstanbul ve Dubai'de ofislerimiz var; Türkiye'nin en büyük gayrimenkul geliştiricileriyle doğrudan çalışıyoruz, bu sayede müşterilerimize en iyi tekliflere halka açılmadan önce özel erişim sunabiliyoruz.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Değerler Başlığı<span class="field-key">values.title</span></td>
+      <td class="value-col">Değerlerimiz</td>
+    </tr>
+    <tr>
+      <td class="label-col">Ekip Başlığı<span class="field-key">team.title</span></td>
+      <td class="value-col">Uzman Ekibimiz</td>
+    </tr>
+    <tr>
+      <td class="label-col">İstatistik: Yatırımcı<span class="field-key">stats.investors</span></td>
+      <td class="value-col">Memnun Körfez ve Arap Yatırımcısı</td>
+    </tr>
+    <tr>
+      <td class="label-col">İstatistik: Yıl<span class="field-key">stats.years</span></td>
+      <td class="value-col">Yıllık Türkiye Pazarı Saha Deneyimi</td>
+    </tr>
+    <tr>
+      <td class="label-col">İstatistik: Mülk<span class="field-key">stats.properties</span></td>
+      <td class="value-col">Başarıyla Teslim Edilen Gayrimenkul</td>
+    </tr>
+    <tr>
+      <td class="label-col">İstatistik: Ofis<span class="field-key">stats.offices</span></td>
+      <td class="value-col">Ofis: İstanbul ve Dubai</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 4. HİZMETLER -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">4</span>
+    Hizmetler Sayfası (Services)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">Yatırım Hizmetlerimiz</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">Başarılı Türkiye gayrimenkul yatırımı için ihtiyacınız olan her şey — tek çatı altında</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 1 — Başlık<span class="field-key">service1.title</span></td>
+      <td class="value-col">İdeal Mülkü Bulma</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 1 — Açıklama<span class="field-key">service1.desc</span></td>
+      <td class="value-col">Yatırım gereksinimlerinizi — bütçe, beklenen getiri, zamanlama — titizlikle analiz eder, ardından doğru lokasyondaki en iyi mülklerin özel bir listesini sunarız. İstanbul, Antalya, Bursa, İzmir ve Trabzon'u kapsıyoruz.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 2 — Başlık<span class="field-key">service2.title</span></td>
+      <td class="value-col">Hukuki Danışmanlık & Belgeleme</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 2 — Açıklama<span class="field-key">service2.desc</span></td>
+      <td class="value-col">Uzman hukuk ekibimiz her adımı yönetir: tapu doğrulama, ipotek ve borç araştırması, sözleşme hazırlığı, tapu sicil dairelerinde temsil ve Türkiye'deki yasal haklarınızın tamamen güvence altına alınması.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 3 — Başlık<span class="field-key">service3.title</span></td>
+      <td class="value-col">Pazarlık & Anlaşma Kapanışı</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 3 — Açıklama<span class="field-key">service3.desc</span></td>
+      <td class="value-col">Türk geliştiricilerle uzun soluklu deneyimimiz, sizin için en iyi fiyat ve koşulları sağlar. Sizin adınıza müzakere eder, ödeme aşamalarını takip eder ve her şeyin zamanında ve kararlaştırılan fiyatta teslim edilmesini sağlarız.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 4 — Başlık<span class="field-key">service4.title</span></td>
+      <td class="value-col">Yatırımla Türk Vatandaşlığı</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 4 — Açıklama<span class="field-key">service4.desc</span></td>
+      <td class="value-col">400.000 dolar ve üzeri mülk satın alarak Türk vatandaşlığı edinme sürecinde sizi adım adım yönlendiririz. Dosyayı eksiksiz hazırlar, avukatlarla koordinasyonu sağlar ve başvuruyu Türk pasaportu verilene dek takip ederiz.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 5 — Başlık<span class="field-key">service5.title</span></td>
+      <td class="value-col">Mülk Yönetimi & Kiralama</td>
+    </tr>
+    <tr>
+      <td class="label-col">Hizmet 5 — Açıklama<span class="field-key">service5.desc</span></td>
+      <td class="value-col">Satın aldıktan sonra uzakta olmanız sizi endişelendirmesin — ekibimiz mülkünüzü baştan sona yönetir: kiracı bulma, kira tahsilâtı, düzenli bakım ve aylık mali raporlar. Yıllık %8'e varan kira getirisi.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 5. TÜRKİYE -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">5</span>
+    Türkiye Sayfası (Why Turkey)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">Neden Türkiye'ye Yatırım Yapmalısınız?</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">Bölgenin En Hızlı Büyüyen Gayrimenkul Pazarı — Tekrarlanamayacak Fırsatlar</td>
+    </tr>
+    <tr>
+      <td class="label-col">İstatistik: Nüfus<span class="field-key">stats.pop</span></td>
+      <td class="value-col">Milyon Kişi — Avrupa'nın 10. Büyük Ekonomisi</td>
+    </tr>
+    <tr>
+      <td class="label-col">İstatistik: GDP<span class="field-key">stats.gdp</span></td>
+      <td class="value-col">Trilyon Dolar Yıllık GSYİH</td>
+    </tr>
+    <tr>
+      <td class="label-col">İstatistik: Turist<span class="field-key">stats.tourists</span></td>
+      <td class="value-col">Milyon Uluslararası Turist Yıllık — Dev Kiralama Talebi</td>
+    </tr>
+    <tr>
+      <td class="label-col">Şehirler Başlığı<span class="field-key">cities.title</span></td>
+      <td class="value-col">Öne Çıkan Gayrimenkul Yatırım Şehirleri</td>
+    </tr>
+    <tr>
+      <td class="label-col">Bölüm 1 Başlığı<span class="field-key">section1.title</span></td>
+      <td class="value-col">İstanbul — Yatırımın Kalbi</td>
+    </tr>
+    <tr>
+      <td class="label-col">Bölüm 1 Metni<span class="field-key">section1.text</span></td>
+      <td class="value-col">İstanbul, Avrupa ve Orta Doğu'nun en büyük şehri ve yabancı yatırımcıların en çok tercih ettiği destinasyondur. Fiyatlar 5 yılda %120 yükseldi, kiralama talebi rekor seviyelerde. Beşiktaş, Kadıköy, Maslak ve Başakşehir en yüksek getiri sağlayan ilçelerdir.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Bölüm 2 Başlığı<span class="field-key">section2.title</span></td>
+      <td class="value-col">Antalya & Alanya — Turizm Yatırımı</td>
+    </tr>
+    <tr>
+      <td class="label-col">Bölüm 2 Metni<span class="field-key">section2.text</span></td>
+      <td class="value-col">Antalya yılda 15 milyon turist ağırlar ve Türkiye'nin turizm başkentidir. Deniz manzaralı daireler ve villa kompleksleri yıllık %6-10 kira getirisi sağlar. Satın alma fiyatları Avrupa'ya kıyasla hâlâ erişilebilir düzeydedir.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 6. VATANDAŞLIK -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">6</span>
+    Vatandaşlık Sayfası (Citizenship)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">Gayrimenkul Yatırımıyla Türk Vatandaşlığı</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">110'dan Fazla Ülkeye Kapı Açan Güçlü Pasaport — Güvenceli Gayrimenkul Yatırımıyla</td>
+    </tr>
+    <tr>
+      <td class="label-col">Süreç Başlığı<span class="field-key">process.title</span></td>
+      <td class="value-col">Türk Vatandaşlığı Alma Adımları</td>
+    </tr>
+    <tr>
+      <td class="label-col">Adım 1 — Başlık<span class="field-key">step1.title</span></td>
+      <td class="value-col">Uygun Mülkün Seçimi</td>
+    </tr>
+    <tr>
+      <td class="label-col">Adım 1 — Açıklama<span class="field-key">step1.desc</span></td>
+      <td class="value-col">Mülkün değeri en az 400.000 ABD Doları olmalı ve Tapu'ya (Türk tapu belgesi) adınıza tescil edilmiş olmalıdır. Özel portföyümüzden doğru mülkü seçmenize yardımcı oluruz.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Adım 2 — Başlık<span class="field-key">step2.title</span></td>
+      <td class="value-col">Dosya Hazırlığı & Başvuru Sunumu</td>
+    </tr>
+    <tr>
+      <td class="label-col">Adım 2 — Açıklama<span class="field-key">step2.desc</span></td>
+      <td class="value-col">Tüm vatandaşlık başvurusu belgelerini hazırlarız: gayrimenkul değerleme raporu, onaylı çeviriler, ödeme kanıtı, adli sicil kaydı. Başvuruyu lisanslı hukuk büromuz aracılığıyla sunarız.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Adım 3 — Başlık<span class="field-key">step3.title</span></td>
+      <td class="value-col">Onay & Pasaport Teslimi</td>
+    </tr>
+    <tr>
+      <td class="label-col">Adım 3 — Açıklama<span class="field-key">step3.desc</span></td>
+      <td class="value-col">Süreç genellikle 3 ila 6 ay sürer. Onayın ardından siz ve aileniz (eş ve 18 yaşından küçük çocuklar) Türk vatandaşlığı ve Türk pasaportu alır.</td>
+    </tr>
+    <tr>
+      <td class="label-col">Faydalar Başlığı<span class="field-key">benefits.title</span></td>
+      <td class="value-col">Türk Vatandaşlığının Avantajları</td>
+    </tr>
+    <tr>
+      <td class="label-col">Yatırım Türleri Başlığı<span class="field-key">types.title</span></td>
+      <td class="value-col">Vatandaşlığa Uygun Mülk Türleri</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 7. VIP -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">7</span>
+    VIP Sayfası
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">VIP Yatırımcı Ağı</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">Türkiye'nin En İyi Gayrimenkul Tekliflerine Halka Açılmadan Önce Özel Erişim</td>
+    </tr>
+    <tr>
+      <td class="label-col">Fayda 1<span class="field-key">benefit1</span></td>
+      <td class="value-col">Proje lansmanı fiyatlarıyla proje öncesi (off-plan) gayrimenkullere ön erişim</td>
+    </tr>
+    <tr>
+      <td class="label-col">Fayda 2<span class="field-key">benefit2</span></td>
+      <td class="value-col">7/24 ulaşılabilir, size özel atanmış kişisel danışman</td>
+    </tr>
+    <tr>
+      <td class="label-col">Fayda 3<span class="field-key">benefit3</span></td>
+      <td class="value-col">İstanbul ve Antalya'da ücretsiz VIP saha gezileri</td>
+    </tr>
+    <tr>
+      <td class="label-col">Fayda 4<span class="field-key">benefit4</span></td>
+      <td class="value-col">Aylık piyasa raporları ve yatırım getirisi analizleri</td>
+    </tr>
+    <tr>
+      <td class="label-col">CTA Butonu<span class="field-key">cta.text</span></td>
+      <td class="value-col">VIP Ağına Katılın</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 8. İLETİŞİM -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">8</span>
+    İletişim Sayfası (Contact)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">Bize Ulaşın</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">İstanbul ve Dubai'deki saha ekibimiz size yardım etmeye hazır</td>
+    </tr>
+    <tr>
+      <td class="label-col">Adres<span class="field-key">address</span></td>
+      <td class="value-col">İstanbul, Türkiye | Dubai, BAE</td>
+    </tr>
+    <tr>
+      <td class="label-col">Telefon<span class="field-key">phone</span></td>
+      <td class="value-col">+90 212 000 00 00</td>
+    </tr>
+    <tr>
+      <td class="label-col">E-posta<span class="field-key">email</span></td>
+      <td class="value-col">info@miftahturkiye.com</td>
+    </tr>
+    <tr>
+      <td class="label-col">WhatsApp<span class="field-key">whatsapp</span></td>
+      <td class="value-col">+90 555 000 00 00</td>
+    </tr>
+    <tr>
+      <td class="label-col">Form Notu<span class="field-key">form.note</span></td>
+      <td class="value-col">İş saatleri içinde 2 saat içinde yanıt vereceğiz</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 9. GAYRİMENKULLER -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">9</span>
+    Gayrimenkuller Sayfası (Properties)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">Türkiye Gayrimenkulleri — Özel Portföyümüz</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">Körfez yatırımcısı için seçilmiş daireler, villalar ve konut kompleksleri</td>
+    </tr>
+    <tr>
+      <td class="label-col">Filtre Etiketi<span class="field-key">filter.label</span></td>
+      <td class="value-col">Şehre veya türe göre filtrele</td>
+    </tr>
+    <tr>
+      <td class="label-col">Sonuç Yok Metni<span class="field-key">empty.text</span></td>
+      <td class="value-col">Bu kriterlere uygun şu an mevcut gayrimenkul bulunmuyor</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 10. BLOG -->
+<div class="page-section">
+  <div class="page-section-header">
+    <span class="page-num">10</span>
+    Blog / Makaleler Sayfası (Insights)
+  </div>
+  <table class="content-table">
+    <tr>
+      <td class="label-col">Sayfa Başlığı<span class="field-key">hero.title</span></td>
+      <td class="value-col">Analizler & Makaleler — Türkiye Gayrimenkul Piyasası</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt Başlık<span class="field-key">hero.subtitle</span></td>
+      <td class="value-col">Saha analizleri, piyasa verileri ve Körfez yatırımcısı için Türkiye rehberi</td>
+    </tr>
+    <tr>
+      <td class="label-col">Öne Çıkan Etiketi<span class="field-key">featured.label</span></td>
+      <td class="value-col">Son Eklenen</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt CTA Başlık<span class="field-key">cta.title</span></td>
+      <td class="value-col">Bu bilgileri kendi yatırımınıza uygulamak ister misiniz?</td>
+    </tr>
+    <tr>
+      <td class="label-col">Alt CTA Metni<span class="field-key">cta.sub</span></td>
+      <td class="value-col">Saha ekibimiz, Türkiye piyasasındaki bütçenize ve hedeflerinize en uygun gayrimenkul fırsatını belirlemenize yardımcı olur</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<h2 class="section-divider">B — Kodda Sabit Yazılan İçerikler (Geliştirici Değiştirir)</h2>
+
+<!-- 11. FOOTER -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">11 — Alt Bilgi (Footer)</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Marka Sloganı</td>
+      <td class="hv">Türkiye gayrimenkul yatırımında güvenilir ortağınız</td>
+    </tr>
+    <tr>
+      <td class="hl">Hızlı Bağlantılar Başlığı</td>
+      <td class="hv">Hızlı Bağlantılar</td>
+    </tr>
+    <tr>
+      <td class="hl">Hızlı Bağlantı 1</td>
+      <td class="hv">Öne Çıkan Gayrimenkuller</td>
+    </tr>
+    <tr>
+      <td class="hl">Hızlı Bağlantı 2</td>
+      <td class="hv">Türk Vatandaşlığı</td>
+    </tr>
+    <tr>
+      <td class="hl">Hızlı Bağlantı 3</td>
+      <td class="hv">Hizmetlerimiz</td>
+    </tr>
+    <tr>
+      <td class="hl">Hızlı Bağlantı 4</td>
+      <td class="hv">Hakkımızda</td>
+    </tr>
+    <tr>
+      <td class="hl">Hızlı Bağlantı 5</td>
+      <td class="hv">Bize Ulaşın</td>
+    </tr>
+    <tr>
+      <td class="hl">Hizmetler Başlığı</td>
+      <td class="hv">Hizmetlerimiz</td>
+    </tr>
+    <tr>
+      <td class="hl">Hizmet Linki 1</td>
+      <td class="hv">Gayrimenkul Arama</td>
+    </tr>
+    <tr>
+      <td class="hl">Hizmet Linki 2</td>
+      <td class="hv">Mülk Yönetimi</td>
+    </tr>
+    <tr>
+      <td class="hl">Hizmet Linki 3</td>
+      <td class="hv">Hukuki Danışmanlık</td>
+    </tr>
+    <tr>
+      <td class="hl">Hizmet Linki 4</td>
+      <td class="hv">Pazarlık & Kapanış</td>
+    </tr>
+    <tr>
+      <td class="hl">Hizmet Linki 5</td>
+      <td class="hv">Satın Alma Sonrası Destek</td>
+    </tr>
+    <tr>
+      <td class="hl">Ekip Başlığı</td>
+      <td class="hv">Ekibimiz</td>
+    </tr>
+    <tr>
+      <td class="hl">Ekip Üyesi 1</td>
+      <td class="hv">Ahmet Yıldız — Gayrimenkul Yatırım Danışmanı</td>
+    </tr>
+    <tr>
+      <td class="hl">Ekip Üyesi 2</td>
+      <td class="hv">Leyla Şahin — Türkiye Gayrimenkul Pazarı Uzmanı</td>
+    </tr>
+    <tr>
+      <td class="hl">Footer CTA Başlığı</td>
+      <td class="hv">Yatırım yolculuğunuza başlamaya hazır mısınız?</td>
+    </tr>
+    <tr>
+      <td class="hl">Footer CTA Butonu</td>
+      <td class="hv">Ücretsiz Danışmanlık Rezervasyonu</td>
+    </tr>
+    <tr>
+      <td class="hl">Telif Hakkı</td>
+      <td class="hv">© 2026 Miftah Turkiye — Tüm Hakları Saklıdır</td>
+    </tr>
+    <tr>
+      <td class="hl">Gizlilik Politikası</td>
+      <td class="hv">Gizlilik Politikası</td>
+    </tr>
+    <tr>
+      <td class="hl">Şartlar & Koşullar</td>
+      <td class="hv">Şartlar & Koşullar</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 12. GENEL BUTONLAR -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">12 — Genel Butonlar & Ortak Metinler</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Ana CTA Butonu</td>
+      <td class="hv">Ücretsiz Danışmanlık Rezervasyonu</td>
+    </tr>
+    <tr>
+      <td class="hl">WhatsApp Butonu</td>
+      <td class="hv">WhatsApp</td>
+    </tr>
+    <tr>
+      <td class="hl">Tüm Portföyü Gör</td>
+      <td class="hv">Tüm Portföyü Gör</td>
+    </tr>
+    <tr>
+      <td class="hl">Detayları Gör</td>
+      <td class="hv">Detayları Gör</td>
+    </tr>
+    <tr>
+      <td class="hl">Görüntüleme Rezervasyonu</td>
+      <td class="hv">Görüntüleme Rezervasyonu</td>
+    </tr>
+    <tr>
+      <td class="hl">Devamını Oku</td>
+      <td class="hv">Devamını Oku</td>
+    </tr>
+    <tr>
+      <td class="hl">Daha Fazla Bilgi</td>
+      <td class="hv">Daha Fazla Bilgi</td>
+    </tr>
+    <tr>
+      <td class="hl">Tüm Makalelere Dön</td>
+      <td class="hv">Tüm Makalelere Dön</td>
+    </tr>
+    <tr>
+      <td class="hl">Gayrimenkullere Göz At</td>
+      <td class="hv">Gayrimenkullere Göz At</td>
+    </tr>
+    <tr>
+      <td class="hl">Şimdi Danışmanlık Al</td>
+      <td class="hv">Şimdi Danışmanlık Rezervasyonu Yap</td>
+    </tr>
+    <tr>
+      <td class="hl">Yolculuğuma Başla</td>
+      <td class="hv">Şimdi Başla</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 13. WHATSAPP POPUP -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">13 — WhatsApp Popup</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Tooltip</td>
+      <td class="hv">WhatsApp'tan bizimle iletişime geçin</td>
+    </tr>
+    <tr>
+      <td class="hl">Popup Başlığı</td>
+      <td class="hv">Bize Ulaşın</td>
+    </tr>
+    <tr>
+      <td class="hl">Popup Alt Başlık</td>
+      <td class="hv">Tercih ettiğiniz iletişim yöntemini seçin</td>
+    </tr>
+    <tr>
+      <td class="hl">Kanal Butonu</td>
+      <td class="hv">WhatsApp Kanalına Katılın</td>
+    </tr>
+    <tr>
+      <td class="hl">Numara Bırak</td>
+      <td class="hv">Numaranızı bırakın, sizi arayalım</td>
+    </tr>
+    <tr>
+      <td class="hl">İsim Alanı</td>
+      <td class="hv">Adınız</td>
+    </tr>
+    <tr>
+      <td class="hl">Telefon Alanı</td>
+      <td class="hv">Telefon / WhatsApp</td>
+    </tr>
+    <tr>
+      <td class="hl">Gönder Butonu</td>
+      <td class="hv">Gönder</td>
+    </tr>
+    <tr>
+      <td class="hl">Başarı Mesajı</td>
+      <td class="hv">Teşekkürler! Yakında sizinle iletişime geçeceğiz.</td>
+    </tr>
+    <tr>
+      <td class="hl">Marka Adı (popup içi)</td>
+      <td class="hv">Miftah Turkiye</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 14. MÜŞTERİ YORUMU -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">14 — Müşteri Yorumu Bölümü (ReviewSection)</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Bölüm Etiketi</td>
+      <td class="hv">Yatırımcılarımızın Görüşleri</td>
+    </tr>
+    <tr>
+      <td class="hl">Bölüm Ana Başlığı</td>
+      <td class="hv">Başarılı Yatırım Doğru Ortakla Başlar.</td>
+    </tr>
+    <tr>
+      <td class="hl">Yorum Sahibi</td>
+      <td class="hv">Halid El-Mansuri</td>
+    </tr>
+    <tr>
+      <td class="hl">Unvan</td>
+      <td class="hv">İcra Direktörü — Dubai, BAE</td>
+    </tr>
+    <tr>
+      <td class="hl">Yorum Metni</td>
+      <td class="hv">"İlk görüşmeden anahtarı teslim almaya kadar ekip her adımda yanımdaydı. Gösterdikleri şeffaflık ve profesyonellik, Türkiye piyasasını düşünen her Körfez yatırımcısına onları tavsiye etmemi sağladı."</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 15. NEDEN BİZ -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">15 — Neden Biz Bölümü (WhyUsSection)</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Bölüm Etiketi</td>
+      <td class="hv">Neden Bizi Seçmelisiniz</td>
+    </tr>
+    <tr>
+      <td class="hl">Ana Başlık</td>
+      <td class="hv">Saha Deneyimi, Belgelenmiş Sonuçlar</td>
+    </tr>
+    <tr>
+      <td class="hl">İstatistik Rakamı</td>
+      <td class="hv">+130</td>
+    </tr>
+    <tr>
+      <td class="hl">İstatistik Etiketi</td>
+      <td class="hv">Bize Katılan Arap Yatırımcısı</td>
+    </tr>
+    <tr>
+      <td class="hl">Özellik 1</td>
+      <td class="hv">Türkiye gayrimenkul piyasasında 6 yılı aşkın saha uzmanlığı</td>
+    </tr>
+    <tr>
+      <td class="hl">Özellik 2</td>
+      <td class="hv">Her adımda tam şeffaflık — gizli ücret yok</td>
+    </tr>
+    <tr>
+      <td class="hl">Özellik 3</td>
+      <td class="hv">Yatırım süreçlerinin her aşamasında hukuki destek ve uzman çeviri</td>
+    </tr>
+    <tr>
+      <td class="hl">Özellik 4</td>
+      <td class="hv">Türkiye'nin önde gelen geliştiricileriyle doğrudan ilişki ağı</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 16. YATIRIM İSTATİSTİKLERİ -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">16 — Yatırımcı Memnuniyet Bölümü (eski Architecture Section)</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Bölüm Etiketi</td>
+      <td class="hv">Yatırımcı Memnuniyet Oranı</td>
+    </tr>
+    <tr>
+      <td class="hl">Büyük Rakam</td>
+      <td class="hv">%98</td>
+    </tr>
+    <tr>
+      <td class="hl">Açıklama Metni</td>
+      <td class="hv">130'dan fazla Körfezli yatırımcı Türkiye'deki gayrimenkul kararları için bize güvendi. %98 memnuniyet oranı sadece bir rakam değil — yıllarca sahada çalışmanın ve tam şeffaflığın sonucudur.</td>
+    </tr>
+    <tr>
+      <td class="hl">İtalik Alt Metin</td>
+      <td class="hv">Türkiye'deki başarılı yatırımınız doğru ortakla başlar.</td>
+    </tr>
+    <tr>
+      <td class="hl">İkon 1</td>
+      <td class="hv">Yüksek Getiri</td>
+    </tr>
+    <tr>
+      <td class="hl">İkon 2</td>
+      <td class="hv">Güvenli Yatırım</td>
+    </tr>
+    <tr>
+      <td class="hl">İkon 3</td>
+      <td class="hv">Tam Takip</td>
+    </tr>
+    <tr>
+      <td class="hl">İkon 4</td>
+      <td class="hv">Saha Uzmanları</td>
+    </tr>
+    <tr>
+      <td class="hl">İkon 5</td>
+      <td class="hv">Piyasa Analizi</td>
+    </tr>
+    <tr>
+      <td class="hl">İkon 6</td>
+      <td class="hv">Üstün Hizmet</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 17. YATırım CTA -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">17 — Yatırım Danışmanlığı CTA Bölümü (SustainableCTASection)</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Bölüm Etiketi</td>
+      <td class="hv">Yatırım Danışmanlığı</td>
+    </tr>
+    <tr>
+      <td class="hl">Alt Metin (italik)</td>
+      <td class="hv">Doğru yatırım kararı şansa değil — verilere ve saha deneyimine dayanır.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 18. NEDEN TÜRKİYE SEKSİYONU -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">18 — Ana Sayfadaki "Neden Türkiye" Bölümü (WhyTurkeySection)</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Ana Başlık (italik)</td>
+      <td class="hv">Türkiye'ye Yatırım Yapmak, Akıllı Yatırımcının Bugün Kavradığı Gerçek Bir Fırsattır.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 19. İLETİŞİM FORMU -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">19 — İletişim Formu Alanları</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Ad Soyad</td>
+      <td class="hv">Ad Soyad *</td>
+    </tr>
+    <tr>
+      <td class="hl">Telefon</td>
+      <td class="hv">Telefon Numarası *</td>
+    </tr>
+    <tr>
+      <td class="hl">E-posta</td>
+      <td class="hv">E-posta Adresi *</td>
+    </tr>
+    <tr>
+      <td class="hl">Yatırım Bütçesi</td>
+      <td class="hv">Yatırım Bütçesi</td>
+    </tr>
+    <tr>
+      <td class="hl">Mesaj</td>
+      <td class="hv">Mesajınız</td>
+    </tr>
+    <tr>
+      <td class="hl">Gönder Butonu</td>
+      <td class="hv">Talebi Gönder</td>
+    </tr>
+    <tr>
+      <td class="hl">Gönderiliyor</td>
+      <td class="hv">Gönderiliyor...</td>
+    </tr>
+    <tr>
+      <td class="hl">Başarı Mesajı</td>
+      <td class="hv">Mesajınız başarıyla gönderildi</td>
+    </tr>
+    <tr>
+      <td class="hl">Başarı Alt Mesajı</td>
+      <td class="hv">Danışmanlarımızdan biri 24 saat içinde sizinle iletişime geçecek</td>
+    </tr>
+    <tr>
+      <td class="hl">Çalışma Saatleri</td>
+      <td class="hv">Pazar — Cuma, 09:00 — 19:00</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 20. ROI HESAP MAKİNESİ -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">20 — Yatırım Getirisi Hesap Makinesi (ROI Calculator)</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Sayfa Başlığı</td>
+      <td class="hv">Yatırım Getirisi Hesaplayıcı</td>
+    </tr>
+    <tr>
+      <td class="hl">Alt Başlık</td>
+      <td class="hv">Türkiye gayrimenkulündeki beklenen getirinizi hesaplayın</td>
+    </tr>
+    <tr>
+      <td class="hl">Hero Rozeti</td>
+      <td class="hv">Yatırım Analiz Aracı</td>
+    </tr>
+    <tr>
+      <td class="hl">Mülk Fiyatı</td>
+      <td class="hv">Mülk Fiyatı</td>
+    </tr>
+    <tr>
+      <td class="hl">Aylık Kira</td>
+      <td class="hv">Beklenen Aylık Kira</td>
+    </tr>
+    <tr>
+      <td class="hl">Yıllık Değer Artışı</td>
+      <td class="hv">Yıllık Fiyat Artış Oranı</td>
+    </tr>
+    <tr>
+      <td class="hl">Yatırım Süresi</td>
+      <td class="hv">Yatırım Süresi (Yıl)</td>
+    </tr>
+    <tr>
+      <td class="hl">Yıllık Giderler</td>
+      <td class="hv">Yıllık Giderler</td>
+    </tr>
+    <tr>
+      <td class="hl">Brüt Kira Getirisi</td>
+      <td class="hv">Brüt Kira Getirisi</td>
+    </tr>
+    <tr>
+      <td class="hl">Net Getiri</td>
+      <td class="hv">Net Getiri</td>
+    </tr>
+    <tr>
+      <td class="hl">Aylık Net Gelir</td>
+      <td class="hv">Aylık Net Gelir</td>
+    </tr>
+    <tr>
+      <td class="hl">Mülk Nihai Değeri</td>
+      <td class="hv">... Yıl Sonraki Mülk Değeri</td>
+    </tr>
+    <tr>
+      <td class="hl">Toplam Getiri</td>
+      <td class="hv">Toplam Getiri</td>
+    </tr>
+    <tr>
+      <td class="hl">Toplam YG (ROI)</td>
+      <td class="hv">Toplam Yatırım Getirisi</td>
+    </tr>
+    <tr>
+      <td class="hl">Sermaye Kazancı</td>
+      <td class="hv">Değer Artış Kazancı</td>
+    </tr>
+    <tr>
+      <td class="hl">Birikimli Kira Geliri</td>
+      <td class="hv">Birikimli Net Kira Geliri</td>
+    </tr>
+    <tr>
+      <td class="hl">CTA Metni</td>
+      <td class="hv">Bu rakamlar ilginizi çekiyor mu? Gerçek bir mülke uygulamak için danışmanlarımızdan biriyle görüşün</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 21. VIP FORM -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">21 — VIP Kayıt Formu</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Ad Soyad</td>
+      <td class="hv">Ad Soyad *</td>
+    </tr>
+    <tr>
+      <td class="hl">Ülke</td>
+      <td class="hv">Ülke *</td>
+    </tr>
+    <tr>
+      <td class="hl">Telefon</td>
+      <td class="hv">Telefon / WhatsApp *</td>
+    </tr>
+    <tr>
+      <td class="hl">Bütçe</td>
+      <td class="hv">Tahmini Bütçe</td>
+    </tr>
+    <tr>
+      <td class="hl">Gönder Butonu</td>
+      <td class="hv">Şimdi Katılın</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 22. VATANDAŞLIK SSS -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">22 — Vatandaşlık Sayfası Ek Bilgiler</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Minimum Yatırım Miktarı</td>
+      <td class="hv">400.000 ABD Doları</td>
+    </tr>
+    <tr>
+      <td class="hl">Min. Yatırım Etiketi</td>
+      <td class="hv">Minimum Yatırım</td>
+    </tr>
+    <tr>
+      <td class="hl">SSS Başlığı</td>
+      <td class="hv">Sık Sorulan Sorular</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 23. GAYRİMENKUL FİLTRE KATEGORİLERİ -->
+<div class="hardcoded-section">
+  <div class="hardcoded-section-header">23 — Gayrimenkul Listesi Filtre Kategorileri</div>
+  <table class="hardcoded-table">
+    <tr>
+      <td class="hl">Tümü</td>
+      <td class="hv">Tümü</td>
+    </tr>
+    <tr>
+      <td class="hl">Villalar</td>
+      <td class="hv">Villalar</td>
+    </tr>
+    <tr>
+      <td class="hl">Daireler</td>
+      <td class="hv">Daireler</td>
+    </tr>
+    <tr>
+      <td class="hl">Arazi</td>
+      <td class="hv">Arazi</td>
+    </tr>
+    <tr>
+      <td class="hl">Ticari</td>
+      <td class="hv">Ticari</td>
+    </tr>
+    <tr>
+      <td class="hl">Oteller</td>
+      <td class="hv">Oteller</td>
+    </tr>
+    <tr>
+      <td class="hl">Mevcut İlan Sayısı</td>
+      <td class="hv">[N] adet mülk mevcut</td>
+    </tr>
+    <tr>
+      <td class="hl">Eşleşme Yok</td>
+      <td class="hv">Bu seçime uyan mülk yok</td>
+    </tr>
+    <tr>
+      <td class="hl">Karşılaştırmaya Ekle</td>
+      <td class="hv">Karşılaştırmaya Ekle</td>
+    </tr>
+    <tr>
+      <td class="hl">Karşılaştırmadan Çıkar</td>
+      <td class="hv">Karşılaştırmadan Çıkar</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SAYFA SONU -->
+<div style="margin-top: 60px; padding-top: 24px; border-top: 2px solid #c9a227; text-align: center; color: #999; font-size: 11px; letter-spacing: 0.08em;">
+  Miftah Türkiye — Gayrimenkul & Yatırım Danışmanlığı &nbsp;|&nbsp; Temmuz 2026 &nbsp;|&nbsp; Bu döküman gizlidir
+</div>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("AGENT")
+  phone     String?
+  avatarUrl String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  listings  Property[] @relation("ListingAgent")
+}
+
+model Consultant {
+  id        String   @id @default(cuid())
+  nameAr    String
+  nameEn    String
+  phone     String
+  whatsapp  String?
+  email     String?
+  photoUrl  String?
+  bioAr     String?
+  bioEn     String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  listings  Property[]
+}
+
+model Property {
+  id            String   @id @default(cuid())
+  city          String
+  cityEn        String
+  titleAr       String
+  titleEn       String
+  locationAr    String
+  locationEn    String
+  price         String
+  area          Int
+  rooms         String
+  typeAr        String
+  typeEn        String
+  category      String
+  badge         String?
+  descriptionAr String?
+  descriptionEn String?
+  featuresAr    String   @default("[]")
+  featuresEn    String   @default("[]")
+  photos        String   @default("[]")
+  thumbGradient String
+  published     Boolean  @default(true)
+  featured      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  agentId       String?
+  agent         User?       @relation("ListingAgent", fields: [agentId], references: [id], onDelete: SetNull)
+  consultantId  String?
+  consultant    Consultant? @relation(fields: [consultantId], references: [id], onDelete: SetNull)
+}
+
+model PageContent {
+  id      String @id @default(cuid())
+  pageKey String
+  key     String
+  valueAr String @default("")
+  valueEn String @default("")
+  @@unique([pageKey, key])
+}
+
+model SeoSettings {
+  id            String  @id @default(cuid())
+  pageKey       String  @unique
+  titleAr       String  @default("")
+  titleEn       String  @default("")
+  descriptionAr String  @default("")
+  descriptionEn String  @default("")
+  keywords      String?
+  ogImageUrl    String?
+  canonicalUrl  String?
+}
+
+model InsightPost {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  titleAr    String
+  titleEn    String
+  excerptAr  String   @default("")
+  excerptEn  String   @default("")
+  contentAr  String   @default("")
+  contentEn  String   @default("")
+  coverImage String?
+  category   String   @default("general")
+  published  Boolean  @default(false)
+  featured   Boolean  @default(false)
+  readTime   Int      @default(5)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model City {
+  id        String  @id @default(cuid())
+  nameAr    String
+  nameEn    String
+  lat       Float
+  lng       Float
+  active    Boolean @default(true)
+  sortOrder Int     @default(0)
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  page      String
+  source    String   @default("direct")
+  referer   String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([page])
+  @@index([source])
+}

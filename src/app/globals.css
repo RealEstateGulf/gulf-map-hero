@@ -1,26 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #090909;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.mapboxgl-canvas {
+  outline: none;
+}
+
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-attrib {
+  display: none !important;
+}
+
+/* Pusula ve tüm harita kontrolleri mobilde gizle */
+@media (max-width: 768px) {
+  .mapboxgl-ctrl-group,
+  .mapboxgl-ctrl-compass,
+  .mapboxgl-ctrl-logo,
+  .mapboxgl-ctrl-attrib {
+    display: none !important;
+  }
+}
+
+/* Harita kontrol container'larının taşmasını engelle */
+.mapboxgl-ctrl-top-left,
+.mapboxgl-ctrl-top-right,
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@keyframes markerGlow {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(217, 186, 160, 0.55), 0 0 36px rgba(217, 186, 160, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(217, 186, 160, 0.85), 0 0 56px rgba(217, 186, 160, 0.45);
+  }
+}
+
+@keyframes borderPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes connectorCardIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes connectorDash {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+@keyframes countPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+    color: #D9BAA0;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Scroll indicator animations */
+@keyframes scrollDot {
+  0%   { transform: translateY(0);    opacity: 1; }
+  60%  { transform: translateY(18px); opacity: 0.2; }
+  61%  { transform: translateY(0);    opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes scrollLine {
+  0%   { height: 0%;   opacity: 1; top: 0; }
+  70%  { height: 100%; opacity: 1; top: 0; }
+  71%  { height: 100%; opacity: 0; top: 0; }
+  72%  { height: 0%;   opacity: 0; top: 0; }
+  100% { height: 0%;   opacity: 1; top: 0; }
+}
+
+@keyframes chevronBounce {
+  0%, 100% { transform: translateY(0);  opacity: 0.5; }
+  50%       { transform: translateY(4px); opacity: 0.9; }
+}
+
+@keyframes linePulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 0.7; transform: scaleY(1.15); }
+}
+
+@keyframes scrollIndicatorIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* CategoryBar horizontal scroll (mobile) */
+.category-bar-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.category-bar-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(217, 186, 160, 0.25);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 186, 160, 0.45);
+}
+
+.admin-dashboard-row:hover {
+  background: rgba(255, 255, 255, 0.02);
 }

@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local uploads (now stored in Supabase Storage)
+/public/uploads
+
+# old local sqlite db (migrated to Supabase Postgres)
+/prisma/*.db
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
