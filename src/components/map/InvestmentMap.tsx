@@ -303,9 +303,11 @@ export default function InvestmentMap() {
     });
   }, []);
 
-  // Veri geldiğinde (harita zaten yüklenmişse) marker'ları inşa et
+  // Veri geldiğinde (harita instance'ı hazırsa) marker'ları inşa et.
+  // map.loaded() burada kullanılmaz: harita hâlâ tile indirirken false dönebilir ve
+  // bu efekt bir daha tetiklenmeyeceği için marker'lar hiç inşa edilmemiş olurdu.
   useEffect(() => {
-    if (mapRef.current?.loaded()) buildCityMarkers();
+    if (mapRef.current) buildCityMarkers();
   }, [cities, buildCityMarkers]);
 
   useEffect(() => {
