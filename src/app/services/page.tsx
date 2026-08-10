@@ -13,10 +13,10 @@ import FooterSection from '@/components/sections/FooterSection';
 const SERVICES = [
   {
     Icon: Search,
-    titleAr: 'البحث عن العقار المثالي',
+    titleAr: 'العثور على العقار المثالي',
     titleEn: 'Finding the Ideal Property',
     num: '01',
-    descAr: 'نُعينك على اكتشاف العقارات التي تلائم أسلوب حياتك وطموحاتك الاستثمارية، عبر منهجية بحث دقيقة ومعرفة ميدانية عميقة بأكثر المناطق التركية طلباً.',
+    descAr: 'نقوم بتحليل متطلباتك الاستثمارية بدقة — الميزانية، العائد المتوقع، والتوقيت المناسب — ثم نقدم لك قائمة مخصصة لأفضل العقارات في الموقع الصحيح.  خدماتنا تغطي إسطنبول، أنطاليا، بورصة، إزمير، وطرابزون.',
     descEn: 'We help you discover properties that match your lifestyle and investment ambitions through a precise methodology and deep field knowledge of Turkey\'s most sought-after areas.',
     featuresAr: ['تحليل السوق المحلي في المدينة المستهدفة', 'قائمة مخصصة من العقارات المطابقة لمعاييرك', 'جولات ميدانية بمرافقة خبير متخصص', 'تقييم عائد الاستثمار لكل خيار'],
     featuresEn: ['Local market analysis in your target city', 'Custom list of properties matching your criteria', 'Field tours with a specialist expert', 'ROI assessment for each option'],
@@ -27,7 +27,7 @@ const SERVICES = [
     titleAr: 'الاستشارات القانونية والتوثيق',
     titleEn: 'Legal Consultancy & Documentation',
     num: '02',
-    descAr: 'نتولى كافة الجوانب القانونية لصفقتك العقارية بكل دقة ومهنية — من التحقق من سند الملكية حتى تسجيل العقار رسمياً باسمك.',
+    descAr: 'يتولى فريقنا القانوني المتخصص إدارة كل خطوة: التحقق من الطابو، فحص الرهون العقارية والديون، إعداد العقود، التمثيل في دوائر السجل العقاري، وضمان حماية حقوقك القانونية في تركيا بالكامل.',
     descEn: 'We handle all legal aspects of your property transaction with precision and professionalism — from verifying the title deed to officially registering the property in your name.',
     featuresAr: ['التحقق من خلو العقار من الحقوق والرهون', 'صياغة عقود البيع والشراء باللغتين', 'استخراج الرقم الضريبي (TAX ID) للمستثمر', 'التنسيق مع كاتب العدل ودائرة السجل العقاري'],
     featuresEn: ['Verifying the property is free of encumbrances', 'Drafting sales contracts in both languages', 'Obtaining the investor\'s TAX ID', 'Coordinating with the notary and land registry'],
@@ -35,10 +35,10 @@ const SERVICES = [
   },
   {
     Icon: Handshake,
-    titleAr: 'التفاوض وإتمام الصفقة',
+    titleAr: 'التفاوض وإتمام الصفقات',
     titleEn: 'Negotiation & Deal Closing',
     num: '03',
-    descAr: 'خبراؤنا في التفاوض يمثّلونك بالكامل أمام البائع، لضمان أفضل سعر وأحسن شروط — دون أن تضطر للتواجد شخصياً في كل مرحلة.',
+    descAr: 'خبرتنا الطويلة مع المطورين العقاريين الأتراك تضمن لك الحصول على أفضل الأسعار مع توفير أفضل الظروف . نتفاوض نيابة عنك، ونتابع مراحل الدفع، ونضمن تسليم كل شيء في الوقت المحدد وبالسعر المتفق عليه.',
     descEn: 'Our negotiation experts fully represent you before the seller, ensuring the best price and terms — without you needing to be present at every stage.',
     featuresAr: ['تحليل السعر السوقي العادل للعقار', 'التفاوض المباشر مع البائع أو المطوّر', 'صياغة شروط الدفع والتسليم بما يحمي حقوقك', 'توكيل رسمي بالنيابة عنك إن لزم'],
     featuresEn: ['Analyzing the fair market price', 'Direct negotiation with the seller or developer', 'Drafting payment and delivery terms to protect your rights', 'Official power of attorney on your behalf if needed'],
@@ -110,7 +110,7 @@ function HeroSection({ t, isMobile, isAr, tr, get }: SP) {
         <h1 style={{ fontFamily: "'Marcellus', serif", color: '#fff', fontSize: isMobile ? 'clamp(2rem,8vw,3rem)' : 'clamp(2.8rem,5vw,4rem)', lineHeight: 1.2, marginBottom: 18 }}>
           {get('hero.title', isAr, tr('services.title'))}
           <br />
-          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'من البحث حتى بعد الشراء' : 'From Search to After Purchase')}</em>
+          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'كل ما تحتاجه لاستثمار عقاري ناجح في تركيا — تحت سقف واحد.' : 'From Search to After Purchase')}</em>
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: isMobile ? '0.88rem' : '0.96rem', lineHeight: 1.9, maxWidth: 520, margin: '0 auto' }}>
           {isAr

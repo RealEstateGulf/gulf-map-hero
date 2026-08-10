@@ -66,7 +66,7 @@ export default function InsightsPage() {
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', lineHeight: 1.85, maxWidth: 400 }}>
                 {get('hero.subtitle', isAr,
                   isAr
-                    ? 'أعمق تحليلات سوق العقارات التركية — مكتوبة بخبرة ميدانية حقيقية، لمساعدتك في اتخاذ قرارات أفضل.'
+                    ? 'التحليلات الميدانية، بيانات السوق، ودليل تركيا للمستثمر الخليجي'
                     : 'In-depth Turkish real estate market analysis — written with real field expertise to help you make better decisions.'
                 )}
               </p>
@@ -88,7 +88,7 @@ export default function InsightsPage() {
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)' }} />
                 <div style={{ position: 'absolute', top: 12, right: 12 }}>
                   <span style={{ background: t.gold, color: t.goldText, fontSize: '0.58rem', fontWeight: 700, padding: '3px 10px', borderRadius: 3, letterSpacing: '0.1em' }}>
-                    {isAr ? 'الأحدث' : 'Latest'}
+                    {isAr ? 'أحدث الإضافات' : 'Latest'}
                   </span>
                 </div>
                 <div style={{ position: 'absolute', bottom: 0, right: 0, left: 0, padding: '14px 16px' }}>

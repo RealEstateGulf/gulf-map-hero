@@ -47,9 +47,9 @@ const INVESTMENT_TYPES = [
 ];
 
 const STEPS = [
-  { num: '01', titleAr: 'اختيار العقار وإتمام الشراء', titleEn: 'Choose Property & Complete Purchase', descAr: 'نساعدك في اختيار العقار المناسب بقيمة لا تقل عن $400,000، وإتمام عقد البيع وتسجيله رسمياً لدى مديرية السجل العقاري.', descEn: 'We help you select an appropriate property worth at least $400,000, complete the sales contract and register it at the land registry.', durationAr: 'أسبوعان', durationEn: '2 weeks' },
-  { num: '02', titleAr: 'شهادة الملكية وتقرير التقييم', titleEn: 'Title Deed & Valuation Report', descAr: 'استخراج شهادة ملكية رسمية (TAPU) وتقرير تقييم عقاري معتمد من مقيّم مرخص يثبت أن قيمة العقار تستوفي الحد المطلوب.', descEn: 'Obtaining an official title deed (TAPU) and an approved property valuation report from a licensed appraiser.', durationAr: '3-5 أيام', durationEn: '3-5 days' },
-  { num: '03', titleAr: 'تقديم طلب الجنسية', titleEn: 'Submit Citizenship Application', descAr: 'تقديم الملف الكامل (عقد الشراء، جواز السفر، شهادة الملكية، شهادة عدم الإفلاس) لدى مديرية الهجرة العامة.', descEn: 'Submitting the complete file (purchase contract, passport, title deed, bankruptcy clearance) to the Directorate General of Migration.', durationAr: '1-3 أسابيع', durationEn: '1-3 weeks' },
+  { num: '01', titleAr: 'اختيار العقار المناسب', titleEn: 'Choose Property & Complete Purchase', descAr: 'يجب أن تكون قيمة العقار 400,000 دولار أمريكي على الأقل، وأن يتم تسجيله باسم المستثمر في الطابو (سند الملكية التركي).  نساعدك في اختيار العقار المناسب من محفظتنا الحصرية.', descEn: 'We help you select an appropriate property worth at least $400,000, complete the sales contract and register it at the land registry.', durationAr: 'أسبوعان', durationEn: '2 weeks' },
+  { num: '02', titleAr: 'إعداد الملف وتقديم الطلب', titleEn: 'Title Deed & Valuation Report', descAr: 'نقوم بإعداد جميع وثائق طلب الجنسية: تقرير التقييم العقاري، الترجمات المعتمدة، إثباتات الدفع، والسجل العدلي . ثم يتم تقديم طلب الحصول على الجنسية من خلال مكتبنا القانوني المرخص.', descEn: 'Obtaining an official title deed (TAPU) and an approved property valuation report from a licensed appraiser.', durationAr: '3-5 أيام', durationEn: '3-5 days' },
+  { num: '03', titleAr: 'الموافقة واستلام جواز السفر', titleEn: 'Submit Citizenship Application', descAr: 'تستغرق العملية عادةً من 3 إلى 6 أشهر. بعد الموافقة، تقدم الجنسية التركية وجواز السفر التركي لك و لعائلتك (الزوج/الزوجة والأولاد دون سن 18 عاماً).', descEn: 'Submitting the complete file (purchase contract, passport, title deed, bankruptcy clearance) to the Directorate General of Migration.', durationAr: '1-3 أسابيع', durationEn: '1-3 weeks' },
   { num: '04', titleAr: 'مراجعة الطلب والموافقة', titleEn: 'Application Review & Approval', descAr: 'تتولى وزارة الداخلية مراجعة الطلب والتحقق من مطابقة الشروط، ثم إحالته للمراسيم الرئاسية للاعتماد النهائي.', descEn: 'The Ministry of Interior reviews the application and verifies compliance, then refers it to presidential decrees for final approval.', durationAr: '2-5 أشهر', durationEn: '2-5 months' },
   { num: '05', titleAr: 'استلام جواز السفر التركي', titleEn: 'Receive Turkish Passport', descAr: 'بعد صدور المرسوم، تُستخرج بطاقة الهوية التركية وجواز السفر لك ولعائلتك المقيمة معك (الزوجة والأطفال دون 18).', descEn: 'After the decree is issued, the Turkish ID and passport are issued for you and your residing family (spouse and children under 18).', durationAr: '2-4 أسابيع', durationEn: '2-4 weeks' },
 ];
@@ -146,7 +146,7 @@ function HeroSection({ t, isMobile, isAr, tr, get }: SP) {
       <h1 style={{ fontFamily: "'Marcellus', serif", color: '#fff', fontSize: isMobile ? 'clamp(1.9rem,7vw,2.8rem)' : 'clamp(2.6rem,4.5vw,4rem)', lineHeight: 1.2, marginBottom: 20, position: 'relative' }}>
         {isAr ? 'جواز سفر تركي' : 'Turkish Passport'}
         <br />
-        <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'بحد أدنى $400,000' : 'Starting from $400,000')}</em>
+        <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'جواز سفر قوي يفتح لك الأبواب لأكثر من 110 دولة — من خلال استثمار عقاري آمن' : 'Starting from $400,000')}</em>
       </h1>
       <p style={{ color: t.txt3, fontSize: isMobile ? '0.88rem' : '0.96rem', lineHeight: 1.9, maxWidth: 520, position: 'relative', marginBottom: 40 }}>
         {isAr

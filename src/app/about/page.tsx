@@ -11,10 +11,10 @@ import Navbar from '@/components/map/Navbar';
 import FooterSection from '@/components/sections/FooterSection';
 
 const STATS = [
-  { value: '+130', labelAr: 'مستثمر خليجي', labelEn: 'Gulf investors' },
-  { value: '6+', labelAr: 'سنوات خبرة ميدانية', labelEn: 'years field experience' },
-  { value: '+17', labelAr: 'عقار في محفظتنا', labelEn: 'properties in portfolio' },
-  { value: '2', labelAr: 'مكاتب: دبي وإسطنبول', labelEn: 'offices: Dubai & Istanbul' },
+  { value: '+130', labelAr: 'المستثمر الخليجي والعربي سعيد بخدماتنا', labelEn: 'Gulf investors' },
+  { value: '6+', labelAr: 'سنوات من الخبرة الميدانية في السوق التركي', labelEn: 'years field experience' },
+  { value: '+17', labelAr: 'عقار تم تسليمه بنجاح', labelEn: 'properties in portfolio' },
+  { value: '2', labelAr: 'مكتبنا : إسطنبول ودبي', labelEn: 'offices: Dubai & Istanbul' },
 ];
 
 const TEAM = [
@@ -118,7 +118,7 @@ function HeroSection({ t, isMobile, isAr, tr, get, getImg }: SP) {
         <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: isMobile ? '0.88rem' : '1rem', lineHeight: 1.85, maxWidth: 520 }}>
           {get('story.text', isAr,
             isAr
-              ? 'منذ 2018، نبني جسور الثقة بين المستثمر العربي والسوق العقاري التركي الواعد'
+              ? 'بدأت رحلتنا عام 2018 في إسطنبول مع فريق صغير من خبراء العقارات والقانون. واليوم، نمتلك مكاتب في إسطنبول ودبي؛ ونعمل مباشرة مع أكبر المطورين العقاريين في تركيا، مما يتيح لنا تزويد عملائنا بالوصول الحصري لأفضل العروض والفرص قبل طرحها على المستثمرين.'
               : 'Since 2018, we have been building bridges of trust between Arab investors and the promising Turkish real estate market'
           )}
         </p>
@@ -144,7 +144,7 @@ function MissionSection({ t, isMobile, isAr, tr: _tr, get }: SP) {
             <p style={{ color: t.txt3, fontSize: '0.88rem', lineHeight: 1.9, marginBottom: 18 }}>
               {get('mission.text', isAr,
                 isAr
-                  ? 'انطلقنا من رؤية بسيطة: أن المستثمر العربي يستحق شريكاً أمانة موثوقاً في السوق التركي — لا وسيطاً يبحث عن عمولة فحسب.'
+                  ? 'تأسست شركة مفتاح تركيا بناءً على رؤية واضحة: وهي أن المستثمر الخليجي والعربي يستحق شريكاً صادقاً يعرف السوق التركي من الداخل، ويفهم احتياجاته  الثقافية والمالية. منذ تأسيسنا عام 2018   قمنا بتوجيه أكثر من 130  مستثمراً في رحلتهم لتملك العقارات و الحصول على الجنسية التركية.'
                   : 'We started from a simple vision: the Arab investor deserves a trustworthy partner in the Turkish market — not just a broker chasing a commission.'
               )}
             </p>

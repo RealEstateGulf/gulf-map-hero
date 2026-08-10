@@ -30,8 +30,8 @@ export const TR = {
   'prop.filter.land': { ar: 'أراضي', en: 'Land' },
   'prop.filter.commercial': { ar: 'تجاري', en: 'Commercial' },
   'prop.filter.hotels': { ar: 'فنادق', en: 'Hotels' },
-  'prop.hero.title': { ar: 'عقارات تركيا المميزة', en: 'Premium Turkish Properties' },
-  'prop.hero.sub': { ar: 'استثمارات مختارة بعناية للمستثمر الخليجي', en: 'Carefully curated investments for Gulf investors' },
+  'prop.hero.title': { ar: 'عقارات تركيا — محفظتنا الحصرية', en: 'Premium Turkish Properties' },
+  'prop.hero.sub': { ar: 'شقق، فيلات، ومجمعات سكنية مختارة بعناية للمستثمر الخليجي', en: 'Carefully curated investments for Gulf investors' },
   'prop.compareAdd': { ar: 'إضافة للمقارنة', en: 'Add to Compare' },
   'prop.compareRemove': { ar: 'إزالة من المقارنة', en: 'Remove from Compare' },
 
@@ -84,7 +84,7 @@ export const TR = {
   'calc.sliders.title': { ar: 'معاملات الحساب', en: 'Calculation Parameters' },
 
   // Insights page
-  'insights.title': { ar: 'رؤى ومقالات', en: 'Insights & Articles' },
+  'insights.title': { ar: 'التحليلات والمقالات — السوق العقاري التركي', en: 'Insights & Articles' },
   'insights.subtitle': { ar: 'تحليلات عقارية وأدلة الاستثمار في السوق التركي', en: 'Real estate analysis and investment guides for the Turkish market' },
   'insights.all': { ar: 'الكل', en: 'All' },
   'insights.featured': { ar: 'المقال المميز', en: 'Featured Article' },
@@ -96,8 +96,8 @@ export const TR = {
   'insights.tryCalc': { ar: 'جرّب حاسبة الاستثمار', en: 'Try Investment Calculator' },
 
   // Contact page
-  'contact.title': { ar: 'تواصل معنا', en: 'Contact Us' },
-  'contact.subtitle': { ar: 'فريقنا جاهز لمساعدتك في رحلتك الاستثمارية', en: 'Our team is ready to help you on your investment journey' },
+  'contact.title': { ar: 'للتواصل معنا', en: 'Contact Us' },
+  'contact.subtitle': { ar: 'فريقنا الميداني في إسطنبول ودبي مستعد للاجابة علي جميع استفساراتكم.', en: 'Our team is ready to help you on your investment journey' },
   'contact.form.name': { ar: 'الاسم الكامل *', en: 'Full Name *' },
   'contact.form.phone': { ar: 'رقم الهاتف *', en: 'Phone Number *' },
   'contact.form.email': { ar: 'البريد الإلكتروني *', en: 'Email Address *' },
@@ -114,8 +114,8 @@ export const TR = {
 
   // About page
   'about.title': { ar: 'من نحن', en: 'About Us' },
-  'about.subtitle': { ar: 'شريكك الاستثماري الموثوق', en: 'Your Trusted Investment Partner' },
-  'about.mission.title': { ar: 'مهمتنا', en: 'Our Mission' },
+  'about.subtitle': { ar: 'شريككم الموثوق في الاستثمار العقاري في تركيا', en: 'Your Trusted Investment Partner' },
+  'about.mission.title': { ar: 'رسالتنا', en: 'Our Mission' },
   'about.mission.text': { ar: 'نُمكّن المستثمرين الخليجيين من امتلاك أفضل العقارات التركية بثقة واطمئنان، من خلال خبرتنا العميقة وشبكة علاقاتنا الواسعة في السوق التركي.', en: 'We empower Gulf investors to own the finest Turkish properties with confidence, through our deep expertise and extensive network in the Turkish market.' },
   'about.story.title': { ar: 'قصتنا', en: 'Our Story' },
   'about.values.title': { ar: 'قيمنا', en: 'Our Values' },
@@ -126,7 +126,7 @@ export const TR = {
   'about.stats.offices': { ar: 'مكتب', en: 'Offices' },
 
   // Services page
-  'services.title': { ar: 'خدماتنا', en: 'Our Services' },
+  'services.title': { ar: 'خدماتنا الاستثمارية', en: 'Our Services' },
   'services.subtitle': { ar: 'كل ما تحتاجه لاستثمار ناجح في تركيا', en: 'Everything you need for a successful investment in Turkey' },
   'services.1.title': { ar: 'البحث عن العقار المثالي', en: 'Property Search' },
   'services.1.desc': { ar: 'نُعينك على اكتشاف العقارات التي تلائم أسلوب حياتك وطموحاتك', en: 'We help you discover properties that match your lifestyle and ambitions' },
@@ -140,7 +140,7 @@ export const TR = {
   'services.5.desc': { ar: 'دعم كامل بعد إتمام الصفقة لضمان تجربة سلسة', en: 'Full support after the deal closes to ensure a smooth experience' },
 
   // Turkey page
-  'turkey.title': { ar: 'لماذا تركيا؟', en: 'Why Turkey?' },
+  'turkey.title': { ar: 'لماذا عليكم الاستثمار في تركيا؟', en: 'Why Turkey?' },
   'turkey.subtitle': { ar: 'وجهة الاستثمار العقاري الأمثل', en: 'The Optimal Real Estate Investment Destination' },
   'turkey.stats.pop': { ar: 'مليون نسمة', en: 'Million Population' },
   'turkey.stats.gdp': { ar: 'الناتج المحلي', en: 'GDP' },
@@ -149,18 +149,18 @@ export const TR = {
   'turkey.cities.title': { ar: 'أبرز المدن الاستثمارية', en: 'Top Investment Cities' },
 
   // Citizenship page
-  'citizen.title': { ar: 'الجنسية التركية عبر الاستثمار', en: 'Turkish Citizenship by Investment' },
+  'citizen.title': { ar: 'الجنسية التركية من خلال الاستثمار العقاري', en: 'Turkish Citizenship by Investment' },
   'citizen.subtitle': { ar: 'جواز سفر قوي يفتح لك أبواب العالم', en: 'A powerful passport that opens the world to you' },
   'citizen.minInvest': { ar: '400,000 دولار', en: '$400,000' },
   'citizen.minInvestLabel': { ar: 'الحد الأدنى للاستثمار', en: 'Minimum Investment' },
   'citizen.process.title': { ar: 'خطوات الحصول على الجنسية', en: 'Citizenship Process Steps' },
   'citizen.benefits.title': { ar: 'مزايا الجنسية التركية', en: 'Benefits of Turkish Citizenship' },
   'citizen.faq.title': { ar: 'أسئلة شائعة', en: 'Frequently Asked Questions' },
-  'citizen.types.title': { ar: 'أنواع الاستثمار المؤهّل', en: 'Eligible Investment Types' },
+  'citizen.types.title': { ar: 'أنواع العقارات المؤهلة للجنسية', en: 'Eligible Investment Types' },
 
   // VIP page
-  'vip.title': { ar: 'شبكة المستثمر VIP', en: 'VIP Investor Network' },
-  'vip.subtitle': { ar: 'وصول حصري لأفضل الفرص قبل الجميع', en: 'Exclusive access to the best opportunities before anyone else' },
+  'vip.title': { ar: 'شبكة المستثمر- VIP', en: 'VIP Investor Network' },
+  'vip.subtitle': { ar: 'وصول حصري لأفضل العروض العقارية في تركيا قبل طرحها للعامة', en: 'Exclusive access to the best opportunities before anyone else' },
   'vip.form.name': { ar: 'الاسم الكامل *', en: 'Full Name *' },
   'vip.form.country': { ar: 'الدولة *', en: 'Country *' },
   'vip.form.phone': { ar: 'رقم الهاتف / واتساب *', en: 'Phone / WhatsApp *' },
@@ -187,16 +187,16 @@ export const TR = {
   'footer.links.insights': { ar: 'رؤى ومقالات', en: 'Insights & Articles' },
 
   // Home page sections
-  'home.hero.badge': { ar: 'وجهة الاستثمار الأولى للخليجيين', en: 'The #1 Investment Destination for Gulf Investors' },
+  'home.hero.badge': { ar: 'تركيا بوابتكم الأولى للاستثمار العقاري', en: 'The #1 Investment Destination for Gulf Investors' },
   'home.hero.title1': { ar: 'استثمر في', en: 'Invest in' },
-  'home.hero.title2': { ar: 'عقارات تركيا', en: 'Turkish Real Estate' },
-  'home.hero.sub': { ar: 'فرص عقارية واستثمارية في أبرز مدن تركيا — إسطنبول وأنطاليا وبورصة — مع إمكانية الحصول على الجنسية التركية', en: "Real estate and investment opportunities in Turkey's top cities — Istanbul, Antalya and Bursa — with a path to Turkish citizenship" },
-  'home.featured.title': { ar: 'العقارات المميزة', en: 'Featured Properties' },
-  'home.featured.sub': { ar: 'محفظة مختارة بعناية لأفضل الفرص الاستثمارية', en: 'A carefully curated portfolio of the best investment opportunities' },
-  'home.why.title': { ar: 'لماذا تركيا؟', en: 'Why Turkey?' },
-  'home.services.title': { ar: 'خدماتنا', en: 'Our Services' },
-  'home.cta.title': { ar: 'ابدأ رحلتك الاستثمارية اليوم', en: 'Start Your Investment Journey Today' },
-  'home.cta.sub': { ar: 'تواصل مع فريقنا للحصول على استشارة مجانية', en: 'Contact our team for a free consultation' },
+  'home.hero.title2': { ar: 'العقارات الفاخرة في تركيا', en: 'Turkish Real Estate' },
+  'home.hero.sub': { ar: 'فرص عقارية واستثمارية في أهم المدن التركية — إسطنبول، أنطاليا، وبورصة؛ مع إمكانية الحصول على الجنسية التركية.', en: "Real estate and investment opportunities in Turkey's top cities — Istanbul, Antalya and Bursa — with a path to Turkish citizenship" },
+  'home.featured.title': { ar: 'عقارات مختارة بعناية', en: 'Featured Properties' },
+  'home.featured.sub': { ar: 'مجموعة عقارية متنوعة تشمل شقق، فيلات، ومشاريع تجارية في أكثر مناطق الاستثمار نمواً في تركيا.', en: 'A carefully curated portfolio of the best investment opportunities' },
+  'home.why.title': { ar: 'لمذا يجب عليك الاستثمار في تركيا', en: 'Why Turkey?' },
+  'home.services.title': { ar: 'خدماتنا الاستثمارية', en: 'Our Services' },
+  'home.cta.title': { ar: 'ابدأ رحلتك الاستثمارية في تركيا اليوم', en: 'Start Your Investment Journey Today' },
+  'home.cta.sub': { ar: 'استشارة مجانية مع خبرائنا الميدانيين — نرافقكم خطوة بخطوة من اختيار العقار وحتى استلام الطابو بالاِضافة معاملات حصولك على الجنسية التركية.', en: 'Contact our team for a free consultation' },
 
   // WhatsApp float
   'wa.tooltip': { ar: 'تواصل معنا عبر واتساب', en: 'Contact us on WhatsApp' },

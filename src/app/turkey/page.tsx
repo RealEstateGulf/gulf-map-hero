@@ -69,7 +69,7 @@ const CITIES = [
   {
     nameAr: 'إسطنبول',
     nameEn: 'Istanbul',
-    descAr: 'أكبر مدينة في تركيا وعاصمتها الاقتصادية — موطن 16 مليون نسمة، ومحور مالي وثقافي لا مثيل له.',
+    descAr: 'تعد إسطنبول كبرى مدن أوروبا والشرق الأوسط، والوجهة المفضلة للمستثمرين الأجانب. ارتفعت الأسعار بنسبة %120 خلال 5 سنوات، والطلب على الإيجار في مستويات قياسية. بشكتاش، كاديكوي، مسلك، وباشاك شهير هي أكثر المناطق تحقيقاً للأرباح.',
     descEn: 'Turkey\'s largest city and economic capital — home to 16 million people and an unparalleled financial and cultural hub.',
     highlights: ['مطار عالمي الأول', 'سوق عقاري نشط', 'عائد إيجاري مرتفع', 'كثافة سياحية عالية'],
     photo: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=900&q=80',
@@ -85,7 +85,7 @@ const CITIES = [
   {
     nameAr: 'أنطاليا',
     nameEn: 'Antalya',
-    descAr: 'عاصمة السياحة التركية على ساحل المتوسط — تستقبل ما يزيد على 16 مليون سائح سنوياً.',
+    descAr: 'تستقبل أنطاليا 15 مليون سائح سنوياً وهي عاصمة السياحة في تركيا. توفر الشقق المطلة على البحر والمجمعات السكنية (الفيلات) عائداً إيجارياً سنوياً يتراوح بين %6 و%10. أسعار الشراء لا تزال مناسبة جداً مقارنة بأوروبا.',
     descEn: 'Turkey\'s tourism capital on the Mediterranean coast — receiving over 16 million tourists annually.',
     highlights: ['شاطئ ومنتجعات', 'عائد فندقي مرتفع', 'مناخ مشمس 300 يوم', 'سوق إيجار موسمي قوي'],
     photo: 'https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?auto=format&fit=crop&w=900&q=80',
@@ -144,7 +144,7 @@ function HeroSection({ t, isMobile, isAr, tr, get, getImg }: SP) {
         <h1 style={{ fontFamily: "'Marcellus', serif", color: '#fff', fontSize: isMobile ? 'clamp(2rem,8vw,3rem)' : 'clamp(2.8rem,5vw,4.6rem)', lineHeight: 1.18, marginBottom: 18 }}>
           {get('hero.title', isAr, tr('turkey.title'))}
           <br />
-          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'البوابة الذهبية للاستثمار' : 'The Golden Gateway to Investment')}</em>
+          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'السوق العقاري الأسرع نمواً في المنطقة — فرص لا تتكرر.' : 'The Golden Gateway to Investment')}</em>
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: isMobile ? '0.88rem' : '1rem', lineHeight: 1.85, maxWidth: 560 }}>
           {isAr
