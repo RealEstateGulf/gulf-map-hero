@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
-const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? 'gulf-invest-super-secret-key-2026-change-in-production'
-);
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is not set. Refusing to start with an insecure default.');
+}
+const SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
 // Site geneli için basit HTTP Basic Auth. SITE_BASIC_AUTH_USER/PASS tanımlı değilse
 // (örn. lokal geliştirmede) devre dışı kalır, kimseyi bloklamaz.
@@ -29,13 +30,21 @@ export async function middleware(request: NextRequest) {
     });
   }
 
-  // Only protect /admin routes (except /admin/login)
-  if (!pathname.startsWith('/admin')) return NextResponse.next();
-  if (pathname === '/admin/login') return NextResponse.next();
+  // Protect /admin pages and /api/admin endpoints. Each API route already
+  // re-checks the session server-side (defense in depth) — this is an
+  // additional gate so a route can never accidentally ship without one.
+  const isAdminPage = pathname.startsWith('/admin');
+  const isAdminApi = pathname.startsWith('/api/admin');
+  if (!isAdminPage && !isAdminApi) return NextResponse.next();
+
+  // Endpoints that must stay reachable without a token (login itself, logout).
+  const PUBLIC_ADMIN_PATHS = new Set(['/admin/login', '/api/admin/auth/login', '/api/admin/auth/logout']);
+  if (PUBLIC_ADMIN_PATHS.has(pathname)) return NextResponse.next();
 
   const token = request.cookies.get('gi_admin_token')?.value;
 
   if (!token) {
+    if (isAdminApi) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     return NextResponse.redirect(new URL('/admin/login', request.url));
   }
 
@@ -43,6 +52,7 @@ export async function middleware(request: NextRequest) {
     await jwtVerify(token, SECRET);
     return NextResponse.next();
   } catch {
+    if (isAdminApi) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     const res = NextResponse.redirect(new URL('/admin/login', request.url));
     res.cookies.delete('gi_admin_token');
     return res;

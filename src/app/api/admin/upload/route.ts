@@ -6,6 +6,17 @@ import crypto from 'node:crypto';
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
 const MAX_SIZE = 10 * 1024 * 1024; // 10MB
 
+// Extension is derived from the validated MIME type, never from the
+// client-supplied filename, so it can't be used to smuggle path segments
+// or an unexpected extension into the storage key.
+const EXT_BY_TYPE: Record<string, string> = {
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg',
+  'image/png': 'png',
+  'image/webp': 'webp',
+  'image/gif': 'gif',
+};
+
 export async function POST(req: NextRequest) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -21,7 +32,7 @@ export async function POST(req: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const ext = file.name.split('.').pop()?.toLowerCase() ?? 'jpg';
+    const ext = EXT_BY_TYPE[file.type] ?? 'jpg';
     const hash = crypto.randomBytes(8).toString('hex');
     const filename = `${Date.now()}-${hash}.${ext}`;
 

@@ -25,8 +25,8 @@ function detectSource(referer: string | null, origin: string): string {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json() as { page: string; referer?: string };
-    const page = body.page ?? '/';
-    const referer = body.referer ?? null;
+    const page = (typeof body.page === 'string' ? body.page : '/').slice(0, 300);
+    const referer = typeof body.referer === 'string' ? body.referer : null;
     const origin = req.headers.get('origin') ?? '';
     const source = detectSource(referer, origin);
 

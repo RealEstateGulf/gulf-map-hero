@@ -2,6 +2,13 @@
 import { useEffect, useState } from 'react';
 import Script from 'next/script';
 
+// These IDs are admin-editable content pulled from the database and
+// interpolated into an inline <script>. Validate their shape strictly
+// before rendering so a malicious/malformed stored value can never break
+// out of the script context (stored XSS).
+const GA4_ID_RE = /^G-[A-Z0-9]+$/;
+const META_PIXEL_ID_RE = /^\d{5,20}$/;
+
 export default function AnalyticsScripts() {
   const [ga4Id, setGa4Id] = useState('');
   const [metaPixelId, setMetaPixelId] = useState('');
@@ -10,8 +17,11 @@ export default function AnalyticsScripts() {
     fetch('/api/content/analytics')
       .then(r => r.json())
       .then((data: Record<string, { ar: string; en: string }>) => {
-        if (data?.ga4_id?.ar) setGa4Id(data.ga4_id.ar.trim());
-        if (data?.meta_pixel_id?.ar) setMetaPixelId(data.meta_pixel_id.ar.trim());
+        const rawGa4 = data?.ga4_id?.ar?.trim();
+        if (rawGa4 && GA4_ID_RE.test(rawGa4)) setGa4Id(rawGa4);
+
+        const rawPixel = data?.meta_pixel_id?.ar?.trim();
+        if (rawPixel && META_PIXEL_ID_RE.test(rawPixel)) setMetaPixelId(rawPixel);
       })
       .catch(() => {});
   }, []);

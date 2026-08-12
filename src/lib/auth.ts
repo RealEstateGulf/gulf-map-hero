@@ -2,9 +2,10 @@ import { SignJWT, jwtVerify } from 'jose';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 
-const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? 'gulf-invest-super-secret-key-2026-change-in-production'
-);
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is not set. Refusing to start with an insecure default.');
+}
+const SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
 const COOKIE_NAME = 'gi_admin_token';
 
