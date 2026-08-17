@@ -14,9 +14,9 @@ import Navbar from '@/components/map/Navbar';
 import FooterSection from '@/components/sections/FooterSection';
 
 const KEY_STATS = [
-  { value: '85M+', labelAr: 'نسمة — عاشر أكبر اقتصاد في أوروبا', labelEn: 'People — 10th largest economy in Europe' },
-  { value: '$1T+', labelAr: 'حجم الناتج المحلي الإجمالي السنوي', labelEn: 'Annual GDP' },
-  { value: '50M+', labelAr: 'سائح دولي سنوياً', labelEn: 'International tourists annually' },
+  { value: '85M+', labelAr: 'نسمة — عاشر أكبر اقتصاد في أوروبا', labelEn: "Population of over 85 Million — Europe's 10th Largest Economy" },
+  { value: '$1T+', labelAr: 'حجم الناتج المحلي الإجمالي السنوي', labelEn: 'Trillion Dollars in Yearly GDP' },
+  { value: '50M+', labelAr: 'سائح دولي سنوياً', labelEn: 'Millions of International Tourists Every Year — High Demand for Rentals' },
   { value: '#7', labelAr: 'في قائمة أكبر مقاصد الاستثمار الأجنبي', labelEn: 'Top foreign investment destination' },
 ];
 
@@ -70,7 +70,7 @@ const CITIES = [
     nameAr: 'إسطنبول',
     nameEn: 'Istanbul',
     descAr: 'تعد إسطنبول كبرى مدن أوروبا والشرق الأوسط، والوجهة المفضلة للمستثمرين الأجانب. ارتفعت الأسعار بنسبة %120 خلال 5 سنوات، والطلب على الإيجار في مستويات قياسية. بشكتاش، كاديكوي، مسلك، وباشاك شهير هي أكثر المناطق تحقيقاً للأرباح.',
-    descEn: 'Turkey\'s largest city and economic capital — home to 16 million people and an unparalleled financial and cultural hub.',
+    descEn: 'Istanbul is the biggest city in the Middle East and one of the most requested destinations by foreign investors. Prices rose 120% in five years, and rental demand is at record levels. Beşiktaş, Kadıköy, Maslak, and Başakşehir are the districts with the highest returns.',
     highlights: ['مطار عالمي الأول', 'سوق عقاري نشط', 'عائد إيجاري مرتفع', 'كثافة سياحية عالية'],
     photo: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=900&q=80',
   },
@@ -86,7 +86,7 @@ const CITIES = [
     nameAr: 'أنطاليا',
     nameEn: 'Antalya',
     descAr: 'تستقبل أنطاليا 15 مليون سائح سنوياً وهي عاصمة السياحة في تركيا. توفر الشقق المطلة على البحر والمجمعات السكنية (الفيلات) عائداً إيجارياً سنوياً يتراوح بين %6 و%10. أسعار الشراء لا تزال مناسبة جداً مقارنة بأوروبا.',
-    descEn: 'Turkey\'s tourism capital on the Mediterranean coast — receiving over 16 million tourists annually.',
+    descEn: 'As the tourism capital of Türkiye, Antalya hosts 15 million tourists every year. Apartments with sea views and villas in residential complexes provide yearly rental yields of up to 6–10%.',
     highlights: ['شاطئ ومنتجعات', 'عائد فندقي مرتفع', 'مناخ مشمس 300 يوم', 'سوق إيجار موسمي قوي'],
     photo: 'https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?auto=format&fit=crop&w=900&q=80',
   },
@@ -144,7 +144,7 @@ function HeroSection({ t, isMobile, isAr, tr, get, getImg }: SP) {
         <h1 style={{ fontFamily: "'Marcellus', serif", color: '#fff', fontSize: isMobile ? 'clamp(2rem,8vw,3rem)' : 'clamp(2.8rem,5vw,4.6rem)', lineHeight: 1.18, marginBottom: 18 }}>
           {get('hero.title', isAr, tr('turkey.title'))}
           <br />
-          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'السوق العقاري الأسرع نمواً في المنطقة — فرص لا تتكرر.' : 'The Golden Gateway to Investment')}</em>
+          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'السوق العقاري الأسرع نمواً في المنطقة — فرص لا تتكرر.' : 'The Fastest-Growing Real Estate Market in the Area — Once in a Lifetime Opportunities')}</em>
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: isMobile ? '0.88rem' : '1rem', lineHeight: 1.85, maxWidth: 560 }}>
           {isAr

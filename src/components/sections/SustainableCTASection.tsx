@@ -48,7 +48,7 @@ export default function SustainableCTASection() {
               lineHeight: 1.25, marginBottom: 20,
             }}>
               {get('cta.title', isAr,
-                isAr ? 'ابدأ رحلتك الاستثمارية اليوم' : 'Start Your Investment Journey Today'
+                isAr ? 'ابدأ رحلتك الاستثمارية اليوم' : 'Making an investment in Türkiye is an opportunity that smart investors are aware of.'
               )}
             </h2>
             <p style={{ color: t.txt3, fontSize: '0.9rem', lineHeight: 1.9, marginBottom: 14, maxWidth: 440 }}>
@@ -64,7 +64,7 @@ export default function SustainableCTASection() {
             }}>
               {isAr
                 ? 'القرار الاستثماري الصحيح لا يُبنى على الحظ — بل على البيانات والخبرة الميدانية.'
-                : 'The right investment decision is not built on luck — but on data and on-the-ground expertise.'}
+                : 'The right investment relies on field experience, not luck.'}
             </p>
 
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>

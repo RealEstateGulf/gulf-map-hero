@@ -11,10 +11,10 @@ import Navbar from '@/components/map/Navbar';
 import FooterSection from '@/components/sections/FooterSection';
 
 const STATS = [
-  { value: '+130', labelAr: 'المستثمر الخليجي والعربي سعيد بخدماتنا', labelEn: 'Gulf investors' },
-  { value: '6+', labelAr: 'سنوات من الخبرة الميدانية في السوق التركي', labelEn: 'years field experience' },
-  { value: '+17', labelAr: 'عقار تم تسليمه بنجاح', labelEn: 'properties in portfolio' },
-  { value: '2', labelAr: 'مكتبنا : إسطنبول ودبي', labelEn: 'offices: Dubai & Istanbul' },
+  { value: '+130', labelAr: 'المستثمر الخليجي والعربي سعيد بخدماتنا', labelEn: 'Satisfied Gulf and Arab Investors' },
+  { value: '6+', labelAr: 'سنوات من الخبرة الميدانية في السوق التركي', labelEn: 'Yearly Field Experience in the Turkish Market' },
+  { value: '+17', labelAr: 'عقار تم تسليمه بنجاح', labelEn: 'Successfully Delivered Properties' },
+  { value: '2', labelAr: 'مكتبنا : إسطنبول ودبي', labelEn: 'Offices: Istanbul and Dubai' },
 ];
 
 const TEAM = [
@@ -119,7 +119,7 @@ function HeroSection({ t, isMobile, isAr, tr, get, getImg }: SP) {
           {get('story.text', isAr,
             isAr
               ? 'بدأت رحلتنا عام 2018 في إسطنبول مع فريق صغير من خبراء العقارات والقانون. واليوم، نمتلك مكاتب في إسطنبول ودبي؛ ونعمل مباشرة مع أكبر المطورين العقاريين في تركيا، مما يتيح لنا تزويد عملائنا بالوصول الحصري لأفضل العروض والفرص قبل طرحها على المستثمرين.'
-              : 'Since 2018, we have been building bridges of trust between Arab investors and the promising Turkish real estate market'
+              : 'Miftah Türkiye was born from one clear vision: Gulf investors deserve an honest partner that has deep knowledge of the Turkish market and understands their cultural and financial investment needs. Since 2018, we have guided more than 130 investors through their property journey and the process of obtaining Turkish citizenship.'
           )}
         </p>
       </div>
@@ -145,7 +145,7 @@ function MissionSection({ t, isMobile, isAr, tr: _tr, get }: SP) {
               {get('mission.text', isAr,
                 isAr
                   ? 'تأسست شركة مفتاح تركيا بناءً على رؤية واضحة: وهي أن المستثمر الخليجي والعربي يستحق شريكاً صادقاً يعرف السوق التركي من الداخل، ويفهم احتياجاته  الثقافية والمالية. منذ تأسيسنا عام 2018   قمنا بتوجيه أكثر من 130  مستثمراً في رحلتهم لتملك العقارات و الحصول على الجنسية التركية.'
-                  : 'We started from a simple vision: the Arab investor deserves a trustworthy partner in the Turkish market — not just a broker chasing a commission.'
+                  : 'Our journey began as a small real estate company with a law firm partnership. Today, we are located in both Dubai and Istanbul. We work directly with the biggest developers in Türkiye, allowing us to present the most exclusive and newest offers to our customers before they enter the market.'
               )}
             </p>
           </div>

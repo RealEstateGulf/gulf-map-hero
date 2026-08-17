@@ -62,7 +62,7 @@ export default function ServicesSection() {
             fontSize: isMobile ? 'clamp(1.6rem, 6vw, 2.4rem)' : 'clamp(2rem, 3.5vw, 3rem)',
             lineHeight: 1.25, maxWidth: 640, margin: '0 auto 16px',
           }}>
-            {get('services.title', isAr, isAr ? 'خدماتنا' : 'Our Services')}
+            {get('services.title', isAr, isAr ? 'خدماتنا' : 'Our Investment Services')}
           </h2>
           <p style={{ ...rv(visible, 0.22), color: t.txt3, fontSize: '0.88rem', lineHeight: 1.85, maxWidth: 480, margin: '0 auto' }}>
             {isAr

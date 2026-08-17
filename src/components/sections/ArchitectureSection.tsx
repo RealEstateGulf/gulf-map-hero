@@ -8,11 +8,11 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const ICONS = [
   { Icon: TrendingUp,  labelAr: 'عوائد مرتفعة',        labelEn: 'High Returns' },
-  { Icon: Shield,      labelAr: 'استثمار آمن',           labelEn: 'Secure Investment' },
-  { Icon: Clock,       labelAr: 'متابعة كاملة',          labelEn: 'Full Follow-up' },
-  { Icon: Users,       labelAr: 'خبراء ميدانيون',        labelEn: 'On-ground Experts' },
+  { Icon: Shield,      labelAr: 'استثمار آمن',           labelEn: 'Safe Investment' },
+  { Icon: Clock,       labelAr: 'متابعة كاملة',          labelEn: 'End-to-End Support' },
+  { Icon: Users,       labelAr: 'خبراء ميدانيون',        labelEn: 'Field Experts' },
   { Icon: BarChart2,   labelAr: 'تحليل السوق',           labelEn: 'Market Analysis' },
-  { Icon: Award,       labelAr: 'خدمة متميزة',           labelEn: 'Premium Service' },
+  { Icon: Award,       labelAr: 'خدمة متميزة',           labelEn: 'Superior Service' },
 ];
 
 export default function ArchitectureSection() {
@@ -62,7 +62,7 @@ export default function ArchitectureSection() {
           <p style={{ color: t.txt2, fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: 2, marginBottom: 28, maxWidth: 480 }}>
             {isAr
               ? 'أكثر من 130 مستثمراً خليجياً وثقوا بنا لاتخاذ قراراتهم العقارية في تركيا. نسبة رضا 98% ليست رقماً — بل نتيجة سنوات من العمل الميداني والشفافية الكاملة.'
-              : 'More than 130 Gulf investors trusted us to make their real estate decisions in Turkey. A 98% satisfaction rate is not just a number — it is the result of years of on-the-ground work and full transparency.'}
+              : 'More than 130 Gulf investors have trusted us with their property decisions in Türkiye. A 98% satisfaction rate is not just a number, but the result of full transparency and active field experience.'}
           </p>
           <p style={{
             fontFamily: "'Marcellus', serif",
@@ -71,7 +71,7 @@ export default function ArchitectureSection() {
           }}>
             {isAr
               ? 'استثمارك الناجح في تركيا يبدأ بالشريك الصحيح.'
-              : 'Your successful investment in Turkey starts with the right partner.'}
+              : 'In Türkiye, a successful investment starts with the right partner.'}
           </p>
         </div>
       </div>

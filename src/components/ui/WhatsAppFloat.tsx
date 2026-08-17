@@ -21,8 +21,8 @@ const DEFAULTS: PopupSettings = {
   enabled: true, delay_minutes: 2,
   title_ar: 'تواصل معنا', title_en: 'Contact Us',
   subtitle_ar: 'اختر طريقة التواصل المفضلة لديك', subtitle_en: 'Choose your preferred contact method',
-  wa_number: '905072308453', wa_text_ar: 'انضم لقناة واتساب', wa_text_en: 'Join WhatsApp Channel',
-  leave_text_ar: 'اترك رقمك وسنتصل بك', leave_text_en: "Leave your number, we'll call you",
+  wa_number: '905072308453', wa_text_ar: 'انضم لقناة واتساب', wa_text_en: 'Join Our WhatsApp Channel',
+  leave_text_ar: 'اترك رقمك وسنتصل بك', leave_text_en: 'Leave your number, let us call you',
   success_ar: 'شكراً لك!', success_en: 'Thank You!',
 };
 

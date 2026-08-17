@@ -7,11 +7,12 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const REVIEW = {
   name: 'خالد المنصوري',
+  nameEn: 'Halid El-Mansuri',
   roleAr: 'مدير تنفيذي — دبي، الإمارات',
   roleEn: 'Executive Director — Dubai, UAE',
   photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80',
   quoteAr: 'من أول لقاء حتى استلام المفتاح، كان الفريق حاضراً في كل خطوة. الشفافية والاحترافية التي أبدوها جعلتني أوصي بهم لكل مستثمر خليجي يفكر في السوق التركي.',
-  quoteEn: 'From the first meeting to receiving the key, the team was present at every step. The transparency and professionalism they demonstrated made me recommend them to every Gulf investor thinking about the Turkish market.',
+  quoteEn: 'From the first meeting to receiving the keys, the team was by my side every step of the way. Their transparency and professionalism have led me to recommend them to any Gulf investor considering the Turkish market.',
 };
 
 export default function ReviewSection() {
@@ -40,7 +41,7 @@ export default function ReviewSection() {
               marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10,
             }}>
               <span style={{ display: 'inline-block', width: 24, height: 1, background: t.gold }} />
-              {isAr ? 'آراء مستثمرينا' : 'Investor Testimonials'}
+              {isAr ? 'آراء مستثمرينا' : 'Feedback from Our Investors'}
             </p>
             <h2 style={{
               fontFamily: "'Marcellus', serif", color: t.txt,
@@ -82,10 +83,10 @@ export default function ReviewSection() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 24, borderTop: `1px solid ${t.border}` }}>
               <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: `2px solid ${t.gold}`, flexShrink: 0 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={REVIEW.photo} alt={REVIEW.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={REVIEW.photo} alt={isAr ? REVIEW.name : REVIEW.nameEn} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div>
-                <div style={{ color: t.txt, fontWeight: 700, fontSize: '0.9rem' }}>{REVIEW.name}</div>
+                <div style={{ color: t.txt, fontWeight: 700, fontSize: '0.9rem' }}>{isAr ? REVIEW.name : REVIEW.nameEn}</div>
                 <div style={{ color: t.gold, fontSize: '0.72rem', marginTop: 4, letterSpacing: '0.04em' }}>
                   {isAr ? REVIEW.roleAr : REVIEW.roleEn}
                 </div>

@@ -17,7 +17,7 @@ const SERVICES = [
     titleEn: 'Finding the Ideal Property',
     num: '01',
     descAr: 'نقوم بتحليل متطلباتك الاستثمارية بدقة — الميزانية، العائد المتوقع، والتوقيت المناسب — ثم نقدم لك قائمة مخصصة لأفضل العقارات في الموقع الصحيح.  خدماتنا تغطي إسطنبول، أنطاليا، بورصة، إزمير، وطرابزون.',
-    descEn: 'We help you discover properties that match your lifestyle and investment ambitions through a precise methodology and deep field knowledge of Turkey\'s most sought-after areas.',
+    descEn: 'We meticulously analyze your investment requirements and needs. Afterwards, we provide you with a list of the best properties in the right locations. We cover Istanbul, Antalya, Bursa, Izmir and Trabzon.',
     featuresAr: ['تحليل السوق المحلي في المدينة المستهدفة', 'قائمة مخصصة من العقارات المطابقة لمعاييرك', 'جولات ميدانية بمرافقة خبير متخصص', 'تقييم عائد الاستثمار لكل خيار'],
     featuresEn: ['Local market analysis in your target city', 'Custom list of properties matching your criteria', 'Field tours with a specialist expert', 'ROI assessment for each option'],
     photo: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80',
@@ -25,10 +25,10 @@ const SERVICES = [
   {
     Icon: ShieldCheck,
     titleAr: 'الاستشارات القانونية والتوثيق',
-    titleEn: 'Legal Consultancy & Documentation',
+    titleEn: 'Legal Consulting & Documentation',
     num: '02',
     descAr: 'يتولى فريقنا القانوني المتخصص إدارة كل خطوة: التحقق من الطابو، فحص الرهون العقارية والديون، إعداد العقود، التمثيل في دوائر السجل العقاري، وضمان حماية حقوقك القانونية في تركيا بالكامل.',
-    descEn: 'We handle all legal aspects of your property transaction with precision and professionalism — from verifying the title deed to officially registering the property in your name.',
+    descEn: 'Our expert legal team manages every step of the process, including title verification, mortgage and debt investigations, contract preparation, representation at land registry offices, and ensuring that your legal rights in Türkiye are fully protected.',
     featuresAr: ['التحقق من خلو العقار من الحقوق والرهون', 'صياغة عقود البيع والشراء باللغتين', 'استخراج الرقم الضريبي (TAX ID) للمستثمر', 'التنسيق مع كاتب العدل ودائرة السجل العقاري'],
     featuresEn: ['Verifying the property is free of encumbrances', 'Drafting sales contracts in both languages', 'Obtaining the investor\'s TAX ID', 'Coordinating with the notary and land registry'],
     photo: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80',
@@ -36,10 +36,10 @@ const SERVICES = [
   {
     Icon: Handshake,
     titleAr: 'التفاوض وإتمام الصفقات',
-    titleEn: 'Negotiation & Deal Closing',
+    titleEn: 'Negotiation & Closing the Deal',
     num: '03',
     descAr: 'خبرتنا الطويلة مع المطورين العقاريين الأتراك تضمن لك الحصول على أفضل الأسعار مع توفير أفضل الظروف . نتفاوض نيابة عنك، ونتابع مراحل الدفع، ونضمن تسليم كل شيء في الوقت المحدد وبالسعر المتفق عليه.',
-    descEn: 'Our negotiation experts fully represent you before the seller, ensuring the best price and terms — without you needing to be present at every stage.',
+    descEn: 'Our long-term experience with Turkish developers enables us to provide the best offers and terms for our customers. We negotiate and follow the payment process, ensuring that everything is completed as planned, on time, and with full transparency on your behalf.',
     featuresAr: ['تحليل السعر السوقي العادل للعقار', 'التفاوض المباشر مع البائع أو المطوّر', 'صياغة شروط الدفع والتسليم بما يحمي حقوقك', 'توكيل رسمي بالنيابة عنك إن لزم'],
     featuresEn: ['Analyzing the fair market price', 'Direct negotiation with the seller or developer', 'Drafting payment and delivery terms to protect your rights', 'Official power of attorney on your behalf if needed'],
     photo: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80',
@@ -47,10 +47,10 @@ const SERVICES = [
   {
     Icon: Key,
     titleAr: 'إدارة الأملاك والإيجار',
-    titleEn: 'Property & Rental Management',
+    titleEn: 'Property Management and Renting',
     num: '04',
     descAr: 'استثمارك يعمل لصالحك حتى وأنت بعيد — نرعى عقارك بالكامل من تشغيل وإيجار وصيانة، ونضمن لك تدفق دخل ثابت.',
-    descEn: 'Your investment works for you even while you\'re away — we fully care for your property: operations, rental, and maintenance, ensuring a steady income stream.',
+    descEn: 'Own your property with complete peace of mind. Our property management team takes care of everything, from tenant sourcing and rent collection to regular maintenance and monthly financial reporting, with yearly rental yields of up to 8%.',
     featuresAr: ['تسويق العقار وإيجاده للمستأجرين المناسبين', 'تحصيل الإيجار وإدارة العقود', 'الصيانة الدورية والطارئة', 'تقارير شهرية مفصّلة عن أداء العقار'],
     featuresEn: ['Marketing the property and finding suitable tenants', 'Rent collection and contract management', 'Regular and emergency maintenance', 'Detailed monthly property performance reports'],
     photo: 'https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=900&q=80',
@@ -110,7 +110,7 @@ function HeroSection({ t, isMobile, isAr, tr, get }: SP) {
         <h1 style={{ fontFamily: "'Marcellus', serif", color: '#fff', fontSize: isMobile ? 'clamp(2rem,8vw,3rem)' : 'clamp(2.8rem,5vw,4rem)', lineHeight: 1.2, marginBottom: 18 }}>
           {get('hero.title', isAr, tr('services.title'))}
           <br />
-          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'كل ما تحتاجه لاستثمار عقاري ناجح في تركيا — تحت سقف واحد.' : 'From Search to After Purchase')}</em>
+          <em style={{ color: t.gold }}>{get('hero.subtitle', isAr, isAr ? 'كل ما تحتاجه لاستثمار عقاري ناجح في تركيا — تحت سقف واحد.' : 'Everything you need for a successful real estate investment in Türkiye, all under one roof.')}</em>
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: isMobile ? '0.88rem' : '0.96rem', lineHeight: 1.9, maxWidth: 520, margin: '0 auto' }}>
           {isAr

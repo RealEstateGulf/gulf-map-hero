@@ -10,12 +10,16 @@ import { useLanguage } from '@/context/LanguageContext';
 const TEAM = [
   {
     name: 'أحمد يلدز',
+    nameEn: 'Ahmet Yıldız',
     role: 'مستشار استثمار عقاري',
+    roleEn: 'Real Estate Consultant',
     photo: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=200&q=80',
   },
   {
     name: 'ليلى شاهين',
+    nameEn: 'Leyla Şahin',
     role: 'خبيرة السوق العقاري التركي',
+    roleEn: 'Türkiye Real Estate Market Expert',
     photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80',
   },
 ];
@@ -62,14 +66,14 @@ export default function FooterSection() {
         }}>
           <div>
             <p style={{ color: t.gold, fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: 10 }}>
-              {isAr ? 'ابدأ رحلتك الآن' : 'Start Your Journey Now'}
+              {isAr ? 'ابدأ رحلتك الآن' : 'Start Your Investment Journey in Türkiye Today!'}
             </p>
             <h3 style={{
               fontFamily: "'Marcellus', serif", color: '#ffffff',
               fontSize: isMobile ? 'clamp(1.2rem, 5vw, 1.6rem)' : 'clamp(1.4rem, 2.5vw, 2rem)',
               margin: 0, lineHeight: 1.3,
             }}>
-              {isAr ? 'هل أنت مستعد لبدء رحلتك الاستثمارية؟' : 'Ready to start your investment journey?'}
+              {isAr ? 'هل أنت مستعد لبدء رحلتك الاستثمارية؟' : 'Are you ready to begin your investment journey?'}
             </h3>
           </div>
           <Link
@@ -175,15 +179,15 @@ export default function FooterSection() {
               {isAr ? 'فريقنا' : 'Our Team'}
             </div>
             <div style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: isMobile ? 20 : 14, marginBottom: 28, flexWrap: 'wrap' }}>
-              {TEAM.map(({ name, role, photo }) => (
+              {TEAM.map(({ name, nameEn, role, roleEn, photo }) => (
                 <Link key={name} href="/about" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
                   <div style={{ width: 44, height: 44, borderRadius: '50%', overflow: 'hidden', border: `1px solid ${t.gold3}`, flexShrink: 0 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={photo} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={photo} alt={isAr ? name : nameEn} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <div>
-                    <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem', fontWeight: 600 }}>{name}</div>
-                    <div style={{ color: t.gold3, fontSize: '0.68rem', marginTop: 2 }}>{role}</div>
+                    <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem', fontWeight: 600 }}>{isAr ? name : nameEn}</div>
+                    <div style={{ color: t.gold3, fontSize: '0.68rem', marginTop: 2 }}>{isAr ? role : roleEn}</div>
                   </div>
                 </Link>
               ))}

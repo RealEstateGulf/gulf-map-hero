@@ -18,11 +18,11 @@ import {
 // ─── data ────────────────────────────────────────────────────────────────────
 
 const PRIVILEGES = [
-  { Icon: Lock, titleAr: 'عقارات ما قبل الطرح', titleEn: 'Pre-launch Properties', descAr: 'وصول مسبق للعقارات قيد الإنشاء (البيع على المخطط) بأسعار إطلاق المشاريع', descEn: 'Exclusive access to off-market properties before they are publicly announced at special early prices.' },
-  { Icon: Users, titleAr: 'مستشار شخصي مخصص', titleEn: 'Dedicated Personal Advisor', descAr: 'مستشار شخصي مخصص لك متاح على مدار الساعة 24/7', descEn: 'A fully dedicated Arab investment advisor — available 6 days a week at your service.' },
-  { Icon: CalendarCheck, titleAr: 'جولات ميدانية VIP', titleEn: 'VIP Field Tours', descAr: 'جولات ميدانية VIP مجانية في إسطنبول وأنطاليا', descEn: 'Exclusive invitations to investment project tours in Turkey with complimentary reception and hosting at our expense.' },
+  { Icon: Lock, titleAr: 'عقارات ما قبل الطرح', titleEn: 'Pre-launch Properties', descAr: 'وصول مسبق للعقارات قيد الإنشاء (البيع على المخطط) بأسعار إطلاق المشاريع', descEn: 'Early access to off-plan properties at project launch prices.' },
+  { Icon: Users, titleAr: 'مستشار شخصي مخصص', titleEn: 'Dedicated Personal Advisor', descAr: 'مستشار شخصي مخصص لك متاح على مدار الساعة 24/7', descEn: 'A Dedicated Personal Advisor Available 24/7.' },
+  { Icon: CalendarCheck, titleAr: 'جولات ميدانية VIP', titleEn: 'VIP Field Tours', descAr: 'جولات ميدانية VIP مجانية في إسطنبول وأنطاليا', descEn: 'Free Field Trips in Istanbul and Antalya.' },
   { Icon: TrendingUp, titleAr: 'أولوية في الصفقات', titleEn: 'Priority in Deals', descAr: 'تقارير شهرية للسوق العقارية وتحليلات العائدات على الاستثمار', descEn: 'Absolute priority in highest-yield deals and buying opportunities before price increases.' },
-  { Icon: FileText, titleAr: 'تقارير السوق الشهرية', titleEn: 'Monthly Market Reports', descAr: 'تحليلات حصرية ومعمّقة للسوق العقاري التركي مع توقعات الأسعار والمناطق الواعدة.', descEn: 'Exclusive in-depth analyses of the Turkish real estate market with price forecasts and promising areas.' },
+  { Icon: FileText, titleAr: 'تقارير السوق الشهرية', titleEn: 'Monthly Market Reports', descAr: 'تحليلات حصرية ومعمّقة للسوق العقاري التركي مع توقعات الأسعار والمناطق الواعدة.', descEn: 'Monthly Market Reports and Investment Performance Analysis.' },
   { Icon: ShieldCheck, titleAr: 'دعم قانوني ومالي', titleEn: 'Legal & Financial Support', descAr: 'فريق قانوني ومالي مخصص لتسهيل إجراءات الملكية والجنسية والتمويل من أوّل خطوة.', descEn: 'A dedicated legal and financial team to facilitate ownership, citizenship and financing procedures from the first step.' },
 ];
 
@@ -127,7 +127,7 @@ function HeroSection({ t, isMobile, isAr, tr, get }: SP) {
           onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
           onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(0)'; }}
         >
-          {isAr ? 'انضم للشبكة' : 'Join the Network'}
+          {isAr ? 'انضم للشبكة' : 'Join the VIP Network'}
         </button>
         <button style={{ background: 'transparent', border: `1px solid ${t.border2}`, borderRadius: 5, color: t.txt2, fontSize: '0.8rem', padding: '14px 28px', cursor: 'pointer', transition: 'all 0.2s' }}
           onMouseEnter={e => { e.currentTarget.style.borderColor = t.gold3; e.currentTarget.style.color = t.gold; }}

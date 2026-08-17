@@ -13,10 +13,10 @@ const FEATURES_AR = [
 ];
 
 const FEATURES_EN = [
-  'Over 6 years of field expertise in the Turkish real estate market',
-  'Full transparency at every step — no hidden fees',
-  'Legal support and specialized translation throughout the investment stages',
-  'Direct relationships with Turkey\'s top developers and real estate builders',
+  'Over 6 years of on the ground expertise in the Turkish real estate market',
+  'Full transparency in every step — no hidden fee',
+  'Legal support and advanced translation services at every step of the investment process.',
+  "Direct Network with Türkiye's Leading Developers",
 ];
 
 const BIG_PHOTO = 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=900&q=80';
@@ -49,7 +49,7 @@ export default function WhyUsSection() {
             marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10,
           }}>
             <span style={{ display: 'inline-block', width: 24, height: 1, background: t.gold }} />
-            {isAr ? 'لماذا تختارنا' : 'Why Choose Us'}
+            {isAr ? 'لماذا تختارنا' : 'Why Should You Choose Us?'}
           </p>
           <h2 style={{
             fontFamily: "'Marcellus', serif", color: t.txt,
@@ -58,13 +58,13 @@ export default function WhyUsSection() {
           }}>
             {isAr
               ? <>خبرة ميدانية،<br />نتائج موثّقة</>
-              : <>Field Expertise,<br />Documented Results</>}
+              : <>Field Experience,<br />Documented Results</>}
           </h2>
 
           <div style={{ marginBottom: 36, paddingBottom: 36, borderBottom: `1px solid ${t.border}` }}>
             <div style={{ fontFamily: "'Marcellus', serif", color: t.gold, fontSize: '2.8rem', lineHeight: 1 }}>+130</div>
             <div style={{ color: t.txt4, fontSize: '0.78rem', marginTop: 6, letterSpacing: '0.08em' }}>
-              {isAr ? 'مستثمر عربي انضم إلينا' : 'Arab investors who joined us'}
+              {isAr ? 'مستثمر عربي انضم إلينا' : 'Arab Investors Who Joined Us'}
             </div>
           </div>
 

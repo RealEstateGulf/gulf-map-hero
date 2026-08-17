@@ -13,9 +13,9 @@ export async function GET() {
     subtitle_en:   get('subtitle_en', 'Choose your preferred contact method'),
     wa_number:     get('wa_number', '905072308453'),
     wa_text_ar:    get('wa_text_ar', 'انضم لقناة واتساب'),
-    wa_text_en:    get('wa_text_en', 'Join WhatsApp Channel'),
+    wa_text_en:    get('wa_text_en', 'Join Our WhatsApp Channel'),
     leave_text_ar: get('leave_text_ar', 'اترك رقمك وسنتصل بك'),
-    leave_text_en: get('leave_text_en', "Leave your number, we'll call you"),
+    leave_text_en: get('leave_text_en', 'Leave your number, let us call you'),
     success_ar:    get('success_ar', 'شكراً لك!'),
     success_en:    get('success_en', 'Thank You!'),
   });

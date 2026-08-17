@@ -49,7 +49,7 @@ export default function HeroIntro({ visible, onExplore }: Props) {
             color: t.gold, fontSize: '0.58rem', fontWeight: 700,
             letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 7,
           }}>
-            {isAr ? 'فرص استثمارية حصرية' : 'Exclusive Investment Opportunities'}
+            {isAr ? 'فرص استثمارية حصرية' : 'Your First Address for Real Estate Investment in Türkiye'}
           </div>
 
           {/* Title */}
@@ -58,9 +58,9 @@ export default function HeroIntro({ visible, onExplore }: Props) {
             lineHeight: 1.35, margin: '0 0 14px',
             textShadow: '0 2px 12px rgba(0,0,0,0.6)',
           }}>
-            {get('hero.title1', isAr, isAr ? 'استثمر في' : 'Invest in')}
+            {get('hero.title1', isAr, isAr ? 'استثمر في' : 'Invest')}
             {' '}
-            <span style={{ color: t.gold }}>{get('hero.title2', isAr, isAr ? 'عقارات تركيا' : 'Turkish Real Estate')}</span>
+            <span style={{ color: t.gold }}>{get('hero.title2', isAr, isAr ? 'عقارات تركيا' : 'Exclusive Properties of Türkiye')}</span>
           </h1>
 
           {/* Buttons */}
@@ -164,16 +164,16 @@ export default function HeroIntro({ visible, onExplore }: Props) {
         }}
       >
         <div style={{ color: t.gold, fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.18em', marginBottom: 14 }}>
-          {isAr ? 'فرص استثمارية حصرية' : 'Exclusive Investment Opportunities'}
+          {isAr ? 'فرص استثمارية حصرية' : 'Your First Address for Real Estate Investment in Türkiye'}
         </div>
         <h1 style={{
           color: '#fff', fontSize: 'clamp(1.7rem, 3vw, 2.6rem)',
           fontWeight: 800, lineHeight: 1.35, margin: 0, marginBottom: 18,
           textShadow: '0 2px 20px rgba(0,0,0,0.5)',
         }}>
-          {get('hero.title1', isAr, isAr ? 'استثمر في' : 'Invest in')}
+          {get('hero.title1', isAr, isAr ? 'استثمر في' : 'Invest')}
           {' '}
-          <span style={{ color: t.gold }}>{get('hero.title2', isAr, isAr ? 'عقارات تركيا' : 'Turkish Real Estate')}</span>
+          <span style={{ color: t.gold }}>{get('hero.title2', isAr, isAr ? 'عقارات تركيا' : 'Exclusive Properties of Türkiye')}</span>
         </h1>
         <p style={{
           color: 'rgba(255,255,255,0.65)', fontSize: '0.95rem',
@@ -183,7 +183,7 @@ export default function HeroIntro({ visible, onExplore }: Props) {
           {get('hero.sub', isAr,
             isAr
               ? 'اكتشف أفضل الفرص العقارية في أرقى مدن تركيا، من الشقق الفاخرة إلى الأراضي الاستثمارية، مع فريق متخصص يرافقك خطوة بخطوة نحو الجنسية التركية والاستثمار الآمن.'
-              : 'Discover the best real estate opportunities in Turkey\'s most prestigious cities, from luxury apartments to investment land, with a specialized team guiding you step by step toward Turkish citizenship and secure investment.'
+              : "Investment opportunities in Türkiye's prominent cities, such as Istanbul and Antalya, with the opportunity to obtain Turkish citizenship."
           )}
         </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: isAr ? 'flex-end' : 'flex-start', flexWrap: 'wrap' }}>

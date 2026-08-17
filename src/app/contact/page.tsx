@@ -26,7 +26,7 @@ const OFFICES = [
     addressEn: 'Burj Khalifa, Sheikh Zayed Road, Downtown Dubai',
     phone: '+971 4 XXX XXXX',
     whatsapp: '+971 5X XXX XXXX',
-    email: 'dubai@gulfinvest.com.tr',
+    email: 'dubai@miftahturkiye.com',
     hoursAr: 'الأحد – الخميس: 9:00 – 18:00',
     hoursEn: 'Sunday – Thursday: 9:00 – 18:00',
     photo: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80',
@@ -41,9 +41,9 @@ const OFFICES = [
     flag: '🇹🇷',
     addressAr: 'شارع بغداد، كاديكوي، إسطنبول 34710',
     addressEn: 'Baghdad Street, Kadikoy, Istanbul 34710',
-    phone: '+90 212 XXX XXXX',
+    phone: '+90 212 000 00 00',
     whatsapp: '+90 555 000 0000',
-    email: 'info@gulfinvest.com.tr',
+    email: 'info@miftahturkiye.com',
     hoursAr: 'الاثنين – السبت: 9:00 – 19:00',
     hoursEn: 'Monday – Saturday: 9:00 – 19:00',
     photo: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=900&q=80',
@@ -226,7 +226,7 @@ function FormSection({ t, isMobile, isAr, tr, dir }: SP & { dir: 'rtl' | 'ltr' }
             {[
               { Icon: MessageSquare, titleAr: 'رد سريع', titleEn: 'Quick Response', descAr: 'نلتزم بالرد خلال 4 ساعات عمل', descEn: 'We respond within 4 working hours' },
               { Icon: Phone, titleAr: 'اتصل مباشرة', titleEn: 'Call Directly', descAr: 'متاحون على واتساب 6 أيام بالأسبوع', descEn: 'Available on WhatsApp 6 days a week' },
-              { Icon: Mail, titleAr: 'بريد إلكتروني', titleEn: 'Email', descAr: 'info@gulfinvest.com.tr', descEn: 'info@gulfinvest.com.tr' },
+              { Icon: Mail, titleAr: 'بريد إلكتروني', titleEn: 'Email', descAr: 'info@miftahturkiye.com', descEn: 'info@miftahturkiye.com' },
             ].map(({ Icon, titleAr, titleEn, descAr, descEn }, i) => (
               <div key={i} style={{ display: 'flex', gap: 14, marginBottom: i < 2 ? 20 : 0, alignItems: 'flex-start' }}>
                 <div style={{ width: 40, height: 40, flexShrink: 0, background: t.gold5, border: `1px solid ${t.gold4}`, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

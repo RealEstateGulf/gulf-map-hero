@@ -155,7 +155,7 @@ export default function FeaturedSection() {
               marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10,
             }}>
               <span style={{ display: 'inline-block', width: 24, height: 1, background: t.gold }} />
-              {get('featured.title', isAr, isAr ? 'العقارات المميزة' : 'Featured Properties')}
+              {get('featured.title', isAr, isAr ? 'العقارات المميزة' : 'Carefully Selected Properties')}
             </p>
             <h2 style={{
               fontFamily: "'Marcellus', serif", color: t.txt,
@@ -172,7 +172,7 @@ export default function FeaturedSection() {
               <p style={{ color: t.txt3, fontSize: '0.9rem', lineHeight: 1.9, maxWidth: 360 }}>
                 {isAr
                   ? 'محفظتنا مبنية على تحليل دقيق للسوق التركي — شقق وفلل ومشاريع تجارية في أعلى المناطق الاستثمارية نمواً.'
-                  : 'Our portfolio is built on rigorous analysis of the Turkish market — apartments, villas and commercial projects in the highest-growth investment areas.'}
+                  : 'A selective portfolio consisting of apartments, villas, and commercial projects in the fastest-growing areas of Türkiye.'}
               </p>
             </div>
           )}
