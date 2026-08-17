@@ -19,13 +19,18 @@ export default function PropertyConnectorCard({ property, onDetail }: Props) {
 
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
+  // Cap the number of photos this small preview card cycles through — a
+  // listing with dozens of photos shouldn't fetch them all just because its
+  // pin was rendered on the map.
+  const photos = property.photos.slice(0, 5);
+
   useEffect(() => {
-    if (property.photos.length <= 1) return;
+    if (photos.length <= 1) return;
     const id = setInterval(() => {
-      setActiveIndex(i => (i + 1) % property.photos.length);
+      setActiveIndex(i => (i + 1) % photos.length);
     }, 3200);
     return () => clearInterval(id);
-  }, [property.photos.length]);
+  }, [photos.length]);
 
   return (
     <div
@@ -48,18 +53,25 @@ export default function PropertyConnectorCard({ property, onDetail }: Props) {
       }}
     >
       {/* Photo carousel */}
-      <div style={{ position: 'relative', height: 135, overflow: 'hidden' }}>
-        {property.photos.map((photo, i) => (
+      <div style={{ position: 'relative', height: 135, overflow: 'hidden', background: '#111' }}>
+        {photos.map((photo, i) => (
           <div
             key={i}
             style={{
               position: 'absolute',
               inset: 0,
-              background: photo,
               opacity: i === activeIndex ? 1 : 0,
               transition: 'opacity 0.9s ease',
             }}
-          />
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photo}
+              alt=""
+              loading={i === 0 ? 'eager' : 'lazy'}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
         ))}
         {property.badge && (
           <div
@@ -80,7 +92,7 @@ export default function PropertyConnectorCard({ property, onDetail }: Props) {
             {property.badge}
           </div>
         )}
-        {property.photos.length > 1 && (
+        {photos.length > 1 && (
           <div
             style={{
               position: 'absolute',
@@ -92,7 +104,7 @@ export default function PropertyConnectorCard({ property, onDetail }: Props) {
               zIndex: 2,
             }}
           >
-            {property.photos.map((_, i) => (
+            {photos.map((_, i) => (
               <button
                 key={i}
                 onClick={e => {
