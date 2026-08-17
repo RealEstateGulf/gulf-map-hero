@@ -38,6 +38,7 @@ export async function GET() {
     featuresEn: parseJsonArray(p.featuresEn),
     thumbGradient: p.thumbGradient,
     photos: parseJsonArray(p.photos),
+    featured: p.featured,
   }));
 
   return NextResponse.json(properties);
