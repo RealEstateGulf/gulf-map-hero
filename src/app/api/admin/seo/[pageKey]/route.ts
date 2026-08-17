@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
+import { seoSchema } from '@/lib/validation';
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ pageKey: string }> }) {
   const session = await getSession();
@@ -8,7 +9,9 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ page
 
   const { pageKey } = await params;
   try {
-    const body = await req.json();
+    const parsed = seoSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    const body = parsed.data;
     const seo = await prisma.seoSettings.update({
       where: { pageKey },
       data: {

@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession, hashPassword } from '@/lib/auth';
-
-const VALID_ROLES = ['AGENT', 'ADMIN', 'SUPER_ADMIN'];
+import { userUpdateSchema } from '@/lib/validation';
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession();
@@ -11,11 +10,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   }
   const { id } = await params;
   try {
-    const body = await req.json();
+    const parsed = userUpdateSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    const body = parsed.data;
 
-    if (body.role !== undefined && !VALID_ROLES.includes(body.role)) {
-      return NextResponse.json({ error: 'Geçersiz rol' }, { status: 400 });
-    }
     // Only a SUPER_ADMIN may grant or edit a SUPER_ADMIN account.
     if (session.role !== 'SUPER_ADMIN' && (body.role === 'SUPER_ADMIN')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

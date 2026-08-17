@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
+import { contentRowsSchema } from '@/lib/validation';
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ pageKey: string }> }) {
   const session = await getSession();
@@ -16,8 +17,9 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ page
 
   const { pageKey } = await params;
   try {
-    const { rows } = await req.json() as { rows: { key: string; valueAr: string; valueEn: string }[] };
-    if (!Array.isArray(rows)) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    const parsed = contentRowsSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    const { rows } = parsed.data;
 
     // Upsert all rows, delete removed ones
     const savedKeys = rows.map(r => r.key);

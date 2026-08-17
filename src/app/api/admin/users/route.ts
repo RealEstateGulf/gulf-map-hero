@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession, hashPassword } from '@/lib/auth';
-
-const VALID_ROLES = ['AGENT', 'ADMIN', 'SUPER_ADMIN'];
+import { userCreateSchema } from '@/lib/validation';
 
 export async function POST(req: NextRequest) {
   const session = await getSession();
@@ -10,12 +9,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   try {
-    const body = await req.json();
-    if (!body.password) return NextResponse.json({ error: 'Şifre zorunludur' }, { status: 400 });
-    if (body.password.length < 8) return NextResponse.json({ error: 'Şifre en az 8 karakter olmalı' }, { status: 400 });
-    if (body.role !== undefined && !VALID_ROLES.includes(body.role)) {
-      return NextResponse.json({ error: 'Geçersiz rol' }, { status: 400 });
-    }
+    const parsed = userCreateSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    const body = parsed.data;
     if (session.role !== 'SUPER_ADMIN' && body.role === 'SUPER_ADMIN') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

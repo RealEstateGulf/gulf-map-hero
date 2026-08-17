@@ -1,6 +1,7 @@
 import { SignJWT, jwtVerify } from 'jose';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
+import { prisma } from '@/lib/prisma';
 
 if (!process.env.JWT_SECRET) {
   throw new Error('JWT_SECRET environment variable is not set. Refusing to start with an insecure default.');
@@ -37,7 +38,17 @@ export async function getSession(): Promise<JWTPayload | null> {
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;
-  return verifyToken(token);
+  const payload = await verifyToken(token);
+  if (!payload) return null;
+
+  // The JWT itself stays valid for 7 days regardless of DB state, so a
+  // deactivated/deleted account must be re-checked here on every request —
+  // otherwise revoking access (e.g. offboarding staff) would only take
+  // effect once the old token expires.
+  const user = await prisma.user.findUnique({ where: { id: payload.userId }, select: { active: true } });
+  if (!user || !user.active) return null;
+
+  return payload;
 }
 
 export async function hashPassword(password: string): Promise<string> {

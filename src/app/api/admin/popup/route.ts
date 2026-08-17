@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
+import { contentRowsSchema } from '@/lib/validation';
 
 export async function GET() {
   const rows = await prisma.pageContent.findMany({ where: { pageKey: 'popup' } });
@@ -11,7 +12,9 @@ export async function PUT(req: NextRequest) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   try {
-    const { rows } = await req.json() as { rows: { key: string; valueAr: string; valueEn: string }[] };
+    const parsed = contentRowsSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    const { rows } = parsed.data;
     await Promise.all(
       rows.map(r =>
         prisma.pageContent.upsert({

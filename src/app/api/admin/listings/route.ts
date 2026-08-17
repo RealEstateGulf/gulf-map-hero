@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
+import { listingSchema } from '@/lib/validation';
 
 export async function GET() {
   const session = await getSession();
@@ -15,7 +16,9 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   try {
-    const body = await req.json();
+    const parsed = listingSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    const body = parsed.data;
     const listing = await prisma.property.create({
       data: {
         city: body.city, cityEn: body.cityEn,
