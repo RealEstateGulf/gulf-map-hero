@@ -101,11 +101,17 @@ export default function FeaturedSection() {
     </div>
   );
 
-  // Still loading, or there are no published listings yet — nothing real to show.
-  if (!properties || properties.length === 0) return null;
+  // Confirmed empty (fetch finished, no published listings) — nothing real to
+  // show. Note: we deliberately do NOT bail out while `properties` is still
+  // null (loading) — the section's outer div holds the ref that
+  // useScrollReveal's IntersectionObserver attaches to on first mount. If
+  // this returned null during that first loading render, the ref would never
+  // attach and the observer would never be created, leaving every card stuck
+  // at opacity: 0 forever once the data does arrive.
+  if (properties && properties.length === 0) return null;
 
-  const row1 = properties.slice(0, 2);
-  const row2 = properties.slice(2, 4);
+  const row1 = properties?.slice(0, 2) ?? [];
+  const row2 = properties?.slice(2, 4) ?? [];
 
   const PriceRow = ({ price }: { price: string }) => (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
