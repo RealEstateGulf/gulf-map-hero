@@ -60,6 +60,14 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
   const { t } = useTheme();
   const isMobile = useIsMobile();
   const [activePhoto, setActivePhoto] = useState(0);
+  // The main gallery box is a wide fixed-height rectangle. A landscape photo
+  // fills it nicely with object-fit: cover, but a portrait photo would have
+  // its sides cropped away — switch those to "contain" (letterboxed) instead
+  // of cropping out whatever's on the left/right of the subject. Reset to
+  // the default on every photo change so the previous photo's mode doesn't
+  // flash before the new photo's dimensions are known.
+  const [photoOrientation, setPhotoOrientation] = useState<'landscape' | 'portrait'>('landscape');
+  useEffect(() => { setPhotoOrientation('landscape'); }, [activePhoto]);
 
   return (
     <main style={{ background: t.bg, minHeight: '100vh', direction: 'rtl' }}>
@@ -121,13 +129,24 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               borderRadius: 8,
               overflow: 'hidden',
               height: isMobile ? 260 : 500,
+              background: '#000',
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={property.photos[activePhoto]}
               alt={property.titleAr}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'opacity 0.3s ease' }}
+              onLoad={e => {
+                const img = e.currentTarget;
+                setPhotoOrientation(img.naturalHeight > img.naturalWidth ? 'portrait' : 'landscape');
+              }}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: photoOrientation === 'portrait' ? 'contain' : 'cover',
+                display: 'block',
+                transition: 'opacity 0.3s ease',
+              }}
             />
             <div
               style={{
