@@ -163,7 +163,7 @@ export default function ComparePage() {
         {/* CTA row */}
         <div style={{ marginTop: 32, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {list.map(p => (
-            <Link key={p.id} href={`/properties/${p.id}`} style={{
+            <Link key={p.id} href={`/properties/${p.slug}`} style={{
               background: t.gold5, border: `1px solid ${t.gold4}`, borderRadius: 6,
               padding: '10px 18px', color: t.gold, fontSize: '0.75rem', fontWeight: 600,
               textDecoration: 'none', transition: 'all 0.2s',

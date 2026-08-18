@@ -23,9 +23,9 @@ import type { Property } from '@/data/properties';
 export default function PropertyDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = use(params);
+  const { slug } = use(params);
   const { t } = useTheme();
   const { isAr } = useLanguage();
   // undefined = yükleniyor, null = bulunamadı
@@ -36,11 +36,13 @@ export default function PropertyDetailPage({
     fetch('/api/properties')
       .then(r => r.json())
       .then((all: Property[]) => {
-        const found = all.find(p => p.id === id) ?? null;
+        // Match by slug first; fall back to the old cuid-based id so any
+        // links shared before the slug migration keep working.
+        const found = all.find(p => p.slug === slug) ?? all.find(p => p.id === slug) ?? null;
         setProperty(found);
         if (found) setRelated(all.filter(p => p.id !== found.id && p.category === found.category).slice(0, 3));
       });
-  }, [id]);
+  }, [slug]);
 
   if (property === undefined) {
     return (
@@ -589,7 +591,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               {related.map(p => (
                 <Link
                   key={p.id}
-                  href={`/properties/${p.id}`}
+                  href={`/properties/${p.slug}`}
                   style={{ textDecoration: 'none', display: 'block' }}
                 >
                   <div

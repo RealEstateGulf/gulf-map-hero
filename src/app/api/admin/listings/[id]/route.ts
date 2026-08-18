@@ -15,6 +15,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     const listing = await prisma.property.update({
       where: { id },
       data: {
+        slug: body.slug,
         city: body.city, cityEn: body.cityEn,
         titleAr: body.titleAr, titleEn: body.titleEn,
         locationAr: body.locationAr, locationEn: body.locationEn,
@@ -33,9 +34,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       },
     });
     return NextResponse.json(listing);
-  } catch (e) {
+  } catch (e: unknown) {
     console.error(e);
-    return NextResponse.json({ error: 'Güncelleme hatası' }, { status: 500 });
+    const msg = e instanceof Error && e.message.includes('Unique') ? 'Bu slug zaten kullanılıyor' : 'Güncelleme hatası';
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 

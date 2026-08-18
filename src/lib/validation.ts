@@ -49,9 +49,10 @@ export const consultantSchema = z.object({
   active: z.boolean().optional(),
 });
 
-// Slugs are used directly in public URLs (/insights/<slug>), so restrict to the
-// same URL-safe charset the admin UI already auto-generates from the title.
-const slugSchema = z.string().trim().min(1).max(160).regex(
+// Slugs are used directly in public URLs (/insights/<slug>, /properties/<slug>),
+// so restrict to the same URL-safe charset the admin UI already auto-generates
+// from the title.
+export const slugSchema = z.string().trim().min(1).max(160).regex(
   /^[a-z0-9]+(-[a-z0-9]+)*$/,
   'Slug yalnızca küçük harf, rakam ve tire içerebilir'
 );
@@ -72,6 +73,7 @@ export const insightSchema = z.object({
 });
 
 export const listingSchema = z.object({
+  slug: slugSchema,
   city: z.string().trim().min(1).max(120),
   cityEn: z.string().trim().min(1).max(120),
   titleAr: z.string().trim().min(1).max(300),

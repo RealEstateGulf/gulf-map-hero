@@ -9,7 +9,7 @@ type Consultant = { id: string; nameEn: string; nameAr: string };
 type Agent = { id: string; name: string };
 type City = { id: string; nameAr: string; nameEn: string };
 type Listing = {
-  id: string; city: string; cityEn: string; titleAr: string; titleEn: string;
+  id: string; slug: string; city: string; cityEn: string; titleAr: string; titleEn: string;
   locationAr: string; locationEn: string; price: string; area: number; rooms: string;
   typeAr: string; typeEn: string; category: string; badge?: string | null;
   descriptionAr?: string | null; descriptionEn?: string | null;
@@ -53,6 +53,7 @@ export default function ListingForm({ listing, consultants, agents, cities }: Pr
   const [cityId, setCityId] = useState(initialCityId);
 
   const [form, setForm] = useState({
+    slug: listing?.slug ?? '',
     city: listing?.city ?? '',
     cityEn: listing?.cityEn ?? '',
     titleAr: listing?.titleAr ?? '',
@@ -107,6 +108,12 @@ export default function ListingForm({ listing, consultants, agents, cities }: Pr
   const toggle = (key: 'published' | 'featured') => () =>
     setForm(f => ({ ...f, [key]: !f[key] }));
 
+  // Auto-generate slug from city + English title (e.g. "bursa-hunkar-konaklari")
+  const generateSlug = () => {
+    const slug = `${form.cityEn}-${form.titleEn}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    setForm(f => ({ ...f, slug }));
+  };
+
   const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const id = e.target.value;
     setCityId(id);
@@ -155,7 +162,18 @@ export default function ListingForm({ listing, consultants, agents, cities }: Pr
         
         {/* Main content */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          
+
+          {/* Slug */}
+          <div style={{ background: '#0d0d18', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 14, padding: '18px', display: 'flex', gap: 10, alignItems: 'flex-end' }}>
+            <div style={{ flex: 1 }}>
+              <label style={LABEL}>URL Slug (benzersiz olmalı)</label>
+              <input style={{ ...INPUT, fontFamily: 'monospace' }} value={form.slug} onChange={set('slug')} onFocus={focusBorder} onBlur={blurBorder} placeholder="bursa-hunkar-konaklari" required />
+            </div>
+            <button type="button" onClick={generateSlug} style={{ padding: '10px 14px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 9, color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+              Şehir + EN'den Oluştur
+            </button>
+          </div>
+
           {/* Language tabs */}
           <div style={{ background: '#0d0d18', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 14, overflow: 'hidden' }}>
             <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex' }}>

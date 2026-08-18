@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
     const body = parsed.data;
     const listing = await prisma.property.create({
       data: {
+        slug: body.slug,
         city: body.city, cityEn: body.cityEn,
         titleAr: body.titleAr, titleEn: body.titleEn,
         locationAr: body.locationAr, locationEn: body.locationEn,
@@ -40,8 +41,9 @@ export async function POST(req: NextRequest) {
       },
     });
     return NextResponse.json(listing);
-  } catch (e) {
+  } catch (e: unknown) {
     console.error(e);
-    return NextResponse.json({ error: 'Kayıt hatası' }, { status: 500 });
+    const msg = e instanceof Error && e.message.includes('Unique') ? 'Bu slug zaten kullanılıyor' : 'Kayıt hatası';
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

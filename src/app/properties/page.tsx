@@ -368,7 +368,7 @@ function PropertyCard({
   const isCompared = has(property.id);
 
   return (
-    <Link href={`/properties/${property.id}`} style={{ textDecoration: 'none', display: 'block' }}>
+    <Link href={`/properties/${property.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div
         style={{
           background: t.card,

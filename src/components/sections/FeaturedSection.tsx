@@ -180,7 +180,7 @@ export default function FeaturedSection() {
         {/* Row 1: large vertical cards */}
         <div style={{ display: 'grid', gridTemplateColumns: isMobile || row1.length === 1 ? '1fr' : '1fr 1fr', gap: 18, marginBottom: 18 }}>
           {row1.map((p, i) => (
-            <div key={p.id} style={{ ...cardBase, ...rv(visible, 0.1 + i * 0.12) }} onMouseEnter={hoverIn} onMouseLeave={hoverOut} onClick={() => router.push(`/properties/${p.id}`)}>
+            <div key={p.id} style={{ ...cardBase, ...rv(visible, 0.1 + i * 0.12) }} onMouseEnter={hoverIn} onMouseLeave={hoverOut} onClick={() => router.push(`/properties/${p.slug}`)}>
               <div style={{ position: 'relative', overflow: 'hidden', height: isMobile ? 240 : 360, background: '#111' }}>
                 {p.photos[0] && (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -228,7 +228,7 @@ export default function FeaturedSection() {
                 style={{ ...cardBase, ...rv(visible, 0.28 + i * 0.12), display: 'flex', flexDirection: isMobile ? 'column' : 'row' }}
                 onMouseEnter={hoverIn}
                 onMouseLeave={hoverOut}
-                onClick={() => router.push(`/properties/${p.id}`)}
+                onClick={() => router.push(`/properties/${p.slug}`)}
               >
                 <div style={{ position: 'relative', overflow: 'hidden', width: isMobile ? '100%' : '42%', height: isMobile ? 200 : 'auto', flexShrink: 0, background: '#111' }}>
                   {p.photos[0] && (

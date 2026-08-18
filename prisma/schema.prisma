@@ -39,6 +39,7 @@ model Consultant {
 
 model Property {
   id            String   @id @default(cuid())
+  slug          String   @unique
   city          String
   cityEn        String
   titleAr       String

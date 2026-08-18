@@ -2,6 +2,7 @@ export type PropertyCategory = 'villas' | 'land' | 'apartments' | 'commercial' |
 
 export interface Property {
   id: string;
+  slug: string;
   city: string;
   cityEn: string;
   titleAr: string;

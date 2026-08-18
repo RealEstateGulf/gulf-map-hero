@@ -19,6 +19,7 @@ export async function GET() {
 
   const properties = listings.map(p => ({
     id: p.id,
+    slug: p.slug,
     city: p.city,
     cityEn: p.cityEn,
     titleAr: p.titleAr,
