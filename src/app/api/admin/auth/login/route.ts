@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { signToken, comparePassword, COOKIE_NAME } from '@/lib/auth';
 import { checkRateLimit, rateLimitMessage, getClientIp } from '@/lib/rateLimit';
+import { loginSchema } from '@/lib/validation';
 
 // A precomputed bcrypt hash of a random value, with no matching plaintext.
 // Used to run comparePassword() on the "user not found" path too, so the
@@ -11,15 +12,14 @@ const DUMMY_HASH = '$2b$12$C6UzMDM.H6dfI/f/IKcEeO0Gh3ClfMdM6yDwXKfSCVQm8h6LlpQY.
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, password } = await req.json();
-    if (!email || typeof email !== 'string' || !password || typeof password !== 'string') {
-      return NextResponse.json({ error: 'Email ve şifre gerekli' }, { status: 400 });
-    }
+    const parsed = loginSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ error: 'Email ve şifre gerekli' }, { status: 400 });
+    const { email, password } = parsed.data;
 
     // Limit by IP (stops a single source hammering many accounts) and by
     // the targeted email (stops credential stuffing spread across IPs at
     // one account) — either one tripping blocks the request.
-    const normalizedEmail = email.toLowerCase().trim();
+    const normalizedEmail = email;
     const ipLimit = await checkRateLimit('login', getClientIp(req));
     const emailLimit = ipLimit.allowed ? await checkRateLimit('login', `email:${normalizedEmail}`) : ipLimit;
     if (!ipLimit.allowed) {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit';
+import { trackSchema } from '@/lib/validation';
 
 function detectSource(referer: string | null, origin: string): string {
   if (!referer) return 'direct';
@@ -30,14 +31,15 @@ export async function POST(req: NextRequest) {
     const limit = await checkRateLimit('track', getClientIp(req));
     if (!limit.allowed) return NextResponse.json({ ok: false });
 
-    const body = await req.json() as { page: string; referer?: string };
-    const page = (typeof body.page === 'string' ? body.page : '/').slice(0, 300);
-    const referer = typeof body.referer === 'string' ? body.referer : null;
+    const parsed = trackSchema.safeParse(await req.json());
+    if (!parsed.success) return NextResponse.json({ ok: false });
+    const page = parsed.data.page ?? '/';
+    const referer = parsed.data.referer ?? null;
     const origin = req.headers.get('origin') ?? '';
     const source = detectSource(referer, origin);
 
     await prisma.pageView.create({
-      data: { page, source, referer: referer?.slice(0, 500) ?? null },
+      data: { page, source, referer },
     });
 
     return NextResponse.json({ ok: true });

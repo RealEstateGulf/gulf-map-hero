@@ -34,7 +34,22 @@ export const citySchema = z.object({
   lat: z.coerce.number().finite().min(-90).max(90),
   lng: z.coerce.number().finite().min(-180).max(180),
   active: z.boolean().optional(),
-  sortOrder: z.coerce.number().int().optional(),
+  sortOrder: z.coerce.number().int().min(-1000).max(100_000).optional(),
+});
+
+export const loginSchema = z.object({
+  email: z.string().trim().toLowerCase().min(1).max(200),
+  password: z.string().min(1).max(200),
+});
+
+export const changePasswordSchema = z.object({
+  currentPassword: z.string().min(1).max(200),
+  newPassword: z.string().min(8).max(200),
+});
+
+export const trackSchema = z.object({
+  page: z.string().max(300).optional(),
+  referer: z.string().max(500).optional(),
 });
 
 export const consultantSchema = z.object({
