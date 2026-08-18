@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { consultantSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function POST(req: NextRequest) {
   const session = await getSession();
@@ -19,5 +20,5 @@ export async function POST(req: NextRequest) {
       },
     });
     return NextResponse.json(c);
-  } catch (e) { console.error(e); return NextResponse.json({ error: 'Hata' }, { status: 500 }); }
+  } catch (e) { return serverError(e); }
 }

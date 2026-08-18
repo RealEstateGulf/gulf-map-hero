@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { listingSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession();
@@ -35,9 +36,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     });
     return NextResponse.json(listing);
   } catch (e: unknown) {
-    console.error(e);
     const msg = e instanceof Error && e.message.includes('Unique') ? 'Bu slug zaten kullanılıyor' : 'Güncelleme hatası';
-    return NextResponse.json({ error: msg }, { status: 500 });
+    return serverError(e, msg);
   }
 }
 
@@ -50,7 +50,6 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
     await prisma.property.delete({ where: { id } });
     return NextResponse.json({ ok: true });
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: 'Silme hatası' }, { status: 500 });
+    return serverError(e, 'Silme hatası');
   }
 }

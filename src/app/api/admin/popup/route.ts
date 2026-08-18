@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { contentRowsSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function GET() {
   const rows = await prisma.pageContent.findMany({ where: { pageKey: 'popup' } });
@@ -25,5 +26,5 @@ export async function PUT(req: NextRequest) {
       )
     );
     return NextResponse.json({ ok: true });
-  } catch (e) { console.error(e); return NextResponse.json({ error: 'Hata' }, { status: 500 }); }
+  } catch (e) { return serverError(e); }
 }

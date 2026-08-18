@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { listingSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function GET() {
   const session = await getSession();
@@ -42,8 +43,7 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json(listing);
   } catch (e: unknown) {
-    console.error(e);
     const msg = e instanceof Error && e.message.includes('Unique') ? 'Bu slug zaten kullanılıyor' : 'Kayıt hatası';
-    return NextResponse.json({ error: msg }, { status: 500 });
+    return serverError(e, msg);
   }
 }

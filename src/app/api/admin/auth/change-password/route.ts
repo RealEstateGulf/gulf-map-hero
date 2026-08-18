@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { getSession, hashPassword, comparePassword, signToken, COOKIE_NAME } from '@/lib/auth';
 import { checkRateLimit, rateLimitMessage } from '@/lib/rateLimit';
 import { changePasswordSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function POST(req: NextRequest) {
   const session = await getSession();
@@ -48,7 +49,6 @@ export async function POST(req: NextRequest) {
     });
     return res;
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 });
+    return serverError(e);
   }
 }

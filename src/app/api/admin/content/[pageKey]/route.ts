@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { contentRowsSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ pageKey: string }> }) {
   const session = await getSession();
@@ -42,7 +43,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ page
 
     return NextResponse.json({ ok: true, count: rows.length });
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: 'Kaydetme hatası' }, { status: 500 });
+    return serverError(e, 'Kaydetme hatası');
   }
 }

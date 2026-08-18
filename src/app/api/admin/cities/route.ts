@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { citySchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function GET() {
   const session = await getSession();
@@ -29,7 +30,6 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json(city);
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: 'Kayıt hatası' }, { status: 500 });
+    return serverError(e, 'Kayıt hatası');
   }
 }

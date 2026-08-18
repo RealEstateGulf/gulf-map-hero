@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/auth';
 import { supabaseAdmin, UPLOADS_BUCKET } from '@/lib/supabase';
 import { checkRateLimit, rateLimitMessage } from '@/lib/rateLimit';
+import { serverError } from '@/lib/errorResponse';
 import crypto from 'node:crypto';
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
@@ -65,15 +66,13 @@ export async function POST(req: NextRequest) {
       .upload(filename, buffer, { contentType: realType });
 
     if (error) {
-      console.error(error);
-      return NextResponse.json({ error: 'Yükleme hatası' }, { status: 500 });
+      return serverError(error, 'Yükleme hatası');
     }
 
     const { data: publicUrlData } = supabaseAdmin.storage.from(UPLOADS_BUCKET).getPublicUrl(filename);
 
     return NextResponse.json({ url: publicUrlData.publicUrl });
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: 'Yükleme hatası' }, { status: 500 });
+    return serverError(e, 'Yükleme hatası');
   }
 }

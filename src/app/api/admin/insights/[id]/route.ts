@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { insightSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession();
@@ -23,7 +24,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       },
     });
     return NextResponse.json(post);
-  } catch (e) { console.error(e); return NextResponse.json({ error: 'Hata' }, { status: 500 }); }
+  } catch (e) { return serverError(e); }
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -33,5 +34,5 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   try {
     await prisma.insightPost.delete({ where: { id } });
     return NextResponse.json({ ok: true });
-  } catch (e) { console.error(e); return NextResponse.json({ error: 'Hata' }, { status: 500 }); }
+  } catch (e) { return serverError(e); }
 }

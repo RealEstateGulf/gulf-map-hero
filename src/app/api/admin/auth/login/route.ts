@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { signToken, comparePassword, COOKIE_NAME } from '@/lib/auth';
 import { checkRateLimit, rateLimitMessage, getClientIp } from '@/lib/rateLimit';
 import { loginSchema } from '@/lib/validation';
+import { serverError } from '@/lib/errorResponse';
 
 // A precomputed bcrypt hash of a random value, with no matching plaintext.
 // Used to run comparePassword() on the "user not found" path too, so the
@@ -45,7 +46,6 @@ export async function POST(req: NextRequest) {
     });
     return res;
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 });
+    return serverError(e);
   }
 }
