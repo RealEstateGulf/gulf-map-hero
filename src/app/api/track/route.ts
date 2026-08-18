@@ -3,6 +3,21 @@ import { prisma } from '@/lib/prisma';
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit';
 import { trackSchema } from '@/lib/validation';
 
+// Referer is an arbitrary URL from outside our control — a query string or
+// fragment on it could carry another site's token, email, or other PII
+// (e.g. a visitor arriving from a link like `?token=...`). We only ever
+// need the origin/path to know *where* someone came from, never the query,
+// so strip it before this ever reaches storage.
+function sanitizeReferer(referer: string | null): string | null {
+  if (!referer) return null;
+  try {
+    const url = new URL(referer);
+    return `${url.origin}${url.pathname}`.slice(0, 500);
+  } catch {
+    return null;
+  }
+}
+
 function detectSource(referer: string | null, origin: string): string {
   if (!referer) return 'direct';
   try {
@@ -39,7 +54,7 @@ export async function POST(req: NextRequest) {
     const source = detectSource(referer, origin);
 
     await prisma.pageView.create({
-      data: { page, source, referer },
+      data: { page, source, referer: sanitizeReferer(referer) },
     });
 
     return NextResponse.json({ ok: true });
