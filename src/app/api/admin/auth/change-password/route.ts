@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { getSession, hashPassword, comparePassword } from '@/lib/auth';
+import { getSession, hashPassword, comparePassword, signToken, COOKIE_NAME } from '@/lib/auth';
 import { checkRateLimit, rateLimitMessage } from '@/lib/rateLimit';
 import { changePasswordSchema } from '@/lib/validation';
 
@@ -25,9 +25,28 @@ export async function POST(req: NextRequest) {
     if (!valid) return NextResponse.json({ error: 'Mevcut şifre yanlış' }, { status: 400 });
 
     const hashed = await hashPassword(newPassword);
-    await prisma.user.update({ where: { id: session.userId }, data: { password: hashed } });
+    // Bump sessionVersion so every OTHER copy of this user's token (another
+    // device, a stolen session, etc.) is rejected on its next use. Sign a
+    // fresh token with the new version and re-set the cookie so this browser
+    // isn't forced to log back in right after changing its own password.
+    const updated = await prisma.user.update({
+      where: { id: session.userId },
+      data: { password: hashed, sessionVersion: { increment: 1 } },
+    });
 
-    return NextResponse.json({ ok: true });
+    const token = await signToken({
+      userId: updated.id, email: updated.email, name: updated.name,
+      role: updated.role, sessionVersion: updated.sessionVersion,
+    });
+    const res = NextResponse.json({ ok: true });
+    res.cookies.set(COOKIE_NAME, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7,
+      path: '/',
+    });
+    return res;
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 });

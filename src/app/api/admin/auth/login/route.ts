@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     if (!user || !user.active || !valid) {
       return NextResponse.json({ error: 'Geçersiz email veya şifre' }, { status: 401 });
     }
-    const token = await signToken({ userId: user.id, email: user.email, name: user.name, role: user.role });
+    const token = await signToken({ userId: user.id, email: user.email, name: user.name, role: user.role, sessionVersion: user.sessionVersion });
     const res = NextResponse.json({ user: { id: user.id, name: user.name, email: user.email, role: user.role } });
     res.cookies.set(COOKIE_NAME, token, {
       httpOnly: true,

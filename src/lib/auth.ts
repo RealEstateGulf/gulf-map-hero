@@ -15,6 +15,7 @@ export type JWTPayload = {
   email: string;
   name: string;
   role: string;
+  sessionVersion: number;
 };
 
 export async function signToken(payload: JWTPayload): Promise<string> {
@@ -44,9 +45,12 @@ export async function getSession(): Promise<JWTPayload | null> {
   // The JWT itself stays valid for 7 days regardless of DB state, so a
   // deactivated/deleted account must be re-checked here on every request —
   // otherwise revoking access (e.g. offboarding staff) would only take
-  // effect once the old token expires.
-  const user = await prisma.user.findUnique({ where: { id: payload.userId }, select: { active: true } });
-  if (!user || !user.active) return null;
+  // effect once the old token expires. sessionVersion makes logout and
+  // password changes actually revoke the token server-side too: both bump
+  // this counter, so a token signed with the old value stops passing the
+  // very next request even though it's still cryptographically valid.
+  const user = await prisma.user.findUnique({ where: { id: payload.userId }, select: { active: true, sessionVersion: true } });
+  if (!user || !user.active || user.sessionVersion !== payload.sessionVersion) return null;
 
   return payload;
 }

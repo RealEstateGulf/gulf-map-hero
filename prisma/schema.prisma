@@ -16,6 +16,7 @@ model User {
   phone     String?
   avatarUrl String?
   active    Boolean  @default(true)
+  sessionVersion Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   listings  Property[] @relation("ListingAgent")
