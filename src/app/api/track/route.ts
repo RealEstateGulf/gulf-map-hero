@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { checkRateLimit, getClientIp } from '@/lib/rateLimit';
 
 function detectSource(referer: string | null, origin: string): string {
   if (!referer) return 'direct';
@@ -24,6 +25,11 @@ function detectSource(referer: string | null, origin: string): string {
 
 export async function POST(req: NextRequest) {
   try {
+    // Fire-and-forget analytics — never surface an error to the visitor,
+    // just drop the hit once the sender's rate limit is exceeded.
+    const limit = await checkRateLimit('track', getClientIp(req));
+    if (!limit.allowed) return NextResponse.json({ ok: false });
+
     const body = await req.json() as { page: string; referer?: string };
     const page = (typeof body.page === 'string' ? body.page : '/').slice(0, 300);
     const referer = typeof body.referer === 'string' ? body.referer : null;

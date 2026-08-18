@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getSession, hashPassword, comparePassword } from '@/lib/auth';
+import { checkRateLimit, rateLimitMessage } from '@/lib/rateLimit';
 
 export async function POST(req: NextRequest) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+  const limit = await checkRateLimit('changePassword', session.userId);
+  if (!limit.allowed) {
+    return NextResponse.json({ error: rateLimitMessage(limit.retryAfterSeconds) }, { status: 429 });
+  }
 
   try {
     const { currentPassword, newPassword } = await req.json();

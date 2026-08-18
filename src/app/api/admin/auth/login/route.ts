@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { signToken, comparePassword, COOKIE_NAME } from '@/lib/auth';
+import { checkRateLimit, rateLimitMessage, getClientIp } from '@/lib/rateLimit';
 
 // A precomputed bcrypt hash of a random value, with no matching plaintext.
 // Used to run comparePassword() on the "user not found" path too, so the
@@ -14,7 +15,21 @@ export async function POST(req: NextRequest) {
     if (!email || typeof email !== 'string' || !password || typeof password !== 'string') {
       return NextResponse.json({ error: 'Email ve şifre gerekli' }, { status: 400 });
     }
-    const user = await prisma.user.findUnique({ where: { email: email.toLowerCase().trim() } });
+
+    // Limit by IP (stops a single source hammering many accounts) and by
+    // the targeted email (stops credential stuffing spread across IPs at
+    // one account) — either one tripping blocks the request.
+    const normalizedEmail = email.toLowerCase().trim();
+    const ipLimit = await checkRateLimit('login', getClientIp(req));
+    const emailLimit = ipLimit.allowed ? await checkRateLimit('login', `email:${normalizedEmail}`) : ipLimit;
+    if (!ipLimit.allowed) {
+      return NextResponse.json({ error: rateLimitMessage(ipLimit.retryAfterSeconds) }, { status: 429 });
+    }
+    if (!emailLimit.allowed) {
+      return NextResponse.json({ error: rateLimitMessage(emailLimit.retryAfterSeconds) }, { status: 429 });
+    }
+
+    const user = await prisma.user.findUnique({ where: { email: normalizedEmail } });
     const valid = await comparePassword(password, user?.password ?? DUMMY_HASH);
     if (!user || !user.active || !valid) {
       return NextResponse.json({ error: 'Geçersiz email veya şifre' }, { status: 401 });

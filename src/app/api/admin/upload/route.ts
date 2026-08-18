@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/auth';
 import { supabaseAdmin, UPLOADS_BUCKET } from '@/lib/supabase';
+import { checkRateLimit, rateLimitMessage } from '@/lib/rateLimit';
 import crypto from 'node:crypto';
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
@@ -20,6 +21,11 @@ const EXT_BY_TYPE: Record<string, string> = {
 export async function POST(req: NextRequest) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+  const limit = await checkRateLimit('upload', session.userId);
+  if (!limit.allowed) {
+    return NextResponse.json({ error: rateLimitMessage(limit.retryAfterSeconds) }, { status: 429 });
+  }
 
   try {
     const formData = await req.formData();

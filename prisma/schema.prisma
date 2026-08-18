@@ -129,3 +129,13 @@ model PageView {
   @@index([page])
   @@index([source])
 }
+
+// Shared fixed-window rate-limit counter store. One row per (endpoint, IP or
+// account) key; count resets once windowStart is older than the configured
+// window. See src/lib/rateLimit.ts for the config and the atomic upsert that
+// keeps this safe under concurrent requests across serverless instances.
+model RateLimit {
+  key         String   @id
+  count       Int      @default(1)
+  windowStart DateTime @default(now())
+}
