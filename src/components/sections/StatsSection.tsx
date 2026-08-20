@@ -8,7 +8,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const STATS = [
   { value: 130, suffix: '+', labelAr: 'مستثمر عربي راضٍ', labelEn: 'Satisfied Arab Investors' },
-  { value: 37, suffix: '+', labelAr: 'جائزة دولية', labelEn: 'International Awards' },
+  { value: 10, suffix: '+', labelAr: 'مكتب شريك', labelEn: 'Partner Offices' },
   { value: 98, suffix: '%', labelAr: 'رضا العملاء', labelEn: 'Client Satisfaction' },
 ];
 

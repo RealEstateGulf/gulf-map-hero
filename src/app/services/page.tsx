@@ -30,7 +30,7 @@ const SERVICES = [
     descAr: 'يتولى فريقنا القانوني المتخصص إدارة كل خطوة: التحقق من الطابو، فحص الرهون العقارية والديون، إعداد العقود، التمثيل في دوائر السجل العقاري، وضمان حماية حقوقك القانونية في تركيا بالكامل.',
     descEn: 'Our expert legal team manages every step of the process, including title verification, mortgage and debt investigations, contract preparation, representation at land registry offices, and ensuring that your legal rights in Türkiye are fully protected.',
     featuresAr: ['التحقق من خلو العقار من الحقوق والرهون', 'صياغة عقود البيع والشراء باللغتين', 'استخراج الرقم الضريبي (TAX ID) للمستثمر', 'التنسيق مع كاتب العدل ودائرة السجل العقاري'],
-    featuresEn: ['Verifying the property is free of encumbrances', 'Drafting sales contracts in both languages', 'Obtaining the investor\'s TAX ID', 'Coordinating with the notary and land registry'],
+    featuresEn: ['Title and encumbrance verification', 'Bilingual sales contract preparation', 'Obtaining the investor\'s TAX ID', 'Notary & land registry coordination'],
     photo: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80',
   },
   {
