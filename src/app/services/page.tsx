@@ -19,7 +19,7 @@ const SERVICES = [
     descAr: 'نقوم بتحليل متطلباتك الاستثمارية بدقة — الميزانية، العائد المتوقع، والتوقيت المناسب — ثم نقدم لك قائمة مخصصة لأفضل العقارات في الموقع الصحيح.  خدماتنا تغطي إسطنبول، أنطاليا، بورصة، إزمير، وطرابزون.',
     descEn: 'We meticulously analyze your investment requirements and needs. Afterwards, we provide you with a list of the best properties in the right locations. We cover Istanbul, Antalya, Bursa, Izmir and Trabzon.',
     featuresAr: ['تحليل السوق المحلي في المدينة المستهدفة', 'قائمة مخصصة من العقارات المطابقة لمعاييرك', 'جولات ميدانية بمرافقة خبير متخصص', 'تقييم عائد الاستثمار لكل خيار'],
-    featuresEn: ['Local market analysis in your target city', 'Custom list of properties matching your criteria', 'Field tours with a specialist expert', 'ROI assessment for each option'],
+    featuresEn: ['Local market analysis in your target city', 'Custom list of properties matching your criteria', 'Expert-guided property tours', 'ROI Analysis for Each Property'],
     photo: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80',
   },
   {
