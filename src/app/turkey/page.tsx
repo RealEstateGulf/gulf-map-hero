@@ -190,7 +190,7 @@ function WhySection({ t, isMobile, isAr }: SP) {
             <span style={{ display: 'inline-block', width: 22, height: 1, background: t.gold }} />
           </p>
           <h2 style={{ ...rv(visible, 0.1), fontFamily: "'Marcellus', serif", color: t.txt, fontSize: isMobile ? 'clamp(1.6rem,6vw,2.2rem)' : 'clamp(2rem,3vw,2.8rem)', margin: 0 }}>
-            {isAr ? 'ستة أسباب تجعل تركيا الخيار الأمثل' : 'Six Reasons Türkiye is the Best Choice'}
+            {isAr ? '06 أسباب تجعل تركيا الخيار الأمثل' : 'Six Reasons Türkiye is the Best Choice'}
           </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: 1, background: t.border, borderRadius: 10, overflow: 'hidden' }}>
