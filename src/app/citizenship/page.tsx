@@ -38,10 +38,10 @@ const INVESTMENT_TYPES = [
     titleAr: 'إنشاء فرص عمل',
     titleEn: 'Creating Jobs',
     amountAr: '50 وظيفة',
-    amountEn: '50 Jobs',
+    amountEn: '50 Permanent Jobs',
     amount: '',
     descAr: 'توفير 50 وظيفة دائمة للمواطنين الأتراك مع إثبات الاستدامة أمام وزارة العمل.',
-    descEn: 'Provide 50 permanent jobs for Turkish citizens with proof of sustainability before the Ministry of Labor.',
+    descEn: 'Provide permanent employment for at least 50 Turkish citizens, with proof of its sustainability to the Ministry of Labor and Social Security.',
     popular: false,
   },
 ];
