@@ -76,7 +76,7 @@ export default function WhyTurkeySection() {
           }}>
             {isAr
               ? <>الاستثمار في تركيا<br />فرصة حقيقية يدركها<br />المستثمر الذكي اليوم.</>
-              : <>Investing in Turkey<br />Is a Real Opportunity<br />the Smart Investor Seizes Today.</>}
+              : <>Investing in Türkiye<br />Is a Real Opportunity<br />the Smart Investor Seizes Today.</>}
           </h2>
 
           <div style={{ overflow: 'hidden', borderRadius: 4, height: isMobile ? 260 : 380 }}>

@@ -50,7 +50,7 @@ const TIERS = [
     nameAr: 'بلاتيني', nameEn: 'Platinum', nameCode: 'PLATINUM',
     Icon: Gem, min: '$1,000,000', color: '#E8D5C4',
     featuresAr: ['جميع مزايا الذهبي', 'مدير ملف استثماري دائم', 'اجتماعات إستراتيجية ربعية', 'عروض مشاريع حصرية قبل الإطلاق', 'دعوة لمنتدى المستثمرين السنوي', 'خدمة نقل VIP داخل تركيا'],
-    featuresEn: ['All Gold benefits', 'Permanent investment file manager', 'Quarterly strategic meetings', 'Exclusive pre-launch project offers', 'Invitation to annual investor forum', 'VIP transportation inside Turkey'],
+    featuresEn: ['All Gold benefits', 'Permanent investment file manager', 'Quarterly strategic meetings', 'Exclusive pre-launch project offers', 'Invitation to annual investor forum', 'VIP transportation inside Türkiye'],
   },
 ];
 
@@ -63,7 +63,7 @@ const TESTIMONIALS = [
 const EVENTS = [
   { dateAr: 'سبتمبر 2025', dateEn: 'September 2025', titleAr: 'منتدى المستثمرين العرب — إسطنبول', titleEn: 'Arab Investors Forum — Istanbul', descAr: 'ملتقى سنوي حصري يجمع أبرز المستثمرين العرب ونخبة المطورين الأتراك.', descEn: 'An exclusive annual gathering bringing together leading Arab investors and top Turkish developers.' },
   { dateAr: 'أكتوبر 2025', dateEn: 'October 2025', titleAr: 'جولة مشاريع بورصة الكبرى', titleEn: 'Bursa Major Projects Tour', descAr: 'زيارة ميدانية لأفضل مشاريع بورصة الجديدة مع عروض حصرية لأعضاء VIP فقط.', descEn: 'A field visit to the best new Bursa projects with exclusive offers for VIP members only.' },
-  { dateAr: 'نوفمبر 2025', dateEn: 'November 2025', titleAr: 'ندوة عقارية — دبي', titleEn: 'Real Estate Seminar — Dubai', descAr: 'نلقاكم في دبي لاستعراض خارطة الاستثمار في تركيا لعام 2026.', descEn: 'Join us in Dubai to review the Turkey investment roadmap for 2026.' },
+  { dateAr: 'نوفمبر 2025', dateEn: 'November 2025', titleAr: 'ندوة عقارية — دبي', titleEn: 'Real Estate Seminar — Dubai', descAr: 'نلقاكم في دبي لاستعراض خارطة الاستثمار في تركيا لعام 2026.', descEn: 'Join us in Dubai to review the Türkiye investment roadmap for 2026.' },
 ];
 
 // ─── page ─────────────────────────────────────────────────────────────────────
@@ -452,7 +452,7 @@ function RegistrationSection({ t, isMobile, isAr, tr, dir }: SP & { dir: 'rtl' |
             <p style={{ color: t.txt3, fontSize: '0.88rem', lineHeight: 1.9, marginBottom: 36 }}>
               {isAr
                 ? <>لا تُفتح باب العضوية دائماً. إن كنت جاداً في بناء محفظة عقارية متميزة في تركيا، قدّم طلبك الآن وسيتواصل معك مستشارنا خلال <strong style={{ color: t.txt2 }}>48 ساعة</strong>.</>
-                : <>Membership is not always open. If you are serious about building a distinguished real estate portfolio in Turkey, submit your application now and our advisor will contact you within <strong style={{ color: t.txt2 }}>48 hours</strong>.</>}
+                : <>Membership is not always open. If you are serious about building a distinguished real estate portfolio in Türkiye, submit your application now and our advisor will contact you within <strong style={{ color: t.txt2 }}>48 hours</strong>.</>}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {(isAr ? PROMISES_AR : PROMISES_EN).map((item, i) => (

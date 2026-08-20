@@ -400,7 +400,7 @@ export default function InvestmentMap() {
         },
       });
 
-      // ── Turkey border ──
+      // ── Türkiye border ──
       const turkeyBorderFilter: mapboxgl.FilterSpecification = [
         'all',
         ['==', ['get', 'iso_3166_1'], 'TR'],
@@ -567,7 +567,7 @@ export default function InvestmentMap() {
       // ── Şehir marker'ları: canlı veri gelmişse hemen, gelmemişse veri geldiğinde ──
       buildCityMarkers();
 
-      // ── Intro animation: Gulf → Turkey camera transition ──────────────
+      // ── Intro animation: Gulf → Türkiye camera transition ──────────────
       flyTimeoutRef.current = setTimeout(() => {
         const liveCities = citiesRef.current;
         let bounds = TURKEY_VIEW_BOUNDS;
@@ -607,7 +607,7 @@ export default function InvestmentMap() {
       {/* Map canvas */}
       <div ref={containerRef} dir="ltr" style={{ position: 'absolute', inset: 0 }} />
 
-      {/* Turkey label */}
+      {/* Türkiye label */}
       <div
         style={{
           position: 'absolute',

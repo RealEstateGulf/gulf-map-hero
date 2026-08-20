@@ -57,7 +57,7 @@ const VALUES = [
     titleAr: 'الخبرة الميدانية',
     titleEn: 'Field Expertise',
     descAr: 'فريقنا يعيش ويعمل في تركيا — نحن نعرف السوق من الداخل، لا من الكتب.',
-    descEn: 'Our team lives and works in Turkey — we know the market from the inside, not from books.',
+    descEn: 'Our local presence in Türkiye gives us first-hand market insight, allowing us to identify opportunities with a deeper understanding of the market.',
   },
   {
     Icon: Users,

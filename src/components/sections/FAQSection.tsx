@@ -22,21 +22,21 @@ const FAQS = [
   },
   {
     qAr: 'هل يمكن للمستثمر الأجنبي تملّك العقارات في تركيا بالكامل؟',
-    qEn: 'Can a foreign investor fully own properties in Turkey?',
+    qEn: 'Can a foreign investor fully own properties in Türkiye?',
     aAr: 'نعم، يحق للمستثمرين الأجانب من معظم الجنسيات تملّك العقارات في تركيا بصورة كاملة دون الحاجة إلى شريك تركي.',
-    aEn: 'Yes, foreign investors from most nationalities are entitled to fully own properties in Turkey without the need for a Turkish partner.',
+    aEn: 'Yes, foreign investors from most nationalities are entitled to fully own properties in Türkiye without the need for a Turkish partner.',
   },
   {
     qAr: 'ما مميزات الجنسية التركية للمستثمر العربي؟',
     qEn: 'What are the benefits of Turkish citizenship for Arab investors?',
     aAr: 'تمنحك الجنسية التركية حرية السفر إلى أكثر من 110 دولة بدون تأشيرة، وإمكانية التقدم للحصول على تأشيرة E-2 الأمريكية، فضلاً عن المزايا الاقتصادية والتعليمية والصحية داخل تركيا.',
-    aEn: 'Turkish citizenship gives you visa-free travel to more than 110 countries, the ability to apply for a US E-2 visa, as well as economic, educational and healthcare benefits within Turkey.',
+    aEn: 'Turkish citizenship gives you visa-free travel to more than 110 countries, the ability to apply for a US E-2 visa, as well as economic, educational and healthcare benefits within Türkiye.',
   },
   {
     qAr: 'هل أحتاج إلى التواجد في تركيا طوال فترة الاستثمار؟',
-    qEn: 'Do I need to be present in Turkey throughout the investment period?',
+    qEn: 'Do I need to be present in Türkiye throughout the investment period?',
     aAr: 'لا، يمكننا إدارة كامل العملية نيابةً عنك عبر التوكيل الرسمي. تأتي إلى تركيا مرة واحدة فقط لتوقيع عقد الشراء، ونحن نتولى كل الإجراءات الأخرى.',
-    aEn: 'No, we can manage the entire process on your behalf through official power of attorney. You visit Turkey only once to sign the purchase contract, and we handle all other procedures.',
+    aEn: 'No, we can manage the entire process on your behalf through official power of attorney. You visit Türkiye only once to sign the purchase contract, and we handle all other procedures.',
   },
 ];
 
@@ -84,7 +84,7 @@ export default function FAQSection() {
             <p style={{ ...rv(visible, 0.15), color: t.txt3, fontSize: '0.88rem', lineHeight: 1.85, maxWidth: 380 }}>
               {isAr
                 ? 'إجابات شاملة على أكثر الأسئلة التي يطرحها المستثمرون العرب حول الاستثمار العقاري في تركيا.'
-                : 'Comprehensive answers to the most common questions Arab investors ask about real estate investment in Turkey.'}
+                : 'Comprehensive answers to the most common questions Arab investors ask about real estate investment in Türkiye.'}
             </p>
           )}
         </div>

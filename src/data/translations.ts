@@ -4,7 +4,7 @@ export const TR = {
   'nav.citizenship': { ar: 'الجنسية التركية', en: 'Turkish Citizenship' },
   'nav.vip': { ar: 'شبكة المستثمر VIP', en: 'VIP Investor Network' },
   'nav.insights': { ar: 'رؤى ومقالات', en: 'Insights & Articles' },
-  'nav.turkey': { ar: 'عن تركيا', en: 'About Turkey' },
+  'nav.turkey': { ar: 'عن تركيا', en: 'About Türkiye' },
   'nav.contact': { ar: 'تواصل معنا', en: 'Contact Us' },
   'nav.lang.ar': { ar: 'عربي', en: 'Arabic' },
   'nav.lang.en': { ar: 'إنجليزي', en: 'English' },
@@ -108,7 +108,7 @@ export const TR = {
   'contact.form.success': { ar: 'تم إرسال رسالتك بنجاح', en: 'Your message has been sent successfully' },
   'contact.form.successSub': { ar: 'سيتواصل معك أحد مستشارينا خلال 24 ساعة', en: 'One of our consultants will contact you within 24 hours' },
   'contact.dubai': { ar: 'دبي، الإمارات', en: 'Dubai, UAE' },
-  'contact.istanbul': { ar: 'إسطنبول، تركيا', en: 'Istanbul, Turkey' },
+  'contact.istanbul': { ar: 'إسطنبول، تركيا', en: 'Istanbul, Türkiye' },
   'contact.hours': { ar: 'ساعات العمل', en: 'Working Hours' },
   'contact.hours.val': { ar: 'الأحد — الجمعة، 9 ص — 7 م', en: 'Sunday — Friday, 9 AM — 7 PM' },
 
@@ -127,7 +127,7 @@ export const TR = {
 
   // Services page
   'services.title': { ar: 'خدماتنا الاستثمارية', en: 'Our Investment Services' },
-  'services.subtitle': { ar: 'كل ما تحتاجه لاستثمار ناجح في تركيا', en: 'Everything you need for a successful investment in Turkey' },
+  'services.subtitle': { ar: 'كل ما تحتاجه لاستثمار ناجح في تركيا', en: 'Everything you need for a successful investment in Türkiye' },
   'services.1.title': { ar: 'البحث عن العقار المثالي', en: 'Property Search' },
   'services.1.desc': { ar: 'نُعينك على اكتشاف العقارات التي تلائم أسلوب حياتك وطموحاتك', en: 'We help you discover properties that match your lifestyle and ambitions' },
   'services.2.title': { ar: 'الاستشارات القانونية', en: 'Legal Consultancy' },
@@ -139,7 +139,7 @@ export const TR = {
   'services.5.title': { ar: 'الدعم بعد الشراء', en: 'After-Purchase Support' },
   'services.5.desc': { ar: 'دعم كامل بعد إتمام الصفقة لضمان تجربة سلسة', en: 'Full support after the deal closes to ensure a smooth experience' },
 
-  // Turkey page
+  // Türkiye page
   'turkey.title': { ar: 'لماذا عليكم الاستثمار في تركيا؟', en: 'Why Should You Invest in Türkiye?' },
   'turkey.subtitle': { ar: 'وجهة الاستثمار العقاري الأمثل', en: 'The Optimal Real Estate Investment Destination' },
   'turkey.stats.pop': { ar: 'مليون نسمة', en: 'Million Population' },
@@ -193,7 +193,7 @@ export const TR = {
   'home.hero.sub': { ar: 'فرص عقارية واستثمارية في أهم المدن التركية — إسطنبول، أنطاليا، وبورصة؛ مع إمكانية الحصول على الجنسية التركية.', en: "Investment opportunities in Türkiye's prominent cities, such as Istanbul and Antalya, with the opportunity to obtain Turkish citizenship." },
   'home.featured.title': { ar: 'عقارات مختارة بعناية', en: 'Featured Properties' },
   'home.featured.sub': { ar: 'مجموعة عقارية متنوعة تشمل شقق، فيلات، ومشاريع تجارية في أكثر مناطق الاستثمار نمواً في تركيا.', en: 'A carefully curated portfolio of the best investment opportunities' },
-  'home.why.title': { ar: 'لمذا يجب عليك الاستثمار في تركيا', en: 'Why Turkey?' },
+  'home.why.title': { ar: 'لمذا يجب عليك الاستثمار في تركيا', en: 'Why Türkiye?' },
   'home.services.title': { ar: 'خدماتنا الاستثمارية', en: 'Our Services' },
   'home.cta.title': { ar: 'ابدأ رحلتك الاستثمارية في تركيا اليوم', en: 'Start Your Investment Journey Today' },
   'home.cta.sub': { ar: 'استشارة مجانية مع خبرائنا الميدانيين — نرافقكم خطوة بخطوة من اختيار العقار وحتى استلام الطابو بالاِضافة معاملات حصولك على الجنسية التركية.', en: 'Contact our team for a free consultation' },

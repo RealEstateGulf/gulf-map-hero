@@ -37,7 +37,7 @@ const OFFICES = [
     cityEn: 'Istanbul',
     cityCode: 'ISTANBUL',
     countryAr: 'تركيا',
-    countryEn: 'Turkey',
+    countryEn: 'Türkiye',
     flag: '🇹🇷',
     addressAr: 'شارع بغداد، كاديكوي، إسطنبول 34710',
     addressEn: 'Baghdad Street, Kadikoy, Istanbul 34710',
@@ -221,7 +221,7 @@ function FormSection({ t, isMobile, isAr, tr, dir }: SP & { dir: 'rtl' | 'ltr' }
             <p style={{ color: t.txt3, fontSize: '0.87rem', lineHeight: 1.9, marginBottom: 36, maxWidth: 360 }}>
               {isAr
                 ? 'سواء كنت تبحث عن عقارك الأول في تركيا أو تريد توسيع محفظتك الاستثمارية — فريقنا المتخصص جاهز للإجابة على كل استفساراتك.'
-                : 'Whether you\'re looking for your first property in Turkey or want to expand your investment portfolio — our specialized team is ready to answer all your inquiries.'}
+                : 'Whether you\'re looking for your first property in Türkiye or want to expand your investment portfolio — our specialized team is ready to answer all your inquiries.'}
             </p>
             {[
               { Icon: MessageSquare, titleAr: 'رد سريع', titleEn: 'Quick Response', descAr: 'نلتزم بالرد خلال 4 ساعات عمل', descEn: 'We respond within 4 working hours' },

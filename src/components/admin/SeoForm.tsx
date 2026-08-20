@@ -105,7 +105,7 @@ export default function SeoForm({ seo }: { seo: SeoSettings }) {
             <>
               <div>
                 <label style={LABEL}>Page Title (EN) — shown in Google results</label>
-                <input style={INPUT} value={form.titleEn} onChange={set('titleEn')} onFocus={focus} onBlur={blur} placeholder="e.g. Real Estate Investment in Turkey — Gulf Invest" />
+                <input style={INPUT} value={form.titleEn} onChange={set('titleEn')} onFocus={focus} onBlur={blur} placeholder="e.g. Real Estate Investment in Türkiye — Gulf Invest" />
                 <div style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.68rem', marginTop: 4 }}>
                   {form.titleEn.length}/60 characters (recommended: 50-60)
                 </div>

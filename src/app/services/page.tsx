@@ -115,7 +115,7 @@ function HeroSection({ t, isMobile, isAr, tr, get }: SP) {
         <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: isMobile ? '0.88rem' : '0.96rem', lineHeight: 1.9, maxWidth: 520, margin: '0 auto' }}>
           {isAr
             ? 'خمس خدمات متكاملة تغطي كل مراحل رحلتك العقارية في تركيا — فريق واحد، دعم كامل، نتائج مضمونة.'
-            : 'Five integrated services covering every stage of your property journey in Turkey — one team, full support, guaranteed results.'}
+            : 'Five integrated services covering every stage of your property journey in Türkiye — one team, full support, guaranteed results.'}
         </p>
       </div>
     </div>

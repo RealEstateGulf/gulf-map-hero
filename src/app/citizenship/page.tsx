@@ -56,11 +56,11 @@ const STEPS = [
 
 const BENEFITS = [
   { Icon: Globe2, titleAr: 'دخول 110+ دولة بدون تأشيرة', titleEn: 'Visa-Free Access to 110+ Countries', descAr: 'وصول فوري لمعظم دول أوروبا والشرق الأوسط وآسيا بجواز السفر التركي.', descEn: 'Immediate access to most European, Middle Eastern and Asian countries with a Turkish passport.' },
-  { Icon: Plane, titleAr: 'التقدم للتأشيرة الأمريكية E-2', titleEn: 'Apply for US E-2 Visa', descAr: 'تركيا موقّعة على اتفاقية الاستثمار مع الولايات المتحدة، مما يتيح التقدم بتأشيرة E-2 للمستثمرين.', descEn: 'Turkey is signatory to the investment treaty with the US, enabling investors to apply for an E-2 visa.' },
+  { Icon: Plane, titleAr: 'التقدم للتأشيرة الأمريكية E-2', titleEn: 'Apply for US E-2 Visa', descAr: 'تركيا موقّعة على اتفاقية الاستثمار مع الولايات المتحدة، مما يتيح التقدم بتأشيرة E-2 للمستثمرين.', descEn: 'Türkiye is signatory to the investment treaty with the US, enabling investors to apply for an E-2 visa.' },
   { Icon: ShieldCheck, titleAr: 'الجنسية مدى الحياة وقابلة للتوريث', titleEn: 'Lifetime & Heritable Citizenship', descAr: 'جنسية تركية كاملة تُنقل للأبناء والأجيال القادمة دون أي شروط إضافية.', descEn: 'Full Turkish citizenship transferred to children and future generations without additional requirements.' },
-  { Icon: BadgeCheck, titleAr: 'ازدواجية الجنسية مسموحة', titleEn: 'Dual Citizenship Allowed', descAr: 'لا تُلزمك تركيا بالتخلي عن جنسيتك الأصلية — يمكنك الاحتفاظ بجوازَي سفر.', descEn: 'Turkey does not require you to renounce your original nationality — you can hold two passports.' },
+  { Icon: BadgeCheck, titleAr: 'ازدواجية الجنسية مسموحة', titleEn: 'Dual Citizenship Allowed', descAr: 'لا تُلزمك تركيا بالتخلي عن جنسيتك الأصلية — يمكنك الاحتفاظ بجوازَي سفر.', descEn: 'Türkiye does not require you to renounce your original nationality — you can hold two passports.' },
   { Icon: Home, titleAr: 'إقامة دائمة للعائلة', titleEn: 'Permanent Residence for Family', descAr: 'تشمل الجنسية الزوجة والأطفال دون 18 سنة، ويمكن تضمين الأبوين في بعض الحالات.', descEn: 'Citizenship includes spouse and children under 18, with parents includable in some cases.' },
-  { Icon: Star, titleAr: 'سوق أوروبي مفتوح', titleEn: 'Open European Market', descAr: 'تركيا عضو في الاتحاد الجمركي الأوروبي مما يوفر مزايا تجارية استثنائية.', descEn: 'Turkey is a member of the European Customs Union, providing exceptional trade advantages.' },
+  { Icon: Star, titleAr: 'سوق أوروبي مفتوح', titleEn: 'Open European Market', descAr: 'تركيا عضو في الاتحاد الجمركي الأوروبي مما يوفر مزايا تجارية استثنائية.', descEn: 'Türkiye is a member of the European Customs Union, providing exceptional trade advantages.' },
 ];
 
 const FAQS = [
@@ -78,9 +78,9 @@ const FAQS = [
   },
   {
     qAr: 'هل يجب الإقامة في تركيا لاستيفاء الشروط؟',
-    qEn: 'Is residency in Turkey required to qualify?',
+    qEn: 'Is residency in Türkiye required to qualify?',
     aAr: 'لا، لا يُشترط الإقامة الفعلية في تركيا للحصول على الجنسية بالاستثمار.',
-    aEn: 'No, actual residency in Turkey is not required to obtain citizenship by investment.',
+    aEn: 'No, actual residency in Türkiye is not required to obtain citizenship by investment.',
   },
   {
     qAr: 'كم يستغرق الحصول على الجنسية في المجمل؟',
@@ -277,7 +277,7 @@ function BenefitsSection({ t, isMobile, isAr, tr }: SP) {
             <span style={{ display: 'inline-block', width: 22, height: 1, background: t.gold }} />
           </p>
           <h2 style={{ ...rv(visible, 0.08), fontFamily: "'Marcellus', serif", color: t.txt, fontSize: isMobile ? 'clamp(1.5rem,5vw,2rem)' : 'clamp(1.8rem,3vw,2.5rem)', margin: 0 }}>
-            {isAr ? 'ما الذي تكسبه بجوازك التركي؟' : 'What Do You Gain With Your Turkish Passport?'}
+            {isAr ? 'ما الذي تكسبه بجوازك التركي؟' : 'What Are the Benefits of Turkish Citizenship?'}
           </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: 1, background: t.border, borderRadius: 10, overflow: 'hidden' }}>

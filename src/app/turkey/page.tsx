@@ -26,14 +26,14 @@ const WHY_REASONS = [
     titleAr: 'نمو اقتصادي متسارع',
     titleEn: 'Accelerating Economic Growth',
     descAr: 'تحتل تركيا المرتبة 17 عالمياً في الناتج المحلي الإجمالي، مع نمو متواصل تجاوز %5 سنوياً في قطاع العقارات خلال العقد الأخير.',
-    descEn: 'Turkey ranks 17th globally in GDP, with continuous growth exceeding 5% annually in real estate over the last decade.',
+    descEn: 'Türkiye ranks 17th globally in GDP, with continuous growth exceeding 5% annually in real estate over the last decade.',
   },
   {
     Icon: MapPin,
     titleAr: 'موقع استراتيجي فريد',
     titleEn: 'Unique Strategic Location',
     descAr: 'جسر بين آسيا وأوروبا — تتمتع تركيا بوصول مباشر لأكثر من 1.5 مليار مستهلك في محيطها الجغرافي.',
-    descEn: 'A bridge between Asia and Europe — Turkey has direct access to over 1.5 billion consumers in its geographic sphere.',
+    descEn: 'A bridge between Asia and Europe — Türkiye has direct access to over 1.5 billion consumers in its geographic sphere.',
   },
   {
     Icon: Building2,
@@ -61,7 +61,7 @@ const WHY_REASONS = [
     titleAr: 'جودة حياة استثنائية',
     titleEn: 'Exceptional Quality of Life',
     descAr: 'مناخ متوسطي معتدل، طعام عالمي، تراث عريق، وتكاليف معيشة منخفضة تجعل تركيا وجهة محبوبة للإقامة والترفيه.',
-    descEn: 'Mild Mediterranean climate, world cuisine, rich heritage and low living costs make Turkey a beloved destination for living and leisure.',
+    descEn: 'Mild Mediterranean climate, world cuisine, rich heritage and low living costs make Türkiye a beloved destination for living and leisure.',
   },
 ];
 
@@ -78,7 +78,7 @@ const CITIES = [
     nameAr: 'بورصة',
     nameEn: 'Bursa',
     descAr: 'مدينة جبل أولوداغ الشهير — جوهرة صناعية وسياحية في شمال غرب تركيا، تُعرف بتراثها العثماني الأصيل.',
-    descEn: 'Home to the famous Mount Uludağ — an industrial and tourism gem in northwestern Turkey known for its authentic Ottoman heritage.',
+    descEn: 'Home to the famous Mount Uludağ — an industrial and tourism gem in northwestern Türkiye known for its authentic Ottoman heritage.',
     highlights: ['أسعار تنافسية', 'جبال ومصايف', 'نمو صناعي قوي', 'قرب من إسطنبول'],
     photo: 'https://images.unsplash.com/photo-1604665515746-1b0c6a35f6c7?auto=format&fit=crop&w=900&q=80',
   },
@@ -94,7 +94,7 @@ const CITIES = [
     nameAr: 'إزمير',
     nameEn: 'Izmir',
     descAr: 'ثالث أكبر مدن تركيا — ميناء بحري نشط وعاصمة اقتصادية للساحل الغربي بجمال طبيعي فريد.',
-    descEn: 'Turkey\'s third largest city — an active seaport and economic capital of the western coast with unique natural beauty.',
+    descEn: 'Türkiye\'s third largest city — an active seaport and economic capital of the western coast with unique natural beauty.',
     highlights: ['ميناء تجاري كبير', 'جودة حياة عالية', 'سوق عقاري صاعد', 'مجتمع كوسموبوليتي'],
     photo: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80',
   },
@@ -149,7 +149,7 @@ function HeroSection({ t, isMobile, isAr, tr, get, getImg }: SP) {
         <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: isMobile ? '0.88rem' : '1rem', lineHeight: 1.85, maxWidth: 560 }}>
           {isAr
             ? 'اكتشف لماذا اختار أكثر من 35,000 مستثمر أجنبي تركيا وجهةً لثرواتهم في 2024 وحده'
-            : 'Discover why over 35,000 foreign investors chose Turkey as the destination for their wealth in 2024 alone'}
+            : 'Discover why over 35,000 foreign investors chose Türkiye as the destination for their wealth in 2024 alone'}
         </p>
       </div>
     </div>
@@ -190,7 +190,7 @@ function WhySection({ t, isMobile, isAr }: SP) {
             <span style={{ display: 'inline-block', width: 22, height: 1, background: t.gold }} />
           </p>
           <h2 style={{ ...rv(visible, 0.1), fontFamily: "'Marcellus', serif", color: t.txt, fontSize: isMobile ? 'clamp(1.6rem,6vw,2.2rem)' : 'clamp(2rem,3vw,2.8rem)', margin: 0 }}>
-            {isAr ? 'ستة أسباب تجعل تركيا الخيار الأمثل' : 'Six Reasons Turkey is the Best Choice'}
+            {isAr ? 'ستة أسباب تجعل تركيا الخيار الأمثل' : 'Six Reasons Türkiye is the Best Choice'}
           </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: 1, background: t.border, borderRadius: 10, overflow: 'hidden' }}>
@@ -278,7 +278,7 @@ function TimelineSection({ t, isMobile, isAr, tr: _tr }: SP) {
             <span style={{ display: 'inline-block', width: 22, height: 1, background: t.gold }} />
           </p>
           <h2 style={{ ...rv(visible, 0.08), fontFamily: "'Marcellus', serif", color: t.txt, fontSize: isMobile ? 'clamp(1.5rem,5vw,2rem)' : 'clamp(1.8rem,3vw,2.4rem)', margin: 0 }}>
-            {isAr ? 'مسيرة الاستثمار العربي في تركيا' : 'Arab Investment Journey in Turkey'}
+            {isAr ? 'مسيرة الاستثمار العربي في تركيا' : 'Arab Investment Journey in Türkiye'}
           </h2>
         </div>
         <div style={{ position: 'relative', paddingRight: isMobile ? 0 : 24 }}>

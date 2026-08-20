@@ -56,7 +56,7 @@ export default function MapHeader() {
             fontWeight: 400,
           }}
         >
-          {isAr ? 'فرص استثمارية في تركيا' : 'Investment Opportunities in Turkey'}
+          {isAr ? 'فرص استثمارية في تركيا' : 'Investment Opportunities in Türkiye'}
         </span>
       </div>
 
