@@ -7,12 +7,30 @@ type ContentMap = Record<string, { ar: string; en: string }>;
 // but does NOT skip re-fetching on subsequent mounts (so admin changes always reflect)
 const pending: Record<string, Promise<ContentMap>> = {};
 
+function readCache(pageKey: string): ContentMap {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = localStorage.getItem(`content:${pageKey}`);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeCache(pageKey: string, data: ContentMap) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(`content:${pageKey}`, JSON.stringify(data));
+  } catch {}
+}
+
 function fetchContent(pageKey: string): Promise<ContentMap> {
   if (pageKey in pending) return pending[pageKey];
   pending[pageKey] = fetch(`/api/content/${pageKey}`, { cache: 'no-store' })
     .then(r => r.json())
     .then((json: ContentMap) => {
       delete pending[pageKey];
+      writeCache(pageKey, json);
       return json;
     })
     .catch(() => {
@@ -23,10 +41,13 @@ function fetchContent(pageKey: string): Promise<ContentMap> {
 }
 
 export function useContent(pageKey: string) {
-  const [data, setData] = useState<ContentMap>({});
+  // Seed from the last-known-good server response (cached in localStorage) so
+  // the very first paint shows the real value instead of flashing a hardcoded
+  // fallback (e.g. the old logo) while the fresh fetch below is in flight.
+  const [data, setData] = useState<ContentMap>(() => readCache(pageKey));
 
   useEffect(() => {
-    // Always fetch fresh data from the server — never use a stale module cache.
+    // Always fetch fresh data from the server — never rely solely on the cache.
     // This ensures admin changes immediately reflect on the site.
     fetchContent(pageKey).then(setData);
   }, [pageKey]);
