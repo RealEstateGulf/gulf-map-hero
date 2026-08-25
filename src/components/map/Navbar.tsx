@@ -16,7 +16,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currencyOpen, setCurrencyOpen] = useState(false);
   const { currency, setCurrency, currencyInfo } = useCurrency();
-  const { lang, setLang, dir } = useLanguage();
+  const { lang, setLang, dir, isAr } = useLanguage();
   const tr = useT();
   const currRef = useRef<HTMLDivElement>(null);
   const { getImg } = useContent('settings');
@@ -42,7 +42,7 @@ export default function Navbar() {
   return (
     <>
       <div style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 64,
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, height: 76,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: isMobile ? '0 16px' : '0 24px',
         background: t.navbar, backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
@@ -50,14 +50,14 @@ export default function Navbar() {
         direction: 'ltr', transition: 'background 0.4s ease, box-shadow 0.4s ease',
       }}>
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0, textDecoration: 'none' }}>
+        <Link href="/" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 3, flexShrink: 0, textDecoration: 'none' }}>
           <div style={{ background: '#070707', borderRadius: 8, padding: '2px 4px', display: 'flex', alignItems: 'center' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logoUrl}
               alt="Miftah Turkiye"
               style={{
-                height: isMobile ? 38 : 46,
+                height: isMobile ? 34 : 42,
                 width: 'auto',
                 mixBlendMode: 'screen',
                 objectFit: 'contain',
@@ -65,6 +65,9 @@ export default function Navbar() {
               }}
             />
           </div>
+          <span style={{ color: t.txt3, fontSize: isMobile ? '0.56rem' : '0.62rem', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
+            {isAr ? 'مؤسسة بيرجان آكين العقارية' : 'A Bircan Akın Real Estate Establishment'}
+          </span>
         </Link>
 
         {/* Desktop nav */}
@@ -187,7 +190,7 @@ export default function Navbar() {
 
       {/* Mobile slide-down menu */}
       <div style={{
-        position: 'fixed', top: 64, left: 0, right: 0, zIndex: 99,
+        position: 'fixed', top: 76, left: 0, right: 0, zIndex: 99,
         background: t.navbar, backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
         borderBottom: `1px solid ${t.gold4}`,
         maxHeight: menuOpen ? '600px' : '0', overflow: 'hidden',

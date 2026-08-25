@@ -10,6 +10,18 @@ export const roleSchema = z.enum(['AGENT', 'ADMIN', 'SUPER_ADMIN']);
 const optionalString = (max: number) =>
   z.string().trim().max(max).optional().nullable();
 
+// Blocks javascript:/data:/vbscript: and other non-http(s) URI schemes from
+// user-supplied image/link URLs. Allows absolute http(s) URLs and site-relative
+// paths (e.g. /uploads/foo.jpg from our own upload endpoint).
+export const isSafeUrl = (value: string) => /^(https?:\/\/|\/(?!\/))/i.test(value.trim());
+
+const optionalImageUrl = (max: number) =>
+  z.union([
+    z.string().trim().max(max).refine(isSafeUrl, 'Yalnızca http(s) veya site-içi yol adresine izin verilir'),
+    z.literal(''),
+    z.null(),
+  ]).optional();
+
 export const userCreateSchema = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().toLowerCase().email().max(200),
@@ -58,7 +70,7 @@ export const consultantSchema = z.object({
   phone: z.string().trim().min(1).max(40),
   whatsapp: optionalString(40),
   email: z.union([z.string().trim().toLowerCase().email().max(200), z.literal(''), z.null()]).optional(),
-  photoUrl: optionalString(2000),
+  photoUrl: optionalImageUrl(2000),
   bioAr: optionalString(5000),
   bioEn: optionalString(5000),
   active: z.boolean().optional(),
@@ -80,7 +92,7 @@ export const insightSchema = z.object({
   excerptEn: z.string().max(1000).optional(),
   contentAr: z.string().max(200_000).optional(),
   contentEn: z.string().max(200_000).optional(),
-  coverImage: optionalString(2000),
+  coverImage: optionalImageUrl(2000),
   category: z.string().trim().max(60).optional(),
   published: z.boolean().optional(),
   featured: z.boolean().optional(),
@@ -123,7 +135,13 @@ export const contentRowsSchema = z.object({
 });
 
 const optionalUrl = (max: number) =>
-  z.union([z.string().trim().max(max).url(), z.literal(''), z.null()]).optional();
+  z.union([
+    // .url() alone accepts any syntactically valid scheme (e.g. javascript:) —
+    // require http(s) explicitly.
+    z.string().trim().max(max).url().refine(v => /^https?:\/\//i.test(v), 'Yalnızca http(s) URL adreslerine izin verilir'),
+    z.literal(''),
+    z.null(),
+  ]).optional();
 
 export const seoSchema = z.object({
   titleAr: z.string().max(300).optional(),

@@ -78,7 +78,7 @@ function HeroSection({ t, isMobile, isAr, tr, get }: SP) {
       alignItems: 'center', justifyContent: 'center',
       position: 'relative', overflow: 'hidden',
       borderBottom: `1px solid ${t.gold4}`,
-      paddingTop: 64, textAlign: 'center',
+      paddingTop: 76, textAlign: 'center',
     }}>
       <div style={{ position: 'absolute', inset: 0, opacity: 0.07, backgroundImage: 'linear-gradient(rgba(217,186,160,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(217,186,160,0.4) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
       <p style={{ color: t.gold, fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: 16, position: 'relative', display: 'flex', alignItems: 'center', gap: 12 }}>

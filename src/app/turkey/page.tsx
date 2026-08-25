@@ -131,7 +131,7 @@ export default function TurkeyPage() {
 function HeroSection({ t, isMobile, isAr, tr, get, getImg }: SP) {
   const heroImg = getImg('hero.image', 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1800&q=85');
   return (
-    <div style={{ position: 'relative', height: isMobile ? '70vh' : '85vh', overflow: 'hidden', paddingTop: 64 }}>
+    <div style={{ position: 'relative', height: isMobile ? '70vh' : '85vh', overflow: 'hidden', paddingTop: 76 }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={heroImg} alt="Istanbul" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.4) 60%, rgba(7,7,7,0.15) 100%)' }} />

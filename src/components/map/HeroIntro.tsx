@@ -134,7 +134,7 @@ export default function HeroIntro({ visible, onExplore }: Props) {
     <div
       style={{
         position: 'absolute',
-        top: 64,
+        top: 76,
         bottom: 80,
         right: 0,
         left: 0,

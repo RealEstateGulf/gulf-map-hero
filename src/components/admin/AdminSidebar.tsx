@@ -62,7 +62,7 @@ export default function AdminSidebar() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          minHeight: 68,
+          minHeight: collapsed ? 68 : 86,
           gap: 2,
         }}
       >
@@ -80,9 +80,14 @@ export default function AdminSidebar() {
           }}
         />
         {!collapsed && (
-          <div style={{ color: 'rgba(255,255,255,0.28)', fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-            Admin Panel
-          </div>
+          <>
+            <div style={{ color: 'rgba(255,255,255,0.28)', fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+              Admin Panel
+            </div>
+            <div style={{ color: 'rgba(255,255,255,0.18)', fontSize: '0.6rem', textAlign: 'center' }}>
+              Bircan Akın Real Estate kuruluşudur
+            </div>
+          </>
         )}
       </div>
 

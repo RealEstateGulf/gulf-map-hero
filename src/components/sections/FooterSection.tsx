@@ -105,11 +105,14 @@ export default function FooterSection() {
 
           {/* Brand — full width on mobile */}
           <div style={{ gridColumn: isMobile ? '1 / -1' : 'auto' }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', marginBottom: 22, textDecoration: 'none' }}>
+            <Link href="/" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5, marginBottom: 22, textDecoration: 'none' }}>
               <div style={{ background: '#070707', borderRadius: 6, padding: '2px 6px', display: 'flex', alignItems: 'center' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/logo-miftah.png" alt="Miftah Turkiye" style={{ height: 38, width: 'auto', mixBlendMode: 'screen', objectFit: 'contain', display: 'block' }} />
               </div>
+              <span style={{ color: 'rgba(255,255,255,0.32)', fontSize: '0.66rem', letterSpacing: '0.03em' }}>
+                {isAr ? 'مؤسسة بيرجان آكين العقارية' : 'A Bircan Akın Real Estate Establishment'}
+              </span>
             </Link>
             <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.82rem', lineHeight: 1.85, marginBottom: 28, maxWidth: 270 }}>
               {tr('footer.tagline')}

@@ -91,7 +91,7 @@ export default function AboutPage() {
 function HeroSection({ t, isMobile, isAr, tr, get, getImg }: SP) {
   const heroImg = getImg('hero.image', 'https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=1800&q=85');
   return (
-    <div style={{ position: 'relative', height: isMobile ? '65vh' : '75vh', overflow: 'hidden', paddingTop: 64 }}>
+    <div style={{ position: 'relative', height: isMobile ? '65vh' : '75vh', overflow: 'hidden', paddingTop: 76 }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={heroImg}

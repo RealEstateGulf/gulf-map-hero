@@ -99,7 +99,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
       <Navbar />
 
       {/* Hero image */}
-      <div style={{ position: 'relative', height: isMobile ? '55vw' : '45vh', overflow: 'hidden', maxHeight: 480, marginTop: 64 }}>
+      <div style={{ position: 'relative', height: isMobile ? '55vw' : '45vh', overflow: 'hidden', maxHeight: 480, marginTop: 76 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={article.photo} alt={article.titleAr} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)' }} />

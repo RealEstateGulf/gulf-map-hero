@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { Upload, X, ImageIcon, Loader2 } from 'lucide-react';
+import { isSafeUrl } from '@/lib/validation';
 
 interface Props {
   value: string;
@@ -110,7 +111,15 @@ export default function ImageUpload({ value, onChange, label = 'Görsel' }: Prop
       <input
         type="text"
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => {
+          const v = e.target.value;
+          if (v.trim() && !isSafeUrl(v)) {
+            setError('Yalnızca http(s) veya site-içi yol adresine izin verilir');
+            return;
+          }
+          setError('');
+          onChange(v);
+        }}
         placeholder="https://..."
         style={{
           marginTop: 8, width: '100%', boxSizing: 'border-box', padding: '9px 12px',

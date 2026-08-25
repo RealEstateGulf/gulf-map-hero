@@ -56,7 +56,8 @@ export default function AdminLoginPage() {
             <Globe size={26} color="#000" />
           </div>
           <h1 style={{ color: '#fff', fontSize: '1.4rem', fontWeight: 700, margin: '0 0 4px' }}>Gulf Invest</h1>
-          <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.82rem', margin: 0 }}>Admin Paneli</p>
+          <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.82rem', margin: '0 0 4px' }}>Admin Paneli</p>
+          <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.68rem', margin: 0 }}>Bircan Akın Real Estate kuruluşudur</p>
         </div>
 
         {/* Card */}

@@ -78,7 +78,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
       {/* Breadcrumb */}
       <div
         style={{
-          paddingTop: 64,
+          paddingTop: 76,
           background: t.altBg,
           borderBottom: `1px solid ${t.border}`,
         }}

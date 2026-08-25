@@ -74,7 +74,7 @@ export default function PropertiesPage() {
           position: 'relative',
           overflow: 'hidden',
           borderBottom: `1px solid ${t.gold4}`,
-          paddingTop: 64,
+          paddingTop: 76,
         }}
       >
         <div
@@ -140,7 +140,7 @@ export default function PropertiesPage() {
           background: t.altBg,
           borderBottom: `1px solid ${t.border}`,
           position: 'sticky',
-          top: 64,
+          top: 76,
           zIndex: 50,
         }}
       >
