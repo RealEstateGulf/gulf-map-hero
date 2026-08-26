@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { X, Heart, MapPin, Maximize2, Share2, MessageCircle, BedDouble } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { X, MapPin, Maximize2, Share2, MessageCircle, BedDouble, Check } from 'lucide-react';
 import { Property } from '@/data/properties';
 import { useTheme } from '@/context/ThemeContext';
 import { useIsMobile } from '@/hooks/useResponsive';
@@ -12,14 +12,46 @@ interface Props {
   onClose: () => void;
 }
 
+const DEFAULT_WA_NUMBER = '905072308453';
+
 export default function PropertyQuickViewModal({ property, onClose }: Props) {
   const { t } = useTheme();
   const isMobile = useIsMobile();
   const { dir, isAr } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [waNumber, setWaNumber] = useState(DEFAULT_WA_NUMBER);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/popup-settings')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.wa_number) setWaNumber(data.wa_number); })
+      .catch(() => {});
+  }, []);
 
   const featuresList = isAr ? (property.features ?? []) : (property.featuresEn ?? property.features ?? []);
   const descText = isAr ? property.description : (property.descriptionEn ?? property.description);
+  const propertyTitle = isAr ? property.titleAr : property.titleEn;
+  const propertyUrl = typeof window !== 'undefined' ? `${window.location.origin}/properties/${property.slug}` : '';
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try { await navigator.share({ title: propertyTitle, url: propertyUrl }); } catch {}
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(propertyUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
+  const handleWhatsApp = () => {
+    const msg = isAr
+      ? `مرحباً، أنا مهتم بهذا العقار: ${propertyTitle}\n${propertyUrl}`
+      : `Hello, I'm interested in this property: ${propertyTitle}\n${propertyUrl}`;
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div
@@ -139,23 +171,7 @@ export default function PropertyQuickViewModal({ property, onClose }: Props) {
             }}
           >
             <button
-              style={{
-                background: 'rgba(0,0,0,0.35)',
-                backdropFilter: 'blur(8px)',
-                border: '1px solid rgba(255,255,255,0.2)',
-                borderRadius: 8,
-                padding: 8,
-                cursor: 'pointer',
-                display: 'flex',
-                color: 'rgba(255,255,255,0.8)',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#e85555'; e.currentTarget.style.borderColor = 'rgba(232,85,85,0.5)'; }}
-              onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.8)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; }}
-            >
-              <Heart size={14} />
-            </button>
-            <button
+              onClick={handleShare}
               style={{
                 background: 'rgba(0,0,0,0.35)',
                 backdropFilter: 'blur(8px)',
@@ -170,7 +186,7 @@ export default function PropertyQuickViewModal({ property, onClose }: Props) {
               onMouseEnter={e => { e.currentTarget.style.color = '#fff'; }}
               onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.8)'; }}
             >
-              <Share2 size={14} />
+              {copied ? <Check size={14} /> : <Share2 size={14} />}
             </button>
           </div>
 
@@ -433,6 +449,7 @@ export default function PropertyQuickViewModal({ property, onClose }: Props) {
             }}
           >
             <button
+              onClick={handleShare}
               style={{
                 flex: '0 0 auto',
                 padding: '11px 18px',
@@ -451,10 +468,11 @@ export default function PropertyQuickViewModal({ property, onClose }: Props) {
               onMouseEnter={e => { e.currentTarget.style.background = t.border2; }}
               onMouseLeave={e => { e.currentTarget.style.background = t.btn; }}
             >
-              <Share2 size={14} />
-              {isAr ? 'مشاركة' : 'Share'}
+              {copied ? <Check size={14} /> : <Share2 size={14} />}
+              {copied ? (isAr ? 'تم النسخ' : 'Copied') : (isAr ? 'مشاركة' : 'Share')}
             </button>
             <button
+              onClick={handleWhatsApp}
               style={{
                 flex: 1,
                 padding: '11px',
