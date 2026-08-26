@@ -62,6 +62,26 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
   const { t } = useTheme();
   const isMobile = useIsMobile();
   const [activePhoto, setActivePhoto] = useState(0);
+  const [waNumber, setWaNumber] = useState('905310266515');
+
+  useEffect(() => {
+    fetch('/api/popup-settings')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.wa_number) setWaNumber(data.wa_number); })
+      .catch(() => {});
+  }, []);
+
+  const handleContactAgent = () => {
+    const msg = `مرحباً، أنا مهتم بهذا العقار: ${property.titleAr}\n${typeof window !== 'undefined' ? window.location.href : ''}`;
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+  };
+
+  // Turkish mobile numbers are 12 digits (90 + 3 + 3 + 2 + 2) — group them for
+  // display; anything else just gets a "+" prefix rather than a broken split.
+  const displayPhone = /^\d{12}$/.test(waNumber)
+    ? `+${waNumber.slice(0, 2)} ${waNumber.slice(2, 5)} ${waNumber.slice(5, 8)} ${waNumber.slice(8, 10)} ${waNumber.slice(10, 12)}`
+    : `+${waNumber}`;
+
   // The main gallery box is a wide fixed-height rectangle. A landscape photo
   // fills it nicely with object-fit: cover, but a portrait photo would have
   // its sides cropped away — switch those to "contain" (letterboxed) instead
@@ -430,27 +450,31 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                       overflow: 'hidden',
                       border: `1.5px solid ${t.gold3}`,
                       flexShrink: 0,
+                      background: '#070707',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=200&q=80"
-                      alt="أحمد يلدز"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      src="/logo-miftah.png"
+                      alt="Al Miftah"
+                      style={{ width: '70%', height: '70%', objectFit: 'contain', mixBlendMode: 'screen' }}
                     />
                   </div>
                   <div>
                     <div style={{ color: t.txt, fontSize: '0.85rem', fontWeight: 600 }}>
-                      أحمد يلدز
+                      ممثل المفتاح المعتمد
                     </div>
                     <div style={{ color: t.gold, fontSize: '0.65rem', marginTop: 3 }}>
-                      مدير العلاقات العربية
+                      خدمة العملاء
                     </div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
                   {[
-                    { Icon: Phone, text: '+90 555 000 0000' },
+                    { Icon: Phone, text: displayPhone },
                     { Icon: Mail, text: 'info@miftahturkiye.com' },
                   ].map(({ Icon, text }) => (
                     <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -484,6 +508,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                   احجز معاينة
                 </button>
                 <button
+                  onClick={handleContactAgent}
                   style={{
                     width: '100%',
                     background: 'transparent',

@@ -10,18 +10,11 @@ import { useContent } from '@/hooks/useContent';
 
 const TEAM = [
   {
-    name: 'أحمد يلدز',
-    nameEn: 'Ahmet Yıldız',
-    role: 'مستشار استثمار عقاري',
-    roleEn: 'Real Estate Consultant',
-    photo: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=200&q=80',
-  },
-  {
-    name: 'ليلى شاهين',
-    nameEn: 'Leyla Şahin',
-    role: 'خبيرة السوق العقاري التركي',
-    roleEn: 'Türkiye Real Estate Market Expert',
-    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80',
+    name: 'ممثل المفتاح المعتمد',
+    nameEn: 'Al Miftah Authorized Representative',
+    role: 'خدمة العملاء',
+    roleEn: 'Customer Service',
+    photo: '/logo-miftah.png',
   },
 ];
 
@@ -187,9 +180,9 @@ export default function FooterSection() {
             <div style={{ display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: isMobile ? 20 : 14, marginBottom: 28, flexWrap: 'wrap' }}>
               {TEAM.map(({ name, nameEn, role, roleEn, photo }) => (
                 <Link key={name} href="/about" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-                  <div style={{ width: 44, height: 44, borderRadius: '50%', overflow: 'hidden', border: `1px solid ${t.gold3}`, flexShrink: 0 }}>
+                  <div style={{ width: 44, height: 44, borderRadius: '50%', overflow: 'hidden', border: `1px solid ${t.gold3}`, flexShrink: 0, background: '#070707', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={photo} alt={isAr ? name : nameEn} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={photo} alt={isAr ? name : nameEn} style={{ width: '70%', height: '70%', objectFit: 'contain', mixBlendMode: 'screen' }} />
                   </div>
                   <div>
                     <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem', fontWeight: 600 }}>{isAr ? name : nameEn}</div>
