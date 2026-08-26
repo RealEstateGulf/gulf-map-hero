@@ -80,7 +80,7 @@ const CITIES = [
     descAr: 'مدينة جبل أولوداغ الشهير — جوهرة صناعية وسياحية في شمال غرب تركيا، تُعرف بتراثها العثماني الأصيل.',
     descEn: 'Home to the famous Mount Uludağ — an industrial and tourism gem in northwestern Türkiye known for its authentic Ottoman heritage.',
     highlights: ['أسعار تنافسية', 'جبال ومصايف', 'نمو صناعي قوي', 'قرب من إسطنبول'],
-    photo: 'https://images.unsplash.com/photo-1604665515746-1b0c6a35f6c7?auto=format&fit=crop&w=900&q=80',
+    photo: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Sunset_in_Bursa.jpg',
   },
   {
     nameAr: 'أنطاليا',

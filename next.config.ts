@@ -8,7 +8,7 @@ const CSP = [
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' data: blob: https://images.unsplash.com https://api.mapbox.com https://lfbdbgaoizztnzrpucmy.supabase.co https://www.googletagmanager.com https://www.facebook.com",
+  "img-src 'self' data: blob: https://images.unsplash.com https://upload.wikimedia.org https://api.mapbox.com https://lfbdbgaoizztnzrpucmy.supabase.co https://www.googletagmanager.com https://www.facebook.com",
   "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://connect.facebook.net https://lfbdbgaoizztnzrpucmy.supabase.co",
   "worker-src 'self' blob:",
   "frame-src 'none'",

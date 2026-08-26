@@ -121,7 +121,7 @@ export const articles: Article[] = [
     date: '2025-04-02',
     readTime: 6,
     excerpt: 'لماذا تكتسب بورصة شعبية متزايدة بين المستثمرين العرب؟ تحليل شامل للسوق العقاري وأبرز الفرص المتاحة.',
-    photo: 'https://images.unsplash.com/photo-1604665515746-1b0c6a35f6c7?auto=format&fit=crop&w=1200&q=80',
+    photo: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Sunset_in_Bursa.jpg',
     author: { name: 'أحمد يلدز', role: 'مدير العلاقات العربية' },
     content: `بورصة — العاصمة العثمانية الأولى وموطن جبل أولوداغ الشهير — تحوّلت في السنوات الأخيرة إلى مقصد استثماري عقاري بامتياز، خاصة للمستثمرين العرب الباحثين عن أسعار معقولة وجودة حياة عالية.
 
