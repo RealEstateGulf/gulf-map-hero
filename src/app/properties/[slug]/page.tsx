@@ -475,7 +475,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
                   {[
                     { Icon: Phone, text: displayPhone },
-                    { Icon: Mail, text: 'info@miftahturkiye.com' },
+                    { Icon: Mail, text: 'info@almiftahrealestate.com' },
                   ].map(({ Icon, text }) => (
                     <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       <Icon size={12} color={t.gold} />
