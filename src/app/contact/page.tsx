@@ -226,7 +226,7 @@ function FormSection({ t, isMobile, isAr, tr, dir }: SP & { dir: 'rtl' | 'ltr' }
             {[
               { Icon: MessageSquare, titleAr: 'رد سريع', titleEn: 'Quick Response', descAr: 'نلتزم بالرد خلال 4 ساعات عمل', descEn: 'We respond within 4 working hours' },
               { Icon: Phone, titleAr: 'اتصل مباشرة', titleEn: 'Call Directly', descAr: 'متاحون على واتساب 6 أيام بالأسبوع', descEn: 'Available on WhatsApp 6 days a week' },
-              { Icon: Mail, titleAr: 'بريد إلكتروني', titleEn: 'Email', descAr: 'info@miftahturkiye.com', descEn: 'info@miftahturkiye.com' },
+              { Icon: Mail, titleAr: 'بريد إلكتروني', titleEn: 'Email', descAr: 'info@almiftahrealestate.com', descEn: 'info@almiftahrealestate.com' },
             ].map(({ Icon, titleAr, titleEn, descAr, descEn }, i) => (
               <div key={i} style={{ display: 'flex', gap: 14, marginBottom: i < 2 ? 20 : 0, alignItems: 'flex-start' }}>
                 <div style={{ width: 40, height: 40, flexShrink: 0, background: t.gold5, border: `1px solid ${t.gold4}`, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
