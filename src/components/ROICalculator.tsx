@@ -99,7 +99,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
         input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: ${t.gold}; cursor: pointer; border: none; }
       `}</style>
 
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 28 : 36, alignItems: 'stretch' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : (locked ? '1fr 1fr 1fr' : '1fr 1fr'), gap: isMobile ? 28 : 36, alignItems: 'stretch' }}>
 
         {/* ── Inputs ──────────────────────────────── */}
         <div style={{ background: t.altBg, border: `1px solid ${t.border}`, borderRadius: 10, padding: isMobile ? '24px 20px' : '36px 32px' }}>
@@ -170,7 +170,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
         {/* ── Results ──────────────────────────────── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {/* Main numbers */}
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(3, 1fr)', gap: 14 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
             {[
               { label: tr('calc.grossYield'), value: `${res.grossYield.toFixed(2)}%`, highlight: true },
               { label: tr('calc.netYield'), value: `${res.netYield.toFixed(2)}%`, highlight: false },
@@ -208,18 +208,6 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
             </div>
           </div>
 
-          {/* Value-over-time chart */}
-          {locked && (
-            <div style={{ background: t.altBg, border: `1px solid ${t.border}`, borderRadius: 8, padding: '20px 18px' }}>
-              <ROIValueChart
-                data={res.table.map(row => ({ yr: row.yr, val: row.val }))}
-                formatPrice={formatPrice}
-                title={isAr ? `توقع قيمة العقار خلال ${years} سنوات` : `Projected property value over ${years} years`}
-                isAr={isAr}
-              />
-            </div>
-          )}
-
           {/* CTA */}
           {!hideCta && (
             <a href="/contact" style={{
@@ -236,6 +224,18 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
             </a>
           )}
         </div>
+
+        {/* ── Value-over-time chart — own column, in place of the empty gap ── */}
+        {locked && (
+          <div style={{ background: t.altBg, border: `1px solid ${t.border}`, borderRadius: 8, padding: '20px 18px' }}>
+            <ROIValueChart
+              data={res.table.map(row => ({ yr: row.yr, val: row.val }))}
+              formatPrice={formatPrice}
+              title={isAr ? `توقع قيمة العقار خلال ${years} سنوات` : `Projected property value over ${years} years`}
+              isAr={isAr}
+            />
+          </div>
+        )}
       </div>
 
       {/* Year-by-year table */}
