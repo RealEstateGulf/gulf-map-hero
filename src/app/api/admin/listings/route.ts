@@ -18,7 +18,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const parsed = listingSchema.safeParse(await req.json());
-    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    if (!parsed.success) {
+      const detail = parsed.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ');
+      return NextResponse.json({ error: `Geçersiz veri — ${detail}` }, { status: 400 });
+    }
     const body = parsed.data;
     const listing = await prisma.property.create({
       data: {
