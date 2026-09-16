@@ -29,15 +29,18 @@ function calcROI(priceUSD: number, rentUSD: number, appreciation: number, years:
   const totalRentNet = netAnnualRent * years;
   const totalReturn = capitalGain + totalRentNet;
   const totalROI = (totalReturn / priceUSD) * 100;
+  // Years of net rent alone (no appreciation) needed to recoup the purchase price.
+  const paybackYears = netAnnualRent > 0 ? priceUSD / netAnnualRent : Infinity;
 
   const table = Array.from({ length: years }, (_, i) => {
     const yr = i + 1;
     const val = priceUSD * Math.pow(1 + appreciation / 100, yr);
+    const capitalGainAtYear = val - priceUSD;
     const cumRent = netAnnualRent * yr;
-    return { yr, val, cumRent, total: (val - priceUSD) + cumRent };
+    return { yr, val, capitalGainAtYear, cumRent, total: capitalGainAtYear + cumRent };
   });
 
-  return { grossYield, netYield, monthlyNet, finalValue, capitalGain, totalRentNet, totalReturn, totalROI, table };
+  return { grossYield, netYield, monthlyNet, finalValue, capitalGain, totalRentNet, totalReturn, totalROI, paybackYears, table };
 }
 
 interface Props {
@@ -178,34 +181,43 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, initia
 
         {/* ── Results ──────────────────────────────── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          {/* Main numbers */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-            {[
-              { label: tr('calc.grossYield'), value: `${res.grossYield.toFixed(2)}%`, highlight: true },
-              { label: tr('calc.netYield'), value: `${res.netYield.toFixed(2)}%`, highlight: false },
-              { label: tr('calc.monthlyNet'), value: formatPrice(res.monthlyNet), highlight: false },
-              { label: `${tr('calc.finalValue')} ${years} ${tr('calc.finalValueSuffix')}`, value: formatPrice(res.finalValue), highlight: false },
-            ].map(({ label, value, highlight }) => (
-              <div key={label} style={{
-                background: highlight ? 'linear-gradient(135deg, rgba(217,186,160,0.12) 0%, rgba(217,186,160,0.04) 100%)' : t.altBg,
-                border: `1px solid ${highlight ? t.gold3 : t.border}`,
-                borderRadius: 8, padding: '18px 16px',
-              }}>
-                <div style={{ color: t.txt4, fontSize: '0.68rem', marginBottom: 8, lineHeight: 1.4 }}>{label}</div>
-                <div style={{ fontFamily: "'Marcellus', serif", color: highlight ? t.gold : t.txt, fontSize: '1.3rem', lineHeight: 1 }}>{value}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Summary box */}
+          {/* Current figures — where the investment stands today, no projection involved */}
           <div style={{ background: t.altBg, border: `1px solid ${t.border}`, borderRadius: 8, padding: '20px 18px' }}>
             <h3 style={{ fontFamily: "'Marcellus', serif", color: t.txt, fontSize: '0.95rem', margin: '0 0 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
-              <TrendingUp size={15} color={t.gold} /> {tr('calc.results.title')}
+              <DollarSign size={15} color={t.gold} /> {tr('calc.currentMetrics.title')}
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
-                { label: tr('calc.totalRent'), val: formatPrice(res.totalRentNet) },
+                { label: tr('calc.initialInvestment'), val: formatPrice(price) },
+                { label: tr('calc.grossYield'), val: `${res.grossYield.toFixed(2)}%` },
+                { label: tr('calc.netYield'), val: `${res.netYield.toFixed(2)}%` },
+                { label: tr('calc.monthlyNet'), val: formatPrice(res.monthlyNet) },
+                {
+                  label: tr('calc.paybackPeriod'),
+                  val: Number.isFinite(res.paybackYears)
+                    ? `${res.paybackYears.toFixed(1)} ${isAr ? 'سنة' : 'yrs'}`
+                    : '—',
+                  bold: true, gold: true,
+                },
+              ].map(({ label, val, bold, gold }) => (
+                <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 10, borderBottom: `1px solid ${t.border}` }}>
+                  <span style={{ color: t.txt3, fontSize: '0.8rem' }}>{label}</span>
+                  <span style={{ fontFamily: bold ? "'Marcellus', serif" : 'inherit', color: gold ? t.gold : t.txt, fontSize: bold ? '1rem' : '0.86rem', fontWeight: bold ? 700 : 400 }}>{val}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Projection — everything that depends on the appreciation rate + holding period */}
+          <div style={{ background: t.altBg, border: `1px solid ${t.border}`, borderRadius: 8, padding: '20px 18px' }}>
+            <h3 style={{ fontFamily: "'Marcellus', serif", color: t.txt, fontSize: '0.95rem', margin: '0 0 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <TrendingUp size={15} color={t.gold} /> {tr('calc.projection.title')} {years} {tr('calc.finalValueSuffix')}
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { label: `${tr('calc.finalValue')} ${years} ${tr('calc.finalValueSuffix')}`, val: formatPrice(res.finalValue) },
                 { label: tr('calc.capitalGain'), val: formatPrice(res.capitalGain) },
+                { label: tr('calc.totalRent'), val: formatPrice(res.totalRentNet) },
                 { label: tr('calc.totalReturn'), val: formatPrice(res.totalReturn), bold: true },
                 { label: tr('calc.totalROI'), val: `${res.totalROI.toFixed(1)}%`, bold: true, gold: true },
               ].map(({ label, val, bold, gold }) => (
@@ -277,33 +289,42 @@ function YearTable({ res, years, t, isMobile, formatPrice, isAr, tr }: {
       </button>
 
       <div style={{ maxHeight: open ? '1200px' : 0, overflow: 'hidden', transition: 'max-height 0.5s cubic-bezier(0.22,1,0.36,1)' }}>
-        <div style={{ marginTop: 16, border: `1px solid ${t.border}`, borderRadius: 8, overflow: 'hidden' }}>
-          <div style={{
-            display: 'grid', gridTemplateColumns: isMobile ? '60px 1fr 1fr' : '60px 1fr 1fr 1fr',
-            background: '#060606', borderBottom: `1px solid ${t.border}`,
-            padding: '12px 16px', gap: 8,
-          }}>
-            {[tr('calc.table.year'), tr('calc.table.propertyValue'), tr('calc.table.rentIncome'), !isMobile ? tr('calc.table.totalReturn') : null].filter(Boolean).map(h => (
-              <div key={h!} style={{ color: t.txt4, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{h}</div>
+        <div style={{ marginTop: 16, border: `1px solid ${t.border}`, borderRadius: 8, overflow: 'auto' }}>
+          <div style={{ minWidth: isMobile ? 480 : undefined }}>
+            <div style={{
+              display: 'grid', gridTemplateColumns: isMobile ? '50px 1fr 1fr 1fr' : '60px 1fr 1fr 1fr 1fr',
+              background: '#060606', borderBottom: `1px solid ${t.border}`,
+              padding: '12px 16px', gap: 8,
+            }}>
+              {[
+                tr('calc.table.year'),
+                tr('calc.table.propertyValue'),
+                !isMobile ? tr('calc.table.capitalGain') : null,
+                tr('calc.table.rentIncome'),
+                tr('calc.table.totalReturn'),
+              ].filter(Boolean).map(h => (
+                <div key={h!} style={{ color: t.txt4, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{h}</div>
+              ))}
+            </div>
+            {res.table.map(({ yr, val, capitalGainAtYear, cumRent, total }) => (
+              <div key={yr} style={{
+                display: 'grid', gridTemplateColumns: isMobile ? '50px 1fr 1fr 1fr' : '60px 1fr 1fr 1fr 1fr',
+                padding: '12px 16px', gap: 8,
+                background: yr % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent',
+                borderBottom: `1px solid ${t.border}`,
+                transition: 'background 0.15s',
+              }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = 'rgba(217,186,160,0.04)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = yr % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent'; }}
+              >
+                <div style={{ color: t.gold, fontFamily: "'Marcellus', serif", fontSize: '0.88rem' }}>{yr}</div>
+                <div style={{ color: t.txt2, fontSize: '0.82rem' }}>{formatPrice(val)}</div>
+                {!isMobile && <div style={{ color: t.txt2, fontSize: '0.82rem' }}>{formatPrice(capitalGainAtYear)}</div>}
+                <div style={{ color: t.txt2, fontSize: '0.82rem' }}>{formatPrice(cumRent)}</div>
+                <div style={{ color: total > 0 ? '#4ade80' : '#f87171', fontSize: '0.82rem', fontWeight: 600 }}>{formatPrice(total)}</div>
+              </div>
             ))}
           </div>
-          {res.table.map(({ yr, val, cumRent, total }) => (
-            <div key={yr} style={{
-              display: 'grid', gridTemplateColumns: isMobile ? '60px 1fr 1fr' : '60px 1fr 1fr 1fr',
-              padding: '12px 16px', gap: 8,
-              background: yr % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent',
-              borderBottom: `1px solid ${t.border}`,
-              transition: 'background 0.15s',
-            }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = 'rgba(217,186,160,0.04)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = yr % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent'; }}
-            >
-              <div style={{ color: t.gold, fontFamily: "'Marcellus', serif", fontSize: '0.88rem' }}>{yr}</div>
-              <div style={{ color: t.txt2, fontSize: '0.82rem' }}>{formatPrice(val)}</div>
-              <div style={{ color: t.txt2, fontSize: '0.82rem' }}>{formatPrice(cumRent)}</div>
-              {!isMobile && <div style={{ color: total > 0 ? '#4ade80' : '#f87171', fontSize: '0.82rem', fontWeight: 600 }}>{formatPrice(total)}</div>}
-            </div>
-          ))}
         </div>
       </div>
     </div>
