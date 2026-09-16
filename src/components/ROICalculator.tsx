@@ -99,7 +99,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
         input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: ${t.gold}; cursor: pointer; border: none; }
       `}</style>
 
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 28 : 36, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 28 : 36, alignItems: 'stretch' }}>
 
         {/* ── Inputs ──────────────────────────────── */}
         <div style={{ background: t.altBg, border: `1px solid ${t.border}`, borderRadius: 10, padding: isMobile ? '24px 20px' : '36px 32px' }}>
