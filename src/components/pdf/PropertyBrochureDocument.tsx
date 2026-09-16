@@ -99,10 +99,13 @@ interface Props {
   property: Property;
   agentPhone: string;
   agentEmail: string;
+  /** Pre-resolved data URL for the cover photo — react-pdf's <Image> can't
+   * gracefully recover from a failed remote fetch, so the caller resolves
+   * this itself and just omits it on failure. */
+  coverImage?: string;
 }
 
-export default function PropertyBrochureDocument({ property, agentPhone, agentEmail }: Props) {
-  const cover = property.photos?.[0];
+export default function PropertyBrochureDocument({ property, agentPhone, agentEmail, coverImage }: Props) {
   const specs = [
     { label: 'النوع', value: property.typeAr },
     { label: 'المساحة', value: `${property.area} م²` },
@@ -120,7 +123,7 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
           <Text style={styles.date}>{new Date().toLocaleDateString('en-GB')}</Text>
         </View>
 
-        {cover && <Image src={cover} style={styles.coverImage} />}
+        {coverImage && <Image src={coverImage} style={styles.coverImage} />}
 
         <View style={styles.body}>
           {property.badge && <Text style={styles.badge}>{property.badge}</Text>}

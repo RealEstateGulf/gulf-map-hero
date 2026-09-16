@@ -5,7 +5,10 @@ import type { NextConfig } from "next";
 // Unsplash-hosted demo photos, and the project's own Supabase storage bucket.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net",
+  // 'wasm-unsafe-eval' only permits instantiating WebAssembly modules (not
+  // arbitrary eval()) — needed by @react-pdf/renderer's yoga-layout (WASM
+  // flexbox engine) for the property PDF brochure.
+  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https://images.unsplash.com https://upload.wikimedia.org https://api.mapbox.com https://lfbdbgaoizztnzrpucmy.supabase.co https://www.googletagmanager.com https://www.facebook.com",
