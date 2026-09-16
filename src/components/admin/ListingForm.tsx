@@ -207,7 +207,7 @@ export default function ListingForm({ listing, consultants, agents, cities }: Pr
                   </div>
                   <div style={FIELD}>
                     <label style={LABEL}>نوع العقار (بالعربية)</label>
-                    <input style={{ ...INPUT, direction: 'rtl' }} value={form.typeAr} onChange={set('typeAr')} onFocus={focusBorder} onBlur={blurBorder} placeholder="مثلاً: فيلا" />
+                    <input style={{ ...INPUT, direction: 'rtl' }} value={form.typeAr} onChange={set('typeAr')} onFocus={focusBorder} onBlur={blurBorder} placeholder="مثلاً: فيلا" required />
                   </div>
                   <div style={FIELD}>
                     <label style={LABEL}>الوصف (بالعربية)</label>
@@ -230,7 +230,7 @@ export default function ListingForm({ listing, consultants, agents, cities }: Pr
                   </div>
                   <div style={FIELD}>
                     <label style={LABEL}>Property Type (English)</label>
-                    <input style={INPUT} value={form.typeEn} onChange={set('typeEn')} onFocus={focusBorder} onBlur={blurBorder} placeholder="e.g. Villa" />
+                    <input style={INPUT} value={form.typeEn} onChange={set('typeEn')} onFocus={focusBorder} onBlur={blurBorder} placeholder="e.g. Villa" required />
                   </div>
                   <div style={FIELD}>
                     <label style={LABEL}>Description (English)</label>
