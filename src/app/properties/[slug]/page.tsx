@@ -12,7 +12,6 @@ import {
   CheckCircle2,
   ArrowRight,
   ChevronRight,
-  ChevronDown,
   Calculator,
   TrendingUp,
 } from 'lucide-react';
@@ -21,7 +20,7 @@ import { useIsMobile } from '@/hooks/useResponsive';
 import { useLanguage } from '@/context/LanguageContext';
 import Navbar from '@/components/map/Navbar';
 import FooterSection from '@/components/sections/FooterSection';
-import ROICalculator from '@/components/ROICalculator';
+import ROICalculatorModal from '@/components/ROICalculatorModal';
 import type { Property } from '@/data/properties';
 
 export default function PropertyDetailPage({
@@ -420,11 +419,11 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               </div>
             )}
 
-            {/* ROI Calculator — collapsed by default, visitor opens it if they want */}
+            {/* ROI Calculator — opens as a popup so it isn't squeezed beside the sidebar */}
             <div style={{ marginBottom: 36, textAlign: 'center' }}>
               <button
                 type="button"
-                onClick={() => setRoiOpen(o => !o)}
+                onClick={() => setRoiOpen(true)}
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
                   background: t.gold, border: 'none', borderRadius: 6,
@@ -436,20 +435,16 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
               >
                 <Calculator size={14} />
-                {roiOpen ? 'إخفاء حاسبة العائد على الاستثمار' : 'احسب العائد على الاستثمار (ROI)'}
-                <ChevronDown size={14} style={{ transform: roiOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
+                احسب العائد على الاستثمار (ROI)
               </button>
-              {roiOpen && (
-                <div style={{ marginTop: 20 }}>
-                  <ROICalculator
-                    initialPrice={parsedPrice}
-                    initialMonthlyRent={property.avgMonthlyRent}
-                    hideCta
-                    locked
-                  />
-                </div>
-              )}
             </div>
+            {roiOpen && (
+              <ROICalculatorModal
+                initialPrice={parsedPrice}
+                initialMonthlyRent={property.avgMonthlyRent}
+                onClose={() => setRoiOpen(false)}
+              />
+            )}
 
             {/* Back link — mobile */}
             {isMobile && (
