@@ -21,6 +21,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import Navbar from '@/components/map/Navbar';
 import FooterSection from '@/components/sections/FooterSection';
 import ROICalculatorModal from '@/components/ROICalculatorModal';
+import PropertyPdfButton from '@/components/PropertyPdfButton';
 import type { Property } from '@/data/properties';
 
 export default function PropertyDetailPage({
@@ -608,6 +609,11 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                 >
                   تواصل مع الوكيل
                 </button>
+              </div>
+
+              {/* PDF download */}
+              <div style={{ padding: '0 20px 18px' }}>
+                <PropertyPdfButton property={property} agentPhone={displayPhone} agentEmail="info@almiftahrealestate.com" />
               </div>
             </div>
 
