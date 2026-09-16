@@ -41,9 +41,10 @@ export default function PropertyPdfButton({ property, agentPhone, agentEmail }: 
     setLoading(true);
     setError('');
     try {
-      // Cover + up to 5 gallery thumbnails — resolved in parallel, each one
+      // Cover + every other photo (the document paginates the gallery, so
+      // there's no need to cap it) — resolved in parallel, each one
       // independently allowed to fail (a dead photo just gets dropped).
-      const wanted = (property.photos ?? []).slice(0, 6);
+      const wanted = (property.photos ?? []).slice(0, 24);
       const resolved = (await Promise.all(wanted.map(toDataUrl))).filter((u): u is string => !!u);
       const [coverImage, ...galleryPhotos] = resolved;
       const blob = await pdf(

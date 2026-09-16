@@ -47,10 +47,13 @@ const styles = StyleSheet.create({
   brand: { fontFamily: 'Poppins', fontSize: 13, fontWeight: 'bold', color: TXT },
   brandSub: { fontSize: 8, color: MUTED, marginTop: 2 },
   date: { fontSize: 8, color: MUTED },
-  coverImage: { width: '100%', height: 230, objectFit: 'cover' },
-  gallery: { flexDirection: 'row-reverse', gap: 4, paddingHorizontal: 4, paddingTop: 4, paddingBottom: 4 },
-  galleryImage: { flex: 1, height: 70, objectFit: 'cover', borderRadius: 2 },
+  coverImage: { width: '100%', height: 320, objectFit: 'cover' },
   body: { paddingHorizontal: 28, paddingTop: 18 },
+  galleryPage: { paddingHorizontal: 24, paddingTop: 24 },
+  galleryTitle: { fontSize: 14, fontWeight: 'bold', textAlign: 'right', marginBottom: 14, color: TXT },
+  galleryGrid: { flexDirection: 'row-reverse', flexWrap: 'wrap', gap: 10 },
+  galleryCell: { width: '48.5%' },
+  galleryImage: { width: '100%', height: 190, objectFit: 'cover', borderRadius: 3 },
   badge: {
     alignSelf: 'flex-end',
     backgroundColor: 'rgba(212,175,55,0.15)',
@@ -112,32 +115,55 @@ interface Props {
   galleryPhotos?: string[];
 }
 
+function BrandHeader() {
+  return (
+    <View style={styles.header}>
+      <View>
+        <Text style={styles.brand}>Al Miftah Real Estate</Text>
+        <Text style={styles.brandSub}>almiftahrealestate.com</Text>
+      </View>
+      <Text style={styles.date}>{new Date().toLocaleDateString('en-GB')}</Text>
+    </View>
+  );
+}
+
+function BrandFooter({ agentPhone, agentEmail }: { agentPhone: string; agentEmail: string }) {
+  return (
+    <View style={styles.footer} fixed>
+      <View>
+        <Text style={styles.footerLabel}>الوكيل المسؤول</Text>
+        <Text style={styles.footerAgent}>ممثل المفتاح المعتمد</Text>
+        <Text style={styles.footerContact}>{agentPhone}  •  {agentEmail}</Text>
+      </View>
+      <Text style={styles.footerSite}>www.almiftahrealestate.com</Text>
+    </View>
+  );
+}
+
+// One gallery page holds 6 photos at a clearly-legible size (2 cols × 3 rows);
+// more than that spills onto additional gallery pages rather than shrinking.
+const PHOTOS_PER_GALLERY_PAGE = 6;
+
+function chunk<T>(arr: T[], size: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
 export default function PropertyBrochureDocument({ property, agentPhone, agentEmail, coverImage, galleryPhotos }: Props) {
   const specs = [
     { label: 'النوع', value: property.typeAr },
     { label: 'المساحة', value: `${property.area} م²` },
     ...(property.rooms && property.rooms !== '—' ? [{ label: 'الغرف', value: property.rooms }] : []),
   ];
+  const galleryPages = chunk(galleryPhotos ?? [], PHOTOS_PER_GALLERY_PAGE);
 
   return (
     <Document title={property.titleAr}>
       <Page size="A4" style={styles.page}>
-        <View style={styles.header}>
-          <View>
-            <Text style={styles.brand}>Al Miftah Real Estate</Text>
-            <Text style={styles.brandSub}>almiftahrealestate.com</Text>
-          </View>
-          <Text style={styles.date}>{new Date().toLocaleDateString('en-GB')}</Text>
-        </View>
+        <BrandHeader />
 
         {coverImage && <Image src={coverImage} style={styles.coverImage} />}
-        {galleryPhotos && galleryPhotos.length > 0 && (
-          <View style={styles.gallery}>
-            {galleryPhotos.slice(0, 5).map((src, i) => (
-              <Image key={i} src={src} style={styles.galleryImage} />
-            ))}
-          </View>
-        )}
 
         <View style={styles.body}>
           {property.badge && <Text style={styles.badge}>{property.badge}</Text>}
@@ -176,15 +202,27 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
           )}
         </View>
 
-        <View style={styles.footer} fixed>
-          <View>
-            <Text style={styles.footerLabel}>الوكيل المسؤول</Text>
-            <Text style={styles.footerAgent}>ممثل المفتاح المعتمد</Text>
-            <Text style={styles.footerContact}>{agentPhone}  •  {agentEmail}</Text>
-          </View>
-          <Text style={styles.footerSite}>www.almiftahrealestate.com</Text>
-        </View>
+        <BrandFooter agentPhone={agentPhone} agentEmail={agentEmail} />
       </Page>
+
+      {galleryPages.map((pagePhotos, pageIndex) => (
+        <Page key={pageIndex} size="A4" style={styles.page}>
+          <BrandHeader />
+          <View style={styles.galleryPage}>
+            <Text style={styles.galleryTitle}>
+              {galleryPages.length > 1 ? `معرض الصور (${pageIndex + 1}/${galleryPages.length})` : 'معرض الصور'}
+            </Text>
+            <View style={styles.galleryGrid}>
+              {pagePhotos.map((src, i) => (
+                <View key={i} style={styles.galleryCell}>
+                  <Image src={src} style={styles.galleryImage} />
+                </View>
+              ))}
+            </View>
+          </View>
+          <BrandFooter agentPhone={agentPhone} agentEmail={agentEmail} />
+        </Page>
+      ))}
     </Document>
   );
 }
