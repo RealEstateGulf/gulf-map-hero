@@ -421,18 +421,19 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
             )}
 
             {/* ROI Calculator — collapsed by default, visitor opens it if they want */}
-            <div style={{ marginBottom: 36 }}>
+            <div style={{ marginBottom: 36, textAlign: 'center' }}>
               <button
                 type="button"
                 onClick={() => setRoiOpen(o => !o)}
                 style={{
-                  display: 'flex', alignItems: 'center', gap: 8, background: 'none',
-                  border: `1px solid ${t.border}`, borderRadius: 6, padding: '11px 18px',
-                  color: t.txt2, fontSize: '0.82rem', cursor: 'pointer',
-                  fontFamily: 'inherit', transition: 'border-color 0.2s, color 0.2s',
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  background: t.gold, border: 'none', borderRadius: 6,
+                  padding: '13px 24px', color: t.goldText, fontSize: '0.78rem',
+                  fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+                  cursor: 'pointer', fontFamily: 'inherit', transition: 'opacity 0.2s',
                 }}
-                onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = t.gold3; el.style.color = t.gold; }}
-                onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = t.border; el.style.color = t.txt2; }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '0.82'; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
               >
                 <Calculator size={14} />
                 {roiOpen ? 'إخفاء حاسبة العائد على الاستثمار' : 'احسب العائد على الاستثمار (ROI)'}
@@ -552,10 +553,10 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               </div>
 
               {/* CTA buttons */}
-              <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'row', gap: 10 }}>
                 <button
                   style={{
-                    width: '100%',
+                    flex: 1,
                     background: t.gold,
                     border: 'none',
                     borderRadius: 6,
@@ -576,7 +577,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                 <button
                   onClick={handleContactAgent}
                   style={{
-                    width: '100%',
+                    flex: 1,
                     background: 'transparent',
                     border: `1px solid ${t.border2}`,
                     borderRadius: 6,
