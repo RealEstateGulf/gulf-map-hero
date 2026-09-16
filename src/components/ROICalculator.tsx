@@ -170,7 +170,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
         {/* ── Results ──────────────────────────────── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {/* Main numbers */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(3, 1fr)', gap: 14 }}>
             {[
               { label: tr('calc.grossYield'), value: `${res.grossYield.toFixed(2)}%`, highlight: true },
               { label: tr('calc.netYield'), value: `${res.netYield.toFixed(2)}%`, highlight: false },
