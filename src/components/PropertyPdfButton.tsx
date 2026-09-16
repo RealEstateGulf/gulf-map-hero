@@ -41,9 +41,13 @@ export default function PropertyPdfButton({ property, agentPhone, agentEmail }: 
     setLoading(true);
     setError('');
     try {
-      const coverImage = property.photos?.[0] ? await toDataUrl(property.photos[0]) : undefined;
+      // Cover + up to 5 gallery thumbnails — resolved in parallel, each one
+      // independently allowed to fail (a dead photo just gets dropped).
+      const wanted = (property.photos ?? []).slice(0, 6);
+      const resolved = (await Promise.all(wanted.map(toDataUrl))).filter((u): u is string => !!u);
+      const [coverImage, ...galleryPhotos] = resolved;
       const blob = await pdf(
-        <PropertyBrochureDocument property={property} agentPhone={agentPhone} agentEmail={agentEmail} coverImage={coverImage} />
+        <PropertyBrochureDocument property={property} agentPhone={agentPhone} agentEmail={agentEmail} coverImage={coverImage} galleryPhotos={galleryPhotos} />
       ).toBlob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');

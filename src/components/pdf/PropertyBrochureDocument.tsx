@@ -47,7 +47,9 @@ const styles = StyleSheet.create({
   brand: { fontFamily: 'Poppins', fontSize: 13, fontWeight: 'bold', color: TXT },
   brandSub: { fontSize: 8, color: MUTED, marginTop: 2 },
   date: { fontSize: 8, color: MUTED },
-  coverImage: { width: '100%', height: 260, objectFit: 'cover' },
+  coverImage: { width: '100%', height: 230, objectFit: 'cover' },
+  gallery: { flexDirection: 'row-reverse', gap: 4, paddingHorizontal: 4, paddingTop: 4, paddingBottom: 4 },
+  galleryImage: { flex: 1, height: 70, objectFit: 'cover', borderRadius: 2 },
   body: { paddingHorizontal: 28, paddingTop: 18 },
   badge: {
     alignSelf: 'flex-end',
@@ -103,13 +105,14 @@ interface Props {
   property: Property;
   agentPhone: string;
   agentEmail: string;
-  /** Pre-resolved data URL for the cover photo — react-pdf's <Image> can't
-   * gracefully recover from a failed remote fetch, so the caller resolves
-   * this itself and just omits it on failure. */
+  /** Pre-resolved data URLs — react-pdf's <Image> can't gracefully recover
+   * from a failed remote fetch, so the caller resolves these itself and
+   * just omits whichever ones fail. */
   coverImage?: string;
+  galleryPhotos?: string[];
 }
 
-export default function PropertyBrochureDocument({ property, agentPhone, agentEmail, coverImage }: Props) {
+export default function PropertyBrochureDocument({ property, agentPhone, agentEmail, coverImage, galleryPhotos }: Props) {
   const specs = [
     { label: 'النوع', value: property.typeAr },
     { label: 'المساحة', value: `${property.area} م²` },
@@ -128,6 +131,13 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
         </View>
 
         {coverImage && <Image src={coverImage} style={styles.coverImage} />}
+        {galleryPhotos && galleryPhotos.length > 0 && (
+          <View style={styles.gallery}>
+            {galleryPhotos.slice(0, 5).map((src, i) => (
+              <Image key={i} src={src} style={styles.galleryImage} />
+            ))}
+          </View>
+        )}
 
         <View style={styles.body}>
           {property.badge && <Text style={styles.badge}>{property.badge}</Text>}
