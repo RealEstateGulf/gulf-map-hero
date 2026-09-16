@@ -20,17 +20,20 @@ Font.register({
 Font.registerHyphenationCallback(word => [word]);
 
 const GOLD = '#D4AF37';
-const INK = '#1a1a1a';
-const MUTED = '#6b6b6b';
-const BORDER = '#e5e0d5';
+const BG = '#0a0a0a';
+const PANEL = '#141414';
+const TXT = '#f2f2f2';
+const MUTED = '#9a9a9a';
+const BORDER = '#2a2a2a';
 
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Amiri',
     fontSize: 11,
-    color: INK,
+    color: TXT,
     direction: 'rtl',
     paddingBottom: 50,
+    backgroundColor: BG,
   },
   header: {
     flexDirection: 'row-reverse',
@@ -41,15 +44,15 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     borderBottom: `1px solid ${BORDER}`,
   },
-  brand: { fontFamily: 'Poppins', fontSize: 13, fontWeight: 'bold', color: INK },
+  brand: { fontFamily: 'Poppins', fontSize: 13, fontWeight: 'bold', color: TXT },
   brandSub: { fontSize: 8, color: MUTED, marginTop: 2 },
   date: { fontSize: 8, color: MUTED },
   coverImage: { width: '100%', height: 260, objectFit: 'cover' },
   body: { paddingHorizontal: 28, paddingTop: 18 },
   badge: {
     alignSelf: 'flex-end',
-    backgroundColor: '#f5efe0',
-    color: '#8a6d1f',
+    backgroundColor: 'rgba(212,175,55,0.15)',
+    color: GOLD,
     fontSize: 8,
     fontFamily: 'Poppins',
     fontWeight: 'bold',
@@ -58,24 +61,25 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 8,
   },
-  title: { fontSize: 20, fontWeight: 'bold', textAlign: 'right', marginBottom: 4 },
+  title: { fontSize: 20, fontWeight: 'bold', textAlign: 'right', marginBottom: 4, color: TXT },
   location: { fontSize: 10, color: MUTED, textAlign: 'right', marginBottom: 10 },
   price: { fontFamily: 'Poppins', fontSize: 18, fontWeight: 'bold', color: GOLD, textAlign: 'right', marginBottom: 14 },
   specsRow: {
     flexDirection: 'row-reverse',
+    backgroundColor: PANEL,
     borderTop: `1px solid ${BORDER}`,
     borderBottom: `1px solid ${BORDER}`,
     marginBottom: 16,
   },
   specCell: { flex: 1, paddingVertical: 10, alignItems: 'center', borderLeft: `1px solid ${BORDER}` },
   specLabel: { fontFamily: 'Poppins', fontSize: 7, color: MUTED, marginBottom: 3, textTransform: 'uppercase' },
-  specValue: { fontSize: 11, fontWeight: 'bold' },
-  sectionTitle: { fontSize: 12, fontWeight: 'bold', textAlign: 'right', marginBottom: 8, marginTop: 4 },
-  description: { fontSize: 10, lineHeight: 1.7, textAlign: 'right', color: '#333', marginBottom: 16 },
+  specValue: { fontSize: 11, fontWeight: 'bold', color: TXT },
+  sectionTitle: { fontSize: 12, fontWeight: 'bold', textAlign: 'right', marginBottom: 8, marginTop: 4, color: TXT },
+  description: { fontSize: 10, lineHeight: 1.7, textAlign: 'right', color: '#c8c8c8', marginBottom: 16 },
   featuresGrid: { flexDirection: 'row-reverse', flexWrap: 'wrap', marginBottom: 10 },
   featureItem: { width: '50%', flexDirection: 'row-reverse', alignItems: 'center', marginBottom: 7 },
   featureDot: { width: 4, height: 4, borderRadius: 2, backgroundColor: GOLD, marginLeft: 6 },
-  featureText: { fontSize: 9.5 },
+  featureText: { fontSize: 9.5, color: TXT },
   footer: {
     position: 'absolute',
     bottom: 0,
@@ -87,9 +91,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#0d0d0d',
+    backgroundColor: PANEL,
   },
-  footerLabel: { fontSize: 7, color: '#aaa', fontFamily: 'Poppins' },
+  footerLabel: { fontSize: 7, color: MUTED, fontFamily: 'Poppins' },
   footerAgent: { fontSize: 10, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
   footerContact: { fontSize: 8, color: '#ccc', fontFamily: 'Poppins' },
   footerSite: { fontSize: 8, color: GOLD, fontFamily: 'Poppins' },
