@@ -444,6 +444,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                     initialPrice={parsedPrice}
                     initialMonthlyRent={property.avgMonthlyRent}
                     hideCta
+                    locked
                   />
                 </div>
               )}

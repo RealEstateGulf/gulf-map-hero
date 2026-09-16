@@ -8,6 +8,7 @@ import { useScrollReveal, rv } from '@/hooks/useScrollReveal';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/hooks/useT';
+import ROIValueChart from './ROIValueChart';
 
 const SLIDER_CONFIG = {
   price: { min: 50_000, max: 3_000_000, step: 10_000, default: 400_000 },
@@ -46,9 +47,13 @@ interface Props {
   initialMonthlyRent?: number;
   /** Hide the CTA button pointing to /contact — used when already embedded in a page that has its own CTA nearby. */
   hideCta?: boolean;
+  /** Freeze every parameter as a read-only figure instead of a draggable slider,
+   * and show the value-projection chart. Used for the per-listing embed, where
+   * price/rent are the listing's real numbers rather than a what-if scenario. */
+  locked?: boolean;
 }
 
-export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCta }: Props) {
+export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCta, locked }: Props) {
   const { t } = useTheme();
   const isMobile = useIsMobile();
   const { formatPrice } = useCurrency();
@@ -73,6 +78,18 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
   const sliderStyle = (val: number, min: number, max: number) => ({
     background: `linear-gradient(to ${dir === 'rtl' ? 'left' : 'right'}, ${t.gold} 0%, ${t.gold} ${((val - min) / (max - min)) * 100}%, rgba(255,255,255,0.08) ${((val - min) / (max - min)) * 100}%, rgba(255,255,255,0.08) 100%)`,
   });
+
+  // Locked mode swaps the draggable <input type=range> for a plain, non-interactive
+  // bar with the same fill — same look, but nothing to drag. A plain function
+  // (not a component) so it doesn't get remounted with fresh state on every render.
+  const paramTrack = (args: { val: number; min: number; max: number; step: number; onChange: (v: number) => void }) =>
+    locked ? (
+      <div style={{ height: 4, borderRadius: 2, ...sliderStyle(args.val, args.min, args.max) }} />
+    ) : (
+      <input type="range" min={args.min} max={args.max} step={args.step} value={args.val}
+        onChange={e => args.onChange(Number(e.target.value))}
+        style={sliderStyle(args.val, args.min, args.max)} />
+    );
 
   return (
     <div>
@@ -100,9 +117,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
                 <span style={{ color: t.txt3, fontSize: '0.82rem' }}>{label}</span>
                 <span style={{ fontFamily: "'Marcellus', serif", color: t.gold, fontSize: '1rem' }}>{fmt(val)}</span>
               </div>
-              <input type="range" min={cfg.min} max={cfg.max} step={cfg.step} value={val}
-                onChange={e => set(Number(e.target.value))}
-                style={sliderStyle(val, cfg.min, cfg.max)} />
+              {paramTrack({ val, min: cfg.min, max: cfg.max, step: cfg.step, onChange: set })}
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
                 <span style={{ color: t.txt4, fontSize: '0.62rem' }}>{fmt(cfg.min)}</span>
                 <span style={{ color: t.txt4, fontSize: '0.62rem' }}>{fmt(cfg.max)}</span>
@@ -116,9 +131,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
               <span style={{ color: t.txt3, fontSize: '0.82rem' }}>{tr('calc.appreciation')}</span>
               <span style={{ fontFamily: "'Marcellus', serif", color: t.gold, fontSize: '1rem' }}>{appreciation}%</span>
             </div>
-            <input type="range" min={0} max={15} step={0.5} value={appreciation}
-              onChange={e => setAppreciation(Number(e.target.value))}
-              style={sliderStyle(appreciation, 0, 15)} />
+            {paramTrack({ val: appreciation, min: 0, max: 15, step: 0.5, onChange: setAppreciation })}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
               <span style={{ color: t.txt4, fontSize: '0.62rem' }}>0%</span>
               <span style={{ color: t.gold3, fontSize: '0.62rem' }}>{isAr ? 'متوسط إسطنبول: 6-8%' : 'Istanbul avg: 6-8%'}</span>
@@ -132,9 +145,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
               <span style={{ color: t.txt3, fontSize: '0.82rem' }}>{tr('calc.years')}</span>
               <span style={{ fontFamily: "'Marcellus', serif", color: t.gold, fontSize: '1rem' }}>{years} {tr('unit.year')}</span>
             </div>
-            <input type="range" min={1} max={20} step={1} value={years}
-              onChange={e => setYears(Number(e.target.value))}
-              style={sliderStyle(years, 1, 20)} />
+            {paramTrack({ val: years, min: 1, max: 20, step: 1, onChange: setYears })}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
               <span style={{ color: t.txt4, fontSize: '0.62rem' }}>1 {tr('unit.year')}</span>
               <span style={{ color: t.txt4, fontSize: '0.62rem' }}>20 {tr('unit.year')}</span>
@@ -147,9 +158,7 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
               <span style={{ color: t.txt3, fontSize: '0.82rem' }}>{tr('calc.expenses')}</span>
               <span style={{ fontFamily: "'Marcellus', serif", color: t.gold, fontSize: '1rem' }}>{expenses}%</span>
             </div>
-            <input type="range" min={0} max={30} step={1} value={expenses}
-              onChange={e => setExpenses(Number(e.target.value))}
-              style={sliderStyle(expenses, 0, 30)} />
+            {paramTrack({ val: expenses, min: 0, max: 30, step: 1, onChange: setExpenses })}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
               <span style={{ color: t.txt4, fontSize: '0.62rem' }}>0%</span>
               <span style={{ color: t.gold3, fontSize: '0.62rem' }}>{isAr ? 'الافتراضي: 15%' : 'Default: 15%'}</span>
@@ -198,6 +207,18 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
               ))}
             </div>
           </div>
+
+          {/* Value-over-time chart */}
+          {locked && (
+            <div style={{ background: t.altBg, border: `1px solid ${t.border}`, borderRadius: 8, padding: '20px 18px' }}>
+              <ROIValueChart
+                data={res.table.map(row => ({ yr: row.yr, val: row.val }))}
+                formatPrice={formatPrice}
+                title={isAr ? `توقع قيمة العقار خلال ${years} سنوات` : `Projected property value over ${years} years`}
+                isAr={isAr}
+              />
+            </div>
+          )}
 
           {/* CTA */}
           {!hideCta && (
