@@ -43,7 +43,13 @@ export default function PropertyDetailPage({
         // links shared before the slug migration keep working.
         const found = all.find(p => p.slug === slug) ?? all.find(p => p.id === slug) ?? null;
         setProperty(found);
-        if (found) setRelated(all.filter(p => p.id !== found.id && p.category === found.category).slice(0, 3));
+        if (found) {
+          const others = all.filter(p => p.id !== found.id);
+          // Same-category listings first (most relevant), then fill the rest.
+          const sameCategory = others.filter(p => p.category === found.category);
+          const rest = others.filter(p => p.category !== found.category);
+          setRelated([...sameCategory, ...rest].slice(0, 3));
+        }
       });
   }, [slug]);
 
@@ -662,7 +668,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                   margin: 0,
                 }}
               >
-                عقارات مشابهة
+                عقارات أخرى
               </h2>
             </div>
             <div
@@ -713,6 +719,28 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                   </div>
                 </Link>
               ))}
+            </div>
+            <div style={{ textAlign: 'center', marginTop: 28 }}>
+              <Link
+                href="/properties"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  border: `1px solid ${t.border2}`, borderRadius: 6,
+                  padding: '11px 22px', color: t.txt2, fontSize: '0.78rem',
+                  textDecoration: 'none', transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = t.gold3;
+                  e.currentTarget.style.color = t.gold;
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = t.border2;
+                  e.currentTarget.style.color = t.txt2;
+                }}
+              >
+                تصفح جميع العقارات
+                <ArrowRight size={13} />
+              </Link>
             </div>
           </div>
         )}
