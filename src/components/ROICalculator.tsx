@@ -45,6 +45,8 @@ interface Props {
   initialPrice?: number;
   /** Pre-fill the rent slider from a listing's average monthly rent (USD), if set. */
   initialMonthlyRent?: number;
+  /** Pre-fill the appreciation rate from the listing's city (avgAppreciationRate), if set. */
+  initialAppreciationRate?: number;
   /** Hide the CTA button pointing to /contact — used when already embedded in a page that has its own CTA nearby. */
   hideCta?: boolean;
   /** Freeze every parameter as a read-only figure instead of a draggable slider,
@@ -53,7 +55,7 @@ interface Props {
   locked?: boolean;
 }
 
-export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCta, locked }: Props) {
+export default function ROICalculator({ initialPrice, initialMonthlyRent, initialAppreciationRate, hideCta, locked }: Props) {
   const { t } = useTheme();
   const isMobile = useIsMobile();
   const { formatPrice } = useCurrency();
@@ -66,10 +68,13 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
   const startRent = initialMonthlyRent && initialMonthlyRent > 0
     ? Math.min(Math.max(initialMonthlyRent, SLIDER_CONFIG.rent.min), SLIDER_CONFIG.rent.max)
     : SLIDER_CONFIG.rent.default;
+  const startAppreciation = initialAppreciationRate && initialAppreciationRate > 0
+    ? Math.min(Math.max(initialAppreciationRate, SLIDER_CONFIG.appreciation.min), SLIDER_CONFIG.appreciation.max)
+    : SLIDER_CONFIG.appreciation.default;
 
   const [price, setPrice] = useState(startPrice);
   const [rent, setRent] = useState(startRent);
-  const [appreciation, setAppreciation] = useState(SLIDER_CONFIG.appreciation.default);
+  const [appreciation, setAppreciation] = useState(startAppreciation);
   const [years, setYears] = useState(SLIDER_CONFIG.years.default);
   const [expenses, setExpenses] = useState(SLIDER_CONFIG.expenses.default);
 
@@ -134,7 +139,11 @@ export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCt
             {paramTrack({ val: appreciation, min: 0, max: 15, step: 0.5, onChange: setAppreciation })}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
               <span style={{ color: t.txt4, fontSize: '0.62rem' }}>0%</span>
-              <span style={{ color: t.gold3, fontSize: '0.62rem' }}>{isAr ? 'متوسط إسطنبول: 6-8%' : 'Istanbul avg: 6-8%'}</span>
+              <span style={{ color: t.gold3, fontSize: '0.62rem' }}>
+                {initialAppreciationRate
+                  ? (isAr ? 'متوسط المنطقة' : 'Region avg')
+                  : (isAr ? 'متوسط إسطنبول: 6-8%' : 'Istanbul avg: 6-8%')}
+              </span>
               <span style={{ color: t.txt4, fontSize: '0.62rem' }}>15%</span>
             </div>
           </div>

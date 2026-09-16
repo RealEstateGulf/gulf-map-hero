@@ -47,6 +47,9 @@ export const citySchema = z.object({
   lng: z.coerce.number().finite().min(-180).max(180),
   active: z.boolean().optional(),
   sortOrder: z.coerce.number().int().min(-1000).max(100_000).optional(),
+  // Empty-string check must come before the number branch — z.coerce.number()
+  // would otherwise happily coerce '' to 0 instead of falling through.
+  avgAppreciationRate: z.union([z.literal(''), z.null(), z.coerce.number().min(0).max(50)]).optional(),
 });
 
 export const loginSchema = z.object({

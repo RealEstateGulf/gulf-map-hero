@@ -6,7 +6,7 @@ import { Save, AlertCircle, Search, Loader2, MapPin } from 'lucide-react';
 
 type City = {
   id: string; nameAr: string; nameEn: string; lat: number; lng: number;
-  active: boolean; sortOrder: number;
+  active: boolean; sortOrder: number; avgAppreciationRate?: number | null;
 };
 
 type GeoResult = { text: string; placeName: string; lat: number; lng: number };
@@ -31,6 +31,7 @@ export default function CityForm({ city }: { city?: City }) {
     lng: city?.lng?.toString() ?? '',
     active: city?.active ?? true,
     sortOrder: city?.sortOrder ?? 0,
+    avgAppreciationRate: city?.avgAppreciationRate?.toString() ?? '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -164,6 +165,13 @@ export default function CityForm({ city }: { city?: City }) {
           <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.68rem', margin: 0 }}>
             Koordinatları yukarıdaki arama kutusuyla otomatik doldurabilir veya elle girebilirsiniz.
           </p>
+          <div>
+            <label style={LABEL}>Yıllık Ortalama Değer Artışı (%)</label>
+            <input style={INPUT} type="number" min="0" max="50" step="0.1" value={form.avgAppreciationRate} onChange={set('avgAppreciationRate')} onFocus={fo} onBlur={bl} placeholder="Opsiyonel, örn. 7.5" />
+            <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.68rem', margin: '6px 0 0' }}>
+              Bu şehirdeki ilanların ROI hesaplayıcısında kullanılır. Boş bırakılırsa genel varsayılan (%6) kullanılır.
+            </p>
+          </div>
         </div>
       </div>
 

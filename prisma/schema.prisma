@@ -111,13 +111,14 @@ model InsightPost {
 }
 
 model City {
-  id        String  @id @default(cuid())
-  nameAr    String
-  nameEn    String
-  lat       Float
-  lng       Float
-  active    Boolean @default(true)
-  sortOrder Int     @default(0)
+  id                  String  @id @default(cuid())
+  nameAr              String
+  nameEn              String
+  lat                 Float
+  lng                 Float
+  active              Boolean @default(true)
+  sortOrder           Int     @default(0)
+  avgAppreciationRate Float?
 }
 
 model PageView {

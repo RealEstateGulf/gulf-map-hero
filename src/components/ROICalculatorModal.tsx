@@ -9,10 +9,11 @@ import ROICalculator from './ROICalculator';
 interface Props {
   initialPrice?: number;
   initialMonthlyRent?: number;
+  initialAppreciationRate?: number;
   onClose: () => void;
 }
 
-export default function ROICalculatorModal({ initialPrice, initialMonthlyRent, onClose }: Props) {
+export default function ROICalculatorModal({ initialPrice, initialMonthlyRent, initialAppreciationRate, onClose }: Props) {
   const { t } = useTheme();
   const isMobile = useIsMobile();
   const { dir, isAr } = useLanguage();
@@ -85,6 +86,7 @@ export default function ROICalculatorModal({ initialPrice, initialMonthlyRent, o
           <ROICalculator
             initialPrice={initialPrice}
             initialMonthlyRent={initialMonthlyRent}
+            initialAppreciationRate={initialAppreciationRate}
             hideCta
             locked
           />

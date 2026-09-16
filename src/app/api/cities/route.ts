@@ -19,6 +19,7 @@ export async function GET() {
     nameEn: c.nameEn,
     lat: c.lat,
     lng: c.lng,
+    avgAppreciationRate: c.avgAppreciationRate ?? undefined,
     count: countByCityEn.get(c.nameEn) ?? 0,
   }));
 

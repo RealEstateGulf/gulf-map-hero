@@ -73,10 +73,21 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
   const [activePhoto, setActivePhoto] = useState(0);
   const [waNumber, setWaNumber] = useState('905310266515');
   const [roiOpen, setRoiOpen] = useState(false);
+  const [cityAppreciationRate, setCityAppreciationRate] = useState<number | undefined>(undefined);
   // property.price is free text ("250000", "Call Us", ...) — only feed the
   // calculator a starting price when it's actually numeric.
   const parsedPriceNum = Number(property.price.replace(/[^0-9.]/g, ''));
   const parsedPrice = parsedPriceNum > 0 ? parsedPriceNum : undefined;
+
+  useEffect(() => {
+    fetch('/api/cities')
+      .then(r => r.ok ? r.json() : [])
+      .then((cities: { nameEn: string; avgAppreciationRate?: number }[]) => {
+        const match = cities.find(c => c.nameEn === property.cityEn);
+        if (match?.avgAppreciationRate) setCityAppreciationRate(match.avgAppreciationRate);
+      })
+      .catch(() => {});
+  }, [property.cityEn]);
 
   useEffect(() => {
     fetch('/api/popup-settings')
@@ -445,6 +456,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               <ROICalculatorModal
                 initialPrice={parsedPrice}
                 initialMonthlyRent={property.avgMonthlyRent}
+                initialAppreciationRate={cityAppreciationRate}
                 onClose={() => setRoiOpen(false)}
               />
             )}

@@ -10,7 +10,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   const { id } = await params;
   try {
     const parsed = citySchema.safeParse(await req.json());
-    if (!parsed.success) return NextResponse.json({ error: 'Geçersiz veri' }, { status: 400 });
+    if (!parsed.success) {
+      const detail = parsed.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ');
+      return NextResponse.json({ error: `Geçersiz veri — ${detail}` }, { status: 400 });
+    }
     const body = parsed.data;
     const city = await prisma.city.update({
       where: { id },
@@ -19,6 +22,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
         lat: body.lat, lng: body.lng,
         active: body.active ?? true,
         sortOrder: body.sortOrder ?? 0,
+        avgAppreciationRate: body.avgAppreciationRate === '' || body.avgAppreciationRate == null ? null : body.avgAppreciationRate,
       },
     });
     return NextResponse.json(city);
