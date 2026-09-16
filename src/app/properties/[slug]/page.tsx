@@ -360,6 +360,22 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                   </span>
                 </div>
               )}
+              <button
+                type="button"
+                onClick={() => setRoiOpen(true)}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  background: t.gold, border: 'none', borderRadius: 999,
+                  padding: '6px 14px', color: t.goldText, fontSize: '0.72rem',
+                  fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
+                  transition: 'opacity 0.2s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '0.82'; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+              >
+                <Calculator size={12} />
+                احسب العائد على الاستثمار (ROI)
+              </button>
             </div>
 
             {/* Specs bar */}
@@ -419,25 +435,6 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               </div>
             )}
 
-            {/* ROI Calculator — opens as a popup so it isn't squeezed beside the sidebar */}
-            <div style={{ marginBottom: 36, textAlign: 'center' }}>
-              <button
-                type="button"
-                onClick={() => setRoiOpen(true)}
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  background: t.gold, border: 'none', borderRadius: 6,
-                  padding: '13px 24px', color: t.goldText, fontSize: '0.78rem',
-                  fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
-                  cursor: 'pointer', fontFamily: 'inherit', transition: 'opacity 0.2s',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.opacity = '0.82'; }}
-                onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-              >
-                <Calculator size={14} />
-                احسب العائد على الاستثمار (ROI)
-              </button>
-            </div>
             {roiOpen && (
               <ROICalculatorModal
                 initialPrice={parsedPrice}
