@@ -14,6 +14,7 @@ type Listing = {
   typeAr: string; typeEn: string; category: string; badge?: string | null;
   descriptionAr?: string | null; descriptionEn?: string | null;
   featuresAr: string; featuresEn: string; photos: string; thumbGradient: string;
+  avgRentalYield?: number | null;
   published: boolean; featured: boolean;
   agentId?: string | null; consultantId?: string | null;
 };
@@ -61,6 +62,7 @@ export default function ListingForm({ listing, consultants, agents, cities }: Pr
     locationAr: listing?.locationAr ?? '',
     locationEn: listing?.locationEn ?? '',
     price: listing?.price ?? '',
+    avgRentalYield: listing?.avgRentalYield?.toString() ?? '',
     area: listing?.area?.toString() ?? '',
     rooms: listing?.rooms ?? '',
     typeAr: listing?.typeAr ?? '',
@@ -265,6 +267,10 @@ export default function ListingForm({ listing, consultants, agents, cities }: Pr
               <div style={FIELD}>
                 <label style={LABEL}>Fiyat (USD)</label>
                 <input style={INPUT} type="text" value={form.price} onChange={set('price')} onFocus={focusBorder} onBlur={blurBorder} placeholder="250000" required />
+              </div>
+              <div style={FIELD}>
+                <label style={LABEL}>Ortalama Kira Getirisi (yıllık %)</label>
+                <input style={INPUT} type="number" min="0" max="100" step="0.1" value={form.avgRentalYield} onChange={set('avgRentalYield')} onFocus={focusBorder} onBlur={blurBorder} placeholder="Opsiyonel, örn. 6.5" />
               </div>
               <div style={FIELD}>
                 <label style={LABEL}>Alan (m²)</label>

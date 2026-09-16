@@ -22,5 +22,6 @@ export interface Property {
   featuresEn?: string[];
   thumbGradient: string;
   photos: string[];
+  avgRentalYield?: number;
   featured?: boolean;
 }

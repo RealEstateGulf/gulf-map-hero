@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         featuresAr: body.featuresAr ?? '[]',
         featuresEn: body.featuresEn ?? '[]',
         photos: body.photos ?? '[]',
+        avgRentalYield: body.avgRentalYield === '' || body.avgRentalYield == null ? null : body.avgRentalYield,
         thumbGradient: body.thumbGradient ?? 'from-blue-900 to-blue-700',
         published: body.published ?? true,
         featured: body.featured ?? false,

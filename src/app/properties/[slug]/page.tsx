@@ -12,12 +12,16 @@ import {
   CheckCircle2,
   ArrowRight,
   ChevronRight,
+  ChevronDown,
+  Calculator,
+  TrendingUp,
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useIsMobile } from '@/hooks/useResponsive';
 import { useLanguage } from '@/context/LanguageContext';
 import Navbar from '@/components/map/Navbar';
 import FooterSection from '@/components/sections/FooterSection';
+import ROICalculator from '@/components/ROICalculator';
 import type { Property } from '@/data/properties';
 
 export default function PropertyDetailPage({
@@ -63,6 +67,11 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
   const isMobile = useIsMobile();
   const [activePhoto, setActivePhoto] = useState(0);
   const [waNumber, setWaNumber] = useState('905310266515');
+  const [roiOpen, setRoiOpen] = useState(false);
+  // property.price is free text ("250000", "Call Us", ...) — only feed the
+  // calculator a starting price when it's actually numeric.
+  const parsedPriceNum = Number(property.price.replace(/[^0-9.]/g, ''));
+  const parsedPrice = parsedPriceNum > 0 ? parsedPriceNum : undefined;
 
   useEffect(() => {
     fetch('/api/popup-settings')
@@ -318,13 +327,40 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
             {/* Price */}
             <div
               style={{
-                fontFamily: "'Marcellus', serif",
-                color: t.gold,
-                fontSize: isMobile ? '1.5rem' : '1.9rem',
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: 12,
                 marginBottom: 28,
               }}
             >
-              ${property.price}
+              <div
+                style={{
+                  fontFamily: "'Marcellus', serif",
+                  color: t.gold,
+                  fontSize: isMobile ? '1.5rem' : '1.9rem',
+                }}
+              >
+                ${property.price}
+              </div>
+              {typeof property.avgRentalYield === 'number' && (
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    background: t.gold6,
+                    border: `1px solid ${t.gold4}`,
+                    borderRadius: 999,
+                    padding: '5px 12px',
+                  }}
+                >
+                  <TrendingUp size={12} color={t.gold} strokeWidth={1.8} />
+                  <span style={{ color: t.gold2, fontSize: '0.72rem', fontWeight: 600 }}>
+                    {`متوسط العائد الإيجاري: ${property.avgRentalYield}%`}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Specs bar */}
@@ -383,6 +419,35 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                 </div>
               </div>
             )}
+
+            {/* ROI Calculator — collapsed by default, visitor opens it if they want */}
+            <div style={{ marginBottom: 36 }}>
+              <button
+                type="button"
+                onClick={() => setRoiOpen(o => !o)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 8, background: 'none',
+                  border: `1px solid ${t.border}`, borderRadius: 6, padding: '11px 18px',
+                  color: t.txt2, fontSize: '0.82rem', cursor: 'pointer',
+                  fontFamily: 'inherit', transition: 'border-color 0.2s, color 0.2s',
+                }}
+                onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = t.gold3; el.style.color = t.gold; }}
+                onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = t.border; el.style.color = t.txt2; }}
+              >
+                <Calculator size={14} />
+                {roiOpen ? 'إخفاء حاسبة العائد على الاستثمار' : 'احسب العائد على الاستثمار (ROI)'}
+                <ChevronDown size={14} style={{ transform: roiOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
+              </button>
+              {roiOpen && (
+                <div style={{ marginTop: 20 }}>
+                  <ROICalculator
+                    initialPrice={parsedPrice}
+                    initialYieldPercent={property.avgRentalYield}
+                    hideCta
+                  />
+                </div>
+              )}
+            </div>
 
             {/* Back link — mobile */}
             {isMobile && (
