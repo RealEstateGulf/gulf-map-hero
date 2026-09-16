@@ -42,13 +42,13 @@ function calcROI(priceUSD: number, rentUSD: number, appreciation: number, years:
 interface Props {
   /** Pre-fill the price slider, e.g. from a listing's own price. */
   initialPrice?: number;
-  /** Pre-fill the rent slider from a listing's average rental yield (%), if set. */
-  initialYieldPercent?: number;
+  /** Pre-fill the rent slider from a listing's average monthly rent (USD), if set. */
+  initialMonthlyRent?: number;
   /** Hide the CTA button pointing to /contact — used when already embedded in a page that has its own CTA nearby. */
   hideCta?: boolean;
 }
 
-export default function ROICalculator({ initialPrice, initialYieldPercent, hideCta }: Props) {
+export default function ROICalculator({ initialPrice, initialMonthlyRent, hideCta }: Props) {
   const { t } = useTheme();
   const isMobile = useIsMobile();
   const { formatPrice } = useCurrency();
@@ -58,8 +58,8 @@ export default function ROICalculator({ initialPrice, initialYieldPercent, hideC
   const startPrice = initialPrice && initialPrice > 0
     ? Math.min(Math.max(initialPrice, SLIDER_CONFIG.price.min), SLIDER_CONFIG.price.max)
     : SLIDER_CONFIG.price.default;
-  const startRent = initialPrice && initialYieldPercent
-    ? Math.min(Math.max(Math.round((initialPrice * (initialYieldPercent / 100)) / 12 / 100) * 100, SLIDER_CONFIG.rent.min), SLIDER_CONFIG.rent.max)
+  const startRent = initialMonthlyRent && initialMonthlyRent > 0
+    ? Math.min(Math.max(initialMonthlyRent, SLIDER_CONFIG.rent.min), SLIDER_CONFIG.rent.max)
     : SLIDER_CONFIG.rent.default;
 
   const [price, setPrice] = useState(startPrice);

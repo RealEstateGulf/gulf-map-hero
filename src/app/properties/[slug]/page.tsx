@@ -343,7 +343,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               >
                 ${property.price}
               </div>
-              {typeof property.avgRentalYield === 'number' && (
+              {typeof property.avgMonthlyRent === 'number' && (
                 <div
                   style={{
                     display: 'flex',
@@ -357,7 +357,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                 >
                   <TrendingUp size={12} color={t.gold} strokeWidth={1.8} />
                   <span style={{ color: t.gold2, fontSize: '0.72rem', fontWeight: 600 }}>
-                    {`متوسط العائد الإيجاري: ${property.avgRentalYield}%`}
+                    {`متوسط الإيجار الشهري: $${property.avgMonthlyRent.toLocaleString('en-US')}`}
                   </span>
                 </div>
               )}
@@ -442,7 +442,7 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
                 <div style={{ marginTop: 20 }}>
                   <ROICalculator
                     initialPrice={parsedPrice}
-                    initialYieldPercent={property.avgRentalYield}
+                    initialMonthlyRent={property.avgMonthlyRent}
                     hideCta
                   />
                 </div>

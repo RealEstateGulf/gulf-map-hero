@@ -121,7 +121,7 @@ export const listingSchema = z.object({
   photos: z.string().max(20_000).optional(),
   // Empty-string check must come before the number branch — z.coerce.number()
   // would otherwise happily coerce '' to 0 instead of falling through.
-  avgRentalYield: z.union([z.literal(''), z.null(), z.coerce.number().min(0).max(100)]).optional(),
+  avgMonthlyRent: z.union([z.literal(''), z.null(), z.coerce.number().min(0).max(1_000_000)]).optional(),
   thumbGradient: z.string().max(120).optional(),
   published: z.boolean().optional(),
   featured: z.boolean().optional(),

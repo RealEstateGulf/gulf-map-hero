@@ -59,7 +59,7 @@ model Property {
   featuresAr    String   @default("[]")
   featuresEn    String   @default("[]")
   photos        String   @default("[]")
-  avgRentalYield Float?
+  avgMonthlyRent Float?
   thumbGradient String
   published     Boolean  @default(true)
   featured      Boolean  @default(false)

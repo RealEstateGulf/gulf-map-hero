@@ -39,7 +39,7 @@ export async function GET() {
     featuresEn: parseJsonArray(p.featuresEn),
     thumbGradient: p.thumbGradient,
     photos: parseJsonArray(p.photos),
-    avgRentalYield: p.avgRentalYield ?? undefined,
+    avgMonthlyRent: p.avgMonthlyRent ?? undefined,
     featured: p.featured,
   }));
 

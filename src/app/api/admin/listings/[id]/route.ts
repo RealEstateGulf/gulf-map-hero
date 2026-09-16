@@ -28,7 +28,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
         featuresAr: body.featuresAr ?? '[]',
         featuresEn: body.featuresEn ?? '[]',
         photos: body.photos ?? '[]',
-        avgRentalYield: body.avgRentalYield === '' || body.avgRentalYield == null ? null : body.avgRentalYield,
+        avgMonthlyRent: body.avgMonthlyRent === '' || body.avgMonthlyRent == null ? null : body.avgMonthlyRent,
         thumbGradient: body.thumbGradient,
         published: body.published,
         featured: body.featured,
