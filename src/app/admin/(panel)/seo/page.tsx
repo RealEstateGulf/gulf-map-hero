@@ -14,6 +14,7 @@ const PAGE_NAMES: Record<string, string> = {
   contact: 'İletişim',
   properties: 'İlanlar',
   insights: 'Blog / Insights',
+  calculator: 'ROI Hesaplayıcı',
 };
 
 export default async function SeoPage() {

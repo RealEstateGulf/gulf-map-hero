@@ -9,7 +9,11 @@ import TrackPageView from '@/components/TrackPageView';
 import AnalyticsScripts from '@/components/AnalyticsScripts';
 
 export const metadata: Metadata = {
-  title: 'مفتاح تركيا | Miftah Turkiye — الاستثمار العقاري في تركيا',
+  metadataBase: new URL('https://www.almiftahrealestate.com'),
+  title: {
+    default: 'المفتاح العقارية | الاستثمار العقاري في تركيا',
+    template: '%s',
+  },
   description: 'شريكك الموثوق في الاستثمار العقاري وتملك العقارات في تركيا — إسطنبول، أنطاليا، بورصة | Your trusted partner for real estate investment and property ownership in Türkiye',
   verification: {
     google: 'Y0uRtElpzoWCBfJYCja5fbzGBPTBL0AWUrfGvngux2g',
