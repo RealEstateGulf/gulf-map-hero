@@ -1,13 +1,12 @@
 import { Document, Page, View, Text, Image, Font, StyleSheet } from '@react-pdf/renderer';
 import type { Property } from '@/data/properties';
 
-Font.register({
-  family: 'Amiri',
-  fonts: [
-    { src: '/fonts/Amiri-Regular.ttf', fontWeight: 'normal' },
-    { src: '/fonts/Amiri-Bold.ttf', fontWeight: 'bold' },
-  ],
-});
+// Regular and Bold are registered as two entirely separate font families
+// (not one family with two weights) — mixing weights under a single family
+// name has caused react-pdf/fontkit to pick the wrong glyph for certain
+// Arabic letter sequences (renders as a stray box mid-word) in testing.
+Font.register({ family: 'Amiri', src: '/fonts/Amiri-Regular.ttf' });
+Font.register({ family: 'Amiri-Bold', src: '/fonts/Amiri-Bold.ttf' });
 Font.register({
   family: 'Poppins',
   fonts: [
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: TXT,
     direction: 'rtl',
-    paddingBottom: 50,
+    paddingBottom: 90,
     backgroundColor: BG,
   },
   header: {
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   coverImage: { width: '100%', height: 320, objectFit: 'cover' },
   body: { paddingHorizontal: 28, paddingTop: 18 },
   galleryPage: { paddingHorizontal: 24, paddingTop: 24 },
-  galleryTitle: { fontSize: 14, fontWeight: 'bold', textAlign: 'right', marginBottom: 14, color: TXT },
+  galleryTitle: { fontFamily: 'Amiri-Bold', fontSize: 14, textAlign: 'right', marginBottom: 14, color: TXT },
   galleryGrid: { flexDirection: 'row-reverse', flexWrap: 'wrap', gap: 10 },
   galleryCell: { width: '48.5%' },
   galleryImage: { width: '100%', height: 190, objectFit: 'cover', borderRadius: 3 },
@@ -58,15 +57,14 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     backgroundColor: 'rgba(212,175,55,0.15)',
     color: GOLD,
-    fontSize: 8,
-    fontFamily: 'Poppins',
-    fontWeight: 'bold',
+    fontSize: 9,
+    fontFamily: 'Amiri-Bold',
     paddingVertical: 3,
     paddingHorizontal: 8,
     borderRadius: 10,
     marginBottom: 8,
   },
-  title: { fontSize: 20, fontWeight: 'bold', textAlign: 'right', marginBottom: 4, color: TXT },
+  title: { fontFamily: 'Amiri-Bold', fontSize: 20, textAlign: 'right', marginBottom: 4, color: TXT },
   location: { fontSize: 10, color: MUTED, textAlign: 'right', marginBottom: 10 },
   price: { fontFamily: 'Poppins', fontSize: 18, fontWeight: 'bold', color: GOLD, textAlign: 'right', marginBottom: 14 },
   specsRow: {
@@ -77,9 +75,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   specCell: { flex: 1, paddingVertical: 10, alignItems: 'center', borderLeft: `1px solid ${BORDER}` },
-  specLabel: { fontFamily: 'Poppins', fontSize: 7, color: MUTED, marginBottom: 3, textTransform: 'uppercase' },
-  specValue: { fontSize: 11, fontWeight: 'bold', color: TXT },
-  sectionTitle: { fontSize: 12, fontWeight: 'bold', textAlign: 'right', marginBottom: 8, marginTop: 4, color: TXT },
+  specLabel: { fontFamily: 'Amiri', fontSize: 9, color: MUTED, marginBottom: 3 },
+  specValue: { fontFamily: 'Amiri-Bold', fontSize: 11, color: TXT },
+  sectionTitle: { fontFamily: 'Amiri-Bold', fontSize: 12, textAlign: 'right', marginBottom: 8, marginTop: 4, color: TXT },
   description: { fontSize: 10, lineHeight: 1.7, textAlign: 'right', color: '#c8c8c8', marginBottom: 16 },
   featuresGrid: { flexDirection: 'row-reverse', flexWrap: 'wrap', marginBottom: 10 },
   featureItem: { width: '50%', flexDirection: 'row-reverse', alignItems: 'center', marginBottom: 7 },
@@ -98,8 +96,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: PANEL,
   },
-  footerLabel: { fontSize: 7, color: MUTED, fontFamily: 'Poppins' },
-  footerAgent: { fontSize: 10, fontWeight: 'bold', color: '#fff', marginBottom: 2 },
+  footerLabel: { fontSize: 9, color: MUTED, fontFamily: 'Amiri' },
+  footerAgent: { fontFamily: 'Amiri-Bold', fontSize: 11, color: '#fff', marginBottom: 2 },
   footerContact: { fontSize: 8, color: '#ccc', fontFamily: 'Poppins' },
   footerSite: { fontSize: 8, color: GOLD, fontFamily: 'Poppins' },
 });
