@@ -624,6 +624,50 @@ export default function InvestmentMap() {
         {isAr ? 'تركيا' : 'TURKEY'}
       </div>
 
+      {/* Persistent pulsing "View All" pill — quick access to every listing, always on top-center */}
+      <button
+        onClick={() => router.push('/properties')}
+        style={{
+          position: 'absolute',
+          top: 96,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 15,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          background: 'rgba(9,9,9,0.75)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          border: '1px solid #D4AF37',
+          borderRadius: 999,
+          padding: '8px 18px',
+          color: '#D9BAA0',
+          fontSize: '0.78rem',
+          fontWeight: 700,
+          cursor: 'pointer',
+          whiteSpace: 'nowrap',
+          animation: 'markerGlow 2s ease-in-out infinite',
+          opacity: showOverlays && !connectorOpen ? 1 : 0,
+          pointerEvents: showOverlays && !connectorOpen ? 'auto' : 'none',
+          transition: 'opacity 0.4s ease, transform 0.4s ease',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(-50%) scale(1.06)'; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = 'translateX(-50%) scale(1)'; }}
+      >
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            background: '#D4AF37',
+            boxShadow: '0 0 8px 2px rgba(212,175,55,0.8)',
+            flexShrink: 0,
+          }}
+        />
+        {isAr ? 'عرض كل العقارات' : 'View All Properties'}
+      </button>
+
       {/* Hero overlay — visible until city is selected */}
       <HeroIntro
         visible={showOverlays && !connectorOpen}
