@@ -6,6 +6,7 @@ import StatsSection from '@/components/sections/StatsSection';
 import WhyTurkeySection from '@/components/sections/WhyTurkeySection';
 import ArchitectureSection from '@/components/sections/ArchitectureSection';
 import FeaturedSection from '@/components/sections/FeaturedSection';
+import BudgetSection from '@/components/sections/BudgetSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import WhyUsSection from '@/components/sections/WhyUsSection';
 import SustainableCTASection from '@/components/sections/SustainableCTASection';
@@ -38,6 +39,7 @@ export default function Home() {
       <WhyTurkeySection />
       <ArchitectureSection />
       <FeaturedSection />
+      <BudgetSection />
       <ServicesSection />
       <WhyUsSection />
       <SustainableCTASection />
