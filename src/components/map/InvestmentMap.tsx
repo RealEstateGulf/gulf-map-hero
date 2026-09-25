@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { gulfCities, GULF_VIEW_BOUNDS, TURKEY_VIEW_BOUNDS } from '@/data/gulfCities';
 import { Property, PropertyCategory } from '@/data/properties';
 import Navbar from './Navbar';
 import CategoryBar from './CategoryBar';
-import PropertyGridModal from './PropertyGridModal';
 import PropertyQuickViewModal from './PropertyQuickViewModal';
 import PropertyConnectorOverlay from './PropertyConnectorOverlay';
 import MobileBottomSheet from './MobileBottomSheet';
@@ -54,7 +54,7 @@ export default function InvestmentMap() {
 
   const isMobile = useIsMobile();
   const { dir, isAr } = useLanguage();
-  const [gridOpen, setGridOpen] = useState(false);
+  const router = useRouter();
   const [connectorOpen, setConnectorOpen] = useState(false);
   const [markerPoint, setMarkerPoint] = useState<{ x: number; y: number } | null>(null);
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
@@ -65,9 +65,9 @@ export default function InvestmentMap() {
   const [activeCityId, setActiveCityId] = useState<string | null>(null);
 
   useEffect(() => {
-    panelOpenRef.current = gridOpen || connectorOpen;
+    panelOpenRef.current = connectorOpen;
     connectorOpenRef.current = connectorOpen;
-  }, [gridOpen, connectorOpen]);
+  }, [connectorOpen]);
 
   useEffect(() => {
     citiesRef.current = cities;
@@ -120,7 +120,7 @@ export default function InvestmentMap() {
     cities.forEach(city => {
       const inner = innerElRefs.current[city.id];
       if (!inner) return;
-      const isActiveGlow = city.id === activeCityId && (gridOpen || connectorOpen);
+      const isActiveGlow = city.id === activeCityId && connectorOpen;
       if (isActiveGlow) {
         inner.style.animation = 'markerGlow 2s ease-in-out infinite';
         inner.style.background = 'rgba(212,175,55,0.3)';
@@ -133,7 +133,7 @@ export default function InvestmentMap() {
         inner.style.boxShadow = '0 0 10px rgba(212,175,55,0.2)';
       }
     });
-  }, [gridOpen, connectorOpen, activeCityId, cities]);
+  }, [connectorOpen, activeCityId, cities]);
 
   // Kategori filtresi ya da ilan verisi değiştikçe şehirlerin üzerindeki ilan sayılarını güncelle
   useEffect(() => {
@@ -154,16 +154,11 @@ export default function InvestmentMap() {
     });
   }, [activeCategory, properties, cities]);
 
-  const handleClose = useCallback(() => {
-    setGridOpen(false);
-    setConnectorOpen(false);
-    setSelectedProperty(null);
-  }, []);
-
   const handleShowAll = useCallback(() => {
     setConnectorOpen(false);
-    setGridOpen(true);
-  }, []);
+    const cityEn = activeCity?.nameEn;
+    router.push(cityEn ? `/properties?city=${encodeURIComponent(cityEn)}` : '/properties');
+  }, [activeCity, router]);
 
   const handleSelectFromConnector = useCallback((property: Property) => {
     if (isMobile) setConnectorOpen(false);
@@ -192,10 +187,9 @@ export default function InvestmentMap() {
 
   // Scroll lock — modal açıkken sayfanın scroll olmasını engelle
   useEffect(() => {
-    const anyModalOpen = gridOpen || !!selectedProperty;
-    document.body.style.overflow = anyModalOpen ? 'hidden' : '';
+    document.body.style.overflow = selectedProperty ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [gridOpen, selectedProperty]);
+  }, [selectedProperty]);
 
   // Şehir marker'larını (canlı veriden) inşa eder — hem harita 'load' olduğunda hem de
   // şehir verisi geldiğinde tetiklenir; hangisi son gelirse o inşa eder.
@@ -632,7 +626,7 @@ export default function InvestmentMap() {
 
       {/* Hero overlay — visible until city is selected */}
       <HeroIntro
-        visible={showOverlays && !connectorOpen && !gridOpen}
+        visible={showOverlays && !connectorOpen}
         onExplore={() => {
           const first = citiesRef.current[0];
           if (first) openCityConnectorRef.current(first);
@@ -643,7 +637,7 @@ export default function InvestmentMap() {
       <CategoryBar active={activeCategory} onChange={setActiveCategory} />
 
       {/* Connector overlay or mobile bottom sheet */}
-      {connectorOpen && !gridOpen && (
+      {connectorOpen && (
         isMobile ? (
           <MobileBottomSheet
             properties={filteredActiveCityProperties}
@@ -663,16 +657,6 @@ export default function InvestmentMap() {
             onClose={() => setConnectorOpen(false)}
           />
         )
-      )}
-
-      {/* Grid modal */}
-      {gridOpen && (
-        <PropertyGridModal
-          cityName={activeCityName}
-          properties={filteredActiveCityProperties}
-          onClose={handleClose}
-          onSelectProperty={setSelectedProperty}
-        />
       )}
 
       {/* Quick view modal */}

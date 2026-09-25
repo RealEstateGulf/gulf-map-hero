@@ -45,6 +45,15 @@ export default function PropertiesClient() {
       .finally(() => setLoading(false));
   }, []);
 
+  // Pre-select a city when arriving from the map's "View All" link (?city=Bursa)
+  useEffect(() => {
+    if (allProperties.length === 0) return;
+    const cityParam = new URLSearchParams(window.location.search).get('city');
+    if (!cityParam) return;
+    const match = allProperties.find(p => p.cityEn.toLowerCase() === cityParam.toLowerCase());
+    if (match) setActiveCity(match.city);
+  }, [allProperties]);
+
   const ALL_CITIES = useMemo(
     () => ['الكل', ...Array.from(new Set(allProperties.map(p => p.city)))],
     [allProperties],
