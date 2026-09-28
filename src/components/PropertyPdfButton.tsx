@@ -5,31 +5,13 @@ import { Download, Loader2, AlertCircle } from 'lucide-react';
 import { pdf } from '@react-pdf/renderer';
 import type { Property } from '@/data/properties';
 import { useTheme } from '@/context/ThemeContext';
+import { fetchAsDataUrl } from '@/lib/fetchAsDataUrl';
 import PropertyBrochureDocument from './pdf/PropertyBrochureDocument';
 
 interface Props {
   property: Property;
   agentPhone: string;
   agentEmail: string;
-}
-
-// react-pdf's <Image> fetches the URL itself and throws the whole document
-// if that fetch fails (CORS, a dead link, ...). Resolve it to a data URL
-// ourselves first so a bad photo just means "no cover image", not "no PDF".
-async function toDataUrl(url: string): Promise<string | undefined> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return undefined;
-    const blob = await res.blob();
-    return await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  } catch {
-    return undefined;
-  }
 }
 
 export default function PropertyPdfButton({ property, agentPhone, agentEmail }: Props) {
@@ -45,7 +27,7 @@ export default function PropertyPdfButton({ property, agentPhone, agentEmail }: 
       // there's no need to cap it) — resolved in parallel, each one
       // independently allowed to fail (a dead photo just gets dropped).
       const wanted = (property.photos ?? []).slice(0, 24);
-      const resolved = (await Promise.all(wanted.map(toDataUrl))).filter((u): u is string => !!u);
+      const resolved = (await Promise.all(wanted.map(fetchAsDataUrl))).filter((u): u is string => !!u);
       const [coverImage, ...galleryPhotos] = resolved;
       const blob = await pdf(
         <PropertyBrochureDocument property={property} agentPhone={agentPhone} agentEmail={agentEmail} coverImage={coverImage} galleryPhotos={galleryPhotos} />

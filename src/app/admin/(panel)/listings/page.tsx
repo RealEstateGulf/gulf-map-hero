@@ -2,14 +2,31 @@ import { getSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import AdminHeader from '@/components/admin/AdminHeader';
 import Link from 'next/link';
-import { Building2, Plus, Eye, EyeOff, Star } from 'lucide-react';
+import { Building2, Plus, Star } from 'lucide-react';
+import PropertyInstagramButton from '@/components/PropertyInstagramButton';
+
+function parsePhotos(json: string): string[] {
+  try {
+    const parsed = JSON.parse(json);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
 
 export default async function ListingsPage() {
   const session = await getSession();
-  const listings = await prisma.property.findMany({
-    orderBy: { createdAt: 'desc' },
-    include: { agent: { select: { name: true } }, consultant: { select: { nameEn: true } } },
-  });
+  const [listings, waSetting] = await Promise.all([
+    prisma.property.findMany({
+      orderBy: { createdAt: 'desc' },
+      include: { agent: { select: { name: true } }, consultant: { select: { nameEn: true } } },
+    }),
+    prisma.pageContent.findFirst({ where: { pageKey: 'popup', key: 'wa_number' } }),
+  ]);
+  const waNumber = waSetting?.valueAr || '905072308453';
+  const phoneDisplay = /^\d{12}$/.test(waNumber)
+    ? `+${waNumber.slice(0, 2)} ${waNumber.slice(2, 5)} ${waNumber.slice(5, 8)} ${waNumber.slice(8, 10)} ${waNumber.slice(10, 12)}`
+    : `+${waNumber}`;
 
   return (
     <>
@@ -99,19 +116,36 @@ export default async function ListingsPage() {
                       </span>
                     </td>
                     <td style={{ padding: '13px 16px' }}>
-                      <Link
-                        href={`/admin/listings/${p.id}`}
-                        style={{
-                          display: 'inline-flex', alignItems: 'center', gap: 5,
-                          padding: '6px 12px', borderRadius: 7,
-                          background: 'rgba(255,255,255,0.05)',
-                          border: '1px solid rgba(255,255,255,0.08)',
-                          color: 'rgba(255,255,255,0.7)', fontSize: '0.72rem',
-                          textDecoration: 'none', whiteSpace: 'nowrap',
-                        }}
-                      >
-                        Düzenle
-                      </Link>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <Link
+                          href={`/admin/listings/${p.id}`}
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 5,
+                            padding: '6px 12px', borderRadius: 7,
+                            background: 'rgba(255,255,255,0.05)',
+                            border: '1px solid rgba(255,255,255,0.08)',
+                            color: 'rgba(255,255,255,0.7)', fontSize: '0.72rem',
+                            textDecoration: 'none', whiteSpace: 'nowrap',
+                          }}
+                        >
+                          Düzenle
+                        </Link>
+                        <PropertyInstagramButton
+                          compact
+                          phoneDisplay={phoneDisplay}
+                          property={{
+                            slug: p.slug,
+                            photos: parsePhotos(p.photos),
+                            typeAr: p.typeAr,
+                            locationAr: p.locationAr,
+                            titleAr: p.titleAr,
+                            badge: p.badge,
+                            price: p.price,
+                            rooms: p.rooms,
+                            area: p.area,
+                          }}
+                        />
+                      </div>
                     </td>
                   </tr>
                 ))}

@@ -22,6 +22,7 @@ import Navbar from '@/components/map/Navbar';
 import FooterSection from '@/components/sections/FooterSection';
 import ROICalculatorModal from '@/components/ROICalculatorModal';
 import PropertyPdfButton from '@/components/PropertyPdfButton';
+import PropertyInstagramButton from '@/components/PropertyInstagramButton';
 import type { Property } from '@/data/properties';
 
 export default function PropertyDetailClient({
@@ -612,8 +613,9 @@ function PropertyDetail({ property, related }: { property: Property; related: Pr
               </div>
 
               {/* PDF download */}
-              <div style={{ padding: '0 20px 18px' }}>
+              <div style={{ padding: '0 20px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <PropertyPdfButton property={property} agentPhone={displayPhone} agentEmail="info@almiftahrealestate.com" />
+                <PropertyInstagramButton property={property} phoneDisplay={displayPhone} />
               </div>
             </div>
 
