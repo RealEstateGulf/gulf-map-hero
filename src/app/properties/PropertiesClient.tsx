@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { BedDouble, Maximize2, MapPin, ArrowLeft, SlidersHorizontal, ChevronDown, Scale, X } from 'lucide-react';
+import { BedDouble, Maximize2, MapPin, ArrowLeft, SlidersHorizontal, ChevronDown, Scale, X, Wallet } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useIsMobile } from '@/hooks/useResponsive';
 import { useScrollReveal, rv } from '@/hooks/useScrollReveal';
@@ -32,10 +32,22 @@ export default function PropertiesClient() {
     { key: 'hotels', label: tr('prop.filter.hotels') },
   ];
 
+  // Upper bound is exclusive except for the last (open-ended) bucket.
+  const PRICE_RANGES: { key: string; min: number; max: number | null; labelAr: string; labelEn: string }[] = [
+    { key: 'all', min: 0, max: null, labelAr: 'كل الأسعار', labelEn: 'All Prices' },
+    { key: 'u150', min: 0, max: 150_000, labelAr: 'أقل من 150 ألف$', labelEn: 'Under $150K' },
+    { key: '150-200', min: 150_000, max: 200_000, labelAr: '150-200 ألف$', labelEn: '$150K-$200K' },
+    { key: '200-250', min: 200_000, max: 250_000, labelAr: '200-250 ألف$', labelEn: '$200K-$250K' },
+    { key: '250-350', min: 250_000, max: 350_000, labelAr: '250-350 ألف$', labelEn: '$250K-$350K' },
+    { key: '350-500', min: 350_000, max: 500_000, labelAr: '350-500 ألف$', labelEn: '$350K-$500K' },
+    { key: '500plus', min: 500_000, max: null, labelAr: '500 ألف$ فأكثر', labelEn: '$500K+' },
+  ];
+
   const [allProperties, setAllProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<'all' | PropertyCategory>('all');
   const [activeCity, setActiveCity] = useState<string>('الكل');
+  const [activePriceRange, setActivePriceRange] = useState<string>('all');
   const [cityDropdownOpen, setCityDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -60,12 +72,18 @@ export default function PropertiesClient() {
   );
 
   const filtered = useMemo(() => {
+    const range = PRICE_RANGES.find(r => r.key === activePriceRange);
     return allProperties.filter(p => {
       const categoryMatch = activeCategory === 'all' || p.category === activeCategory;
       const cityMatch = activeCity === 'الكل' || p.city === activeCity;
-      return categoryMatch && cityMatch;
+      const price = parseUSD(p.price);
+      const priceMatch = !range || range.key === 'all'
+        ? true
+        : price >= range.min && (range.max === null || price < range.max);
+      return categoryMatch && cityMatch && priceMatch;
     });
-  }, [allProperties, activeCategory, activeCity]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allProperties, activeCategory, activeCity, activePriceRange]);
 
   return (
     <main style={{ background: t.bg, minHeight: '100vh', direction: dir }}>
@@ -291,6 +309,43 @@ export default function PropertiesClient() {
               ))
             )}
           </div>
+
+          {/* Price range chips */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: isMobile ? '0 0 12px' : '0 0 14px',
+              overflowX: 'auto',
+              scrollbarWidth: 'none',
+            }}
+          >
+            <Wallet size={13} color={t.txt4} style={{ flexShrink: 0 }} />
+            {PRICE_RANGES.map(range => (
+              <button
+                key={range.key}
+                onClick={() => setActivePriceRange(range.key)}
+                style={{
+                  padding: '5px 13px',
+                  borderRadius: 4,
+                  border: `1px solid ${activePriceRange === range.key ? t.gold : t.border}`,
+                  background: activePriceRange === range.key ? t.gold5 : 'transparent',
+                  color: activePriceRange === range.key ? t.gold : t.txt4,
+                  fontSize: '0.7rem',
+                  fontWeight: activePriceRange === range.key ? 600 : 400,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s',
+                  flexShrink: 0,
+                }}
+                onMouseEnter={e => { if (activePriceRange !== range.key) { e.currentTarget.style.borderColor = t.gold4; e.currentTarget.style.color = t.txt3; } }}
+                onMouseLeave={e => { if (activePriceRange !== range.key) { e.currentTarget.style.borderColor = t.border; e.currentTarget.style.color = t.txt4; } }}
+              >
+                {isAr ? range.labelAr : range.labelEn}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -312,6 +367,11 @@ export default function PropertiesClient() {
             {activeCategory !== 'all' && (
               <span style={{ color: t.gold, marginRight: 6 }}>
                 · {CATEGORIES.find(c => c.key === activeCategory)?.label}
+              </span>
+            )}
+            {activePriceRange !== 'all' && (
+              <span style={{ color: t.gold, marginRight: 6 }}>
+                · {isAr ? PRICE_RANGES.find(r => r.key === activePriceRange)?.labelAr : PRICE_RANGES.find(r => r.key === activePriceRange)?.labelEn}
               </span>
             )}
           </p>
