@@ -5,7 +5,7 @@ import { Download, Loader2, AlertCircle } from 'lucide-react';
 import { pdf } from '@react-pdf/renderer';
 import type { Property } from '@/data/properties';
 import { useTheme } from '@/context/ThemeContext';
-import { fetchAsDataUrl } from '@/lib/fetchAsDataUrl';
+import { fetchAsJpegDataUrl } from '@/lib/fetchAsDataUrl';
 import PropertyBrochureDocument from './pdf/PropertyBrochureDocument';
 
 interface Props {
@@ -27,7 +27,7 @@ export default function PropertyPdfButton({ property, agentPhone, agentEmail }: 
       // there's no need to cap it) — resolved in parallel, each one
       // independently allowed to fail (a dead photo just gets dropped).
       const wanted = (property.photos ?? []).slice(0, 24);
-      const resolved = (await Promise.all(wanted.map(fetchAsDataUrl))).filter((u): u is string => !!u);
+      const resolved = (await Promise.all(wanted.map(fetchAsJpegDataUrl))).filter((u): u is string => !!u);
       const [coverImage, ...galleryPhotos] = resolved;
       const blob = await pdf(
         <PropertyBrochureDocument property={property} agentPhone={agentPhone} agentEmail={agentEmail} coverImage={coverImage} galleryPhotos={galleryPhotos} />
