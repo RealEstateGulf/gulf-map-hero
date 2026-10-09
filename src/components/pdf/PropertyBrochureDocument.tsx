@@ -220,15 +220,22 @@ interface Props {
 
 export default function PropertyBrochureDocument({ property, agentPhone, agentEmail, coverImage, galleryPhotos }: Props) {
   const photos = galleryPhotos ?? [];
-  const siteImg = photos[0] ?? coverImage;
-  const captionImg = photos[1] ?? coverImage;
-  const featureImg = photos[2] ?? coverImage;
-  const restPhotos = photos.slice(3);
+  // Hierarchy requested: the large "hero" photos should read as exterior/site
+  // shots, moving to interiors only once the deck gets to specific rooms.
+  // The only photo we can actually *guarantee* is exterior is the cover —
+  // it's hand-picked as the building/entrance shot for every listing, while
+  // everything after it in `photos` is just upload order (not curated by
+  // room), so re-using the cover itself for every "this is the outside" slot
+  // is the only way to not risk mislabeling an interior shot as the facade.
+  const siteImg = coverImage;
+  const captionImg = coverImage;
+  const featureImg = photos[0] ?? coverImage;
+  const restPhotos = photos.slice(1);
   const spreadPairs: [string | undefined, string | undefined][] = [];
   for (let i = 0; i < Math.min(restPhotos.length, 6); i += 2) {
     spreadPairs.push([restPhotos[i], restPhotos[i + 1]]);
   }
-  const closingImg = restPhotos[restPhotos.length - 1] ?? captionImg ?? coverImage;
+  const closingImg = coverImage;
 
   const features = property.features ?? [];
   const cardFeatures1 = features.slice(0, 4);
