@@ -62,15 +62,9 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
           background: `radial-gradient(circle at 15% 0%, rgba(212,175,55,0.14) 0%, transparent 45%), ${NAVY}`,
         }}
       >
-        {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoUrl} alt="Al-Miftah" style={{ width: 54, objectFit: 'contain' }} />
-          <div>
-            <div style={{ color: '#fff', fontWeight: 700, fontSize: 19 }}>Al Miftah Real Estate</div>
-            <div style={{ color: MUTED, fontSize: 12.5, marginTop: 2 }}>almiftahrealestate.com</div>
-          </div>
-        </div>
+        {/* Logo — the gold wordmark reads fine on navy as-is, no separate text needed */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoUrl} alt="Al-Miftah" style={{ width: 230, objectFit: 'contain' }} />
 
         <div style={{ flex: 1 }} />
 

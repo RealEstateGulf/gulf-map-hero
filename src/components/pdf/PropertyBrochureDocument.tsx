@@ -38,8 +38,7 @@ const styles = StyleSheet.create({
   page: { fontFamily: 'Amiri', fontSize: 11, color: INK, backgroundColor: PANEL, direction: 'rtl' },
   eyebrow: { fontFamily: 'Amiri-Bold', fontSize: 10, color: GOLD, letterSpacing: 1 },
   logoRow: { flexDirection: 'row-reverse', alignItems: 'center', gap: 8 },
-  logoMark: { width: 20, height: 26, objectFit: 'contain' },
-  logoWordmark: { fontFamily: 'Poppins', fontSize: 11, fontWeight: 'bold' },
+  logoMark: { width: 95, height: 31, objectFit: 'contain' },
   pageNum: { position: 'absolute', bottom: 18, right: 28, fontFamily: 'Poppins', fontSize: 9, color: MUTED },
   captionBar: {
     position: 'absolute', left: 0, right: 0, bottom: 0,
@@ -53,8 +52,7 @@ const styles = StyleSheet.create({
   coverRow: { flexDirection: 'row-reverse', width: '100%', height: '100%' },
   coverImage: { width: '62%', height: '100%', objectFit: 'cover' },
   coverPanel: { width: '38%', height: '100%', backgroundColor: NAVY, padding: 34, justifyContent: 'space-between' },
-  coverLogoWordmark: { fontFamily: 'Poppins', fontSize: 13, fontWeight: 'bold', color: '#fff' },
-  coverLogoSub: { fontFamily: 'Amiri', fontSize: 8, color: '#9fb2c9', marginTop: 2 },
+  coverLogoMark: { width: 150, height: 49, objectFit: 'contain' },
   coverTitle: { fontFamily: 'Amiri-Bold', fontSize: 30, color: '#fff', textAlign: 'right', lineHeight: 1.35, marginTop: 10 },
   coverDivider: { width: 46, height: 2, backgroundColor: GOLD, alignSelf: 'flex-end', marginVertical: 14 },
   coverSub: { fontSize: 11, color: '#c7d2de', textAlign: 'right', lineHeight: 1.6 },
@@ -194,11 +192,12 @@ function IconMapPin() {
 }
 const ICONS = [IconHome, IconUsers, IconChart, IconCheck, IconStar, IconMapPin];
 
-function Logo({ light }: { light?: boolean }) {
+// The gold wordmark reads fine on both navy and light panels, so unlike the
+// old monogram-only mark this doesn't need separate light/dark variants.
+function Logo() {
   return (
     <View style={styles.logoRow}>
-      <Image src={light ? '/logo-miftah-white.png' : '/logo-miftah-black.png'} style={styles.logoMark} />
-      <Text style={[styles.logoWordmark, { color: light ? '#fff' : INK }]}>Al Miftah Real Estate</Text>
+      <Image src="/logo-bircan-akin.png" style={styles.logoMark} />
     </View>
   );
 }
@@ -265,15 +264,7 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
         <View style={styles.coverRow}>
           {coverImage && <Image src={coverImage} style={styles.coverImage} />}
           <View style={styles.coverPanel}>
-            <View>
-              <View style={styles.logoRow}>
-                <Image src="/logo-miftah-white.png" style={styles.logoMark} />
-                <View>
-                  <Text style={styles.coverLogoWordmark}>Al Miftah Real Estate</Text>
-                  <Text style={styles.coverLogoSub}>almiftahrealestate.com</Text>
-                </View>
-              </View>
-            </View>
+            <Image src="/logo-bircan-akin.png" style={styles.coverLogoMark} />
             <View>
               <Text style={styles.eyebrow}>{property.city.toUpperCase()}  ·  {property.typeAr.toUpperCase()}</Text>
               <Text style={styles.coverTitle}>{property.titleAr}</Text>
@@ -290,7 +281,7 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
       <Page size={SLIDE} style={styles.page}>
         <View style={styles.navyPad}>
           <View>
-            <Logo light />
+            <Logo />
             <Text style={[styles.eyebrow, { marginTop: 24 }]}>مواصفات العقار</Text>
             <Text style={styles.specHeadline}>{property.titleAr}</Text>
             <View style={styles.specStatsRow}>
@@ -460,7 +451,7 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
         <View style={styles.splitRow}>
           <View style={styles.closeCol}>
             <View>
-              <Logo light />
+              <Logo />
               <Text style={[styles.eyebrow, { marginTop: 30 }]}>تواصل معنا</Text>
               <Text style={styles.closeHeadline}>عاين العقار على الطبيعة</Text>
               <Text style={styles.closeSub}>للمزيد من التفاصيل وترتيب موعد معاينة، تواصل معنا مباشرة.</Text>

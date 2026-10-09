@@ -51,7 +51,7 @@ export default function PropertyInstagramButton({ property, phoneDisplay, compac
     try {
       const wantedPhotos = (property.photos ?? []).slice(0, 3);
       const [logoUrl, ...resolvedPhotos] = await Promise.all([
-        fetchAsDataUrl('/logo-miftah-white.png'),
+        fetchAsDataUrl('/logo-bircan-akin.png'),
         ...wantedPhotos.map(fetchAsDataUrl),
       ]);
       const photos = resolvedPhotos.filter((u): u is string => !!u);
