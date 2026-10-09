@@ -1,9 +1,12 @@
 import { forwardRef } from 'react';
 
+// Same navy/gold language as the redesigned PDF brochure, so every
+// downloadable asset for a listing reads as one consistent brand kit.
 const GOLD = '#D4AF37';
-const BG = '#0a0a0a';
+const NAVY = '#0c2742';
+const NAVY2 = '#16375a';
 const TXT = '#f2f2f2';
-const MUTED = 'rgba(255,255,255,0.55)';
+const MUTED = 'rgba(255,255,255,0.6)';
 
 const WIDTH = 1080;
 const HEIGHT = 1350;
@@ -27,7 +30,7 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
   { logoUrl, photos, typeAr, locationAr, titleAr, badge, priceLabel, specsLabel, phoneDisplay },
   ref,
 ) {
-  const titleFontSize = titleAr.length > 70 ? 34 : titleAr.length > 45 ? 40 : 48;
+  const titleFontSize = titleAr.length > 70 ? 32 : titleAr.length > 45 ? 38 : 46;
 
   return (
     <div
@@ -36,11 +39,18 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
         width: WIDTH,
         height: HEIGHT,
         display: 'flex',
-        background: BG,
+        background: NAVY,
         fontFamily: "'Poppins', sans-serif",
         direction: 'rtl',
       }}
     >
+      <style>{`
+        @font-face {
+          font-family: 'Amiri-Post';
+          src: url('/fonts/Amiri-Bold.ttf') format('truetype');
+          font-weight: bold;
+        }
+      `}</style>
       {/* Left panel */}
       <div
         style={{
@@ -49,12 +59,18 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
           display: 'flex',
           flexDirection: 'column',
           padding: '56px 44px',
-          background: `radial-gradient(circle at 15% 0%, rgba(212,175,55,0.12) 0%, transparent 45%), ${BG}`,
+          background: `radial-gradient(circle at 15% 0%, rgba(212,175,55,0.14) 0%, transparent 45%), ${NAVY}`,
         }}
       >
         {/* Logo */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoUrl} alt="Al-Miftah" style={{ width: 190, objectFit: 'contain' }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logoUrl} alt="Al-Miftah" style={{ width: 54, objectFit: 'contain' }} />
+          <div>
+            <div style={{ color: '#fff', fontWeight: 700, fontSize: 19 }}>Al Miftah Real Estate</div>
+            <div style={{ color: MUTED, fontSize: 12.5, marginTop: 2 }}>almiftahrealestate.com</div>
+          </div>
+        </div>
 
         <div style={{ flex: 1 }} />
 
@@ -86,9 +102,10 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
         <div
           style={{
             color: '#fff',
+            fontFamily: "'Amiri-Post', serif",
             fontSize: titleFontSize,
-            fontWeight: 800,
-            lineHeight: 1.35,
+            fontWeight: 700,
+            lineHeight: 1.4,
             marginBottom: 24,
           }}
         >
@@ -105,9 +122,9 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
         {/* Price card */}
         <div
           style={{
-            background: '#fff',
-            borderRadius: 20,
-            border: `2px solid ${GOLD}`,
+            background: NAVY2,
+            borderRadius: 14,
+            border: `1px solid ${GOLD}`,
             padding: '22px 26px',
             display: 'flex',
             flexDirection: 'column',
@@ -115,8 +132,8 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
             marginBottom: 40,
           }}
         >
-          <div style={{ color: '#333', fontSize: 17, fontWeight: 600 }}>{specsLabel}</div>
-          <div style={{ color: '#0a0a0a', fontSize: 42, fontWeight: 800 }}>{priceLabel}</div>
+          <div style={{ color: MUTED, fontSize: 17, fontWeight: 600 }}>{specsLabel}</div>
+          <div style={{ color: '#fff', fontFamily: "'Amiri-Post', serif", fontSize: 42, fontWeight: 700 }}>{priceLabel}</div>
         </div>
 
         <div style={{ flex: 1 }} />
@@ -141,7 +158,7 @@ const InstagramPostCard = forwardRef<HTMLDivElement, InstagramPostData>(function
       </div>
 
       {/* Right: 3 stacked photos */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 4, background: '#000' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 4, background: NAVY }}>
         {photos.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img

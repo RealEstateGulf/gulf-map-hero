@@ -51,7 +51,7 @@ export default function PropertyInstagramButton({ property, phoneDisplay, compac
     try {
       const wantedPhotos = (property.photos ?? []).slice(0, 3);
       const [logoUrl, ...resolvedPhotos] = await Promise.all([
-        fetchAsDataUrl('/logo-miftah.png'),
+        fetchAsDataUrl('/logo-miftah-white.png'),
         ...wantedPhotos.map(fetchAsDataUrl),
       ]);
       const photos = resolvedPhotos.filter((u): u is string => !!u);
@@ -84,6 +84,11 @@ export default function PropertyInstagramButton({ property, phoneDisplay, compac
       await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
       if (!cardRef.current) throw new Error('card not mounted');
       await waitForImages(cardRef.current);
+      // The card's title/price use a self-hosted @font-face (Amiri) declared
+      // inline in InstagramPostCard — without this, html-to-image can
+      // rasterize before the font file finishes downloading and silently
+      // fall back to the default serif for that first capture.
+      await document.fonts.load('bold 48px Amiri-Post').catch(() => {});
 
       const dataUrl = await toPng(cardRef.current, {
         width: INSTAGRAM_POST_WIDTH,
