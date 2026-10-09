@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   page: { fontFamily: 'Amiri', fontSize: 11, color: INK, backgroundColor: PANEL, direction: 'rtl' },
   eyebrow: { fontFamily: 'Amiri-Bold', fontSize: 10, color: GOLD, letterSpacing: 1 },
   logoRow: { flexDirection: 'row-reverse', alignItems: 'center', gap: 8 },
-  logoMark: { width: 22, height: 22 },
+  logoMark: { width: 20, height: 26, objectFit: 'contain' },
   logoWordmark: { fontFamily: 'Poppins', fontSize: 11, fontWeight: 'bold' },
   pageNum: { position: 'absolute', bottom: 18, right: 28, fontFamily: 'Poppins', fontSize: 9, color: MUTED },
   captionBar: {
@@ -197,7 +197,7 @@ const ICONS = [IconHome, IconUsers, IconChart, IconCheck, IconStar, IconMapPin];
 function Logo({ light }: { light?: boolean }) {
   return (
     <View style={styles.logoRow}>
-      <Image src="/logo-miftah.png" style={styles.logoMark} />
+      <Image src={light ? '/logo-miftah-white.png' : '/logo-miftah-black.png'} style={styles.logoMark} />
       <Text style={[styles.logoWordmark, { color: light ? '#fff' : INK }]}>Al Miftah Real Estate</Text>
     </View>
   );
@@ -227,10 +227,14 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
   // everything after it in `photos` is just upload order (not curated by
   // room), so re-using the cover itself for every "this is the outside" slot
   // is the only way to not risk mislabeling an interior shot as the facade.
+  // Don't paper over a one-photo exterior by stamping it on every "outside"
+  // slot — that just reads as a mistake. It gets exactly two appearances
+  // (location page, closing bookend) and the deck moves on to interiors
+  // from there, which is also where the hierarchy is supposed to go anyway.
   const siteImg = coverImage;
-  const captionImg = coverImage;
-  const featureImg = photos[0] ?? coverImage;
-  const restPhotos = photos.slice(1);
+  const captionImg = photos[0] ?? coverImage;
+  const featureImg = photos[1] ?? photos[0] ?? coverImage;
+  const restPhotos = photos.slice(2);
   const spreadPairs: [string | undefined, string | undefined][] = [];
   for (let i = 0; i < Math.min(restPhotos.length, 6); i += 2) {
     spreadPairs.push([restPhotos[i], restPhotos[i + 1]]);
@@ -263,7 +267,7 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
           <View style={styles.coverPanel}>
             <View>
               <View style={styles.logoRow}>
-                <Image src="/logo-miftah.png" style={styles.logoMark} />
+                <Image src="/logo-miftah-white.png" style={styles.logoMark} />
                 <View>
                   <Text style={styles.coverLogoWordmark}>Al Miftah Real Estate</Text>
                   <Text style={styles.coverLogoSub}>almiftahrealestate.com</Text>
@@ -389,7 +393,7 @@ export default function PropertyBrochureDocument({ property, agentPhone, agentEm
         {captionImg && <Image src={captionImg} style={styles.fullBleedImg} />}
         <View style={styles.captionBar}>
           <Logo />
-          <Text style={styles.captionText}>لمحة من الموقع</Text>
+          <Text style={styles.captionText}>لمحة من الداخل</Text>
         </View>
         <PageNumber n={6} />
       </Page>
